@@ -348,88 +348,8 @@
     </div>
   </div>
 
-  <!-- SMLOUVY -->
-  <div class="section">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-      <p class="label" style="margin-bottom: 0;">Smlouvy</p>
-      <button style="font-size: 12px; padding: 5px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">+ Nová smlouva</button>
-    </div>
-
-    <!-- Aktivní smlouva -->
-    <div style="border: 1px solid #e9e9e7; border-radius: 8px; overflow: hidden; margin-bottom: 16px;">
-
-      <!-- Hlavička -->
-      <div style="padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f1ef;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-            <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; background: #fff8e1; color: #e65100; padding: 2px 8px; border-radius: 3px;">V přípravě</span>
-            <span style="font-size: 12px; color: #9b9a97;">SoD · Plošina</span>
-          </div>
-          <h3 style="font-size: 15px; font-weight: 600; color: #37352f;">Smlouva o dílo — Dodavatel Y</h3>
-        </div>
-        <div style="font-size: 12px; color: #9b9a97;">Hodnota: 2 650 000 Kč</div>
-      </div>
-
-      <!-- Pomůcky -->
-      <div style="padding: 16px 20px; background: #fafaf9; border-bottom: 1px solid #f1f1ef;">
-        <div style="font-size: 12px; font-weight: 500; color: #9b9a97; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;">Pomůcky Alzáčka</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-
-          <!-- Upload a porovnání -->
-          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
-            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 6px;">📄 Nahrát smlouvu dodavatele</div>
-            <div style="font-size: 12px; color: #9b9a97; margin-bottom: 12px;">Alzáček ji porovná s mustrem a najde odchylky</div>
-            <div class="drop-zone" style="padding: 10px 14px; text-align: center; font-size: 12px; color: #9b9a97;">
-              Přetáhni PDF nebo klikni
-            </div>
-          </div>
-
-          <!-- Porovnat s mustrem -->
-          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
-            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 6px;">🔍 Porovnat s mustrem</div>
-            <div style="font-size: 12px; color: #9b9a97; margin-bottom: 12px;">Alzáček zkontroluje: chybějící klauzule, změněné podmínky, rizikové odchylky od Legal mustru</div>
-            <button onclick="alert('Alzáček: nejprve nahraj smlouvu dodavatele.')" style="font-size: 12px; padding: 6px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer; width: 100%;">Spustit porovnání</button>
-          </div>
-
-          <!-- Checklist SoD -->
-          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
-            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 10px;">✅ Checklist SoD</div>
-            <div style="display: grid; gap: 7px;">
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;">
-                <input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Smluvní pokuta za prodlení
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;">
-                <input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Záruční doba a podmínky
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;">
-                <input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Platební milníky
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;">
-                <input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Akceptační kritéria v příloze
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;">
-                <input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> BOZP a ostraha
-              </label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;">
-                <input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Harmonogram jako příloha
-              </label>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Stav podpisu -->
-      <div style="padding: 14px 20px; display: flex; align-items: center; gap: 10px;">
-        <button style="font-size: 13px; padding: 7px 16px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">Označit jako podepsáno</button>
-        <button style="font-size: 13px; padding: 7px 16px; border: 1px solid #e9e9e7; border-radius: 4px; background: #fff; color: #37352f; cursor: pointer;">Odeslat dodavateli</button>
-      </div>
-
-    </div>
-  </div>
-
   <!-- ROZHODOVACÍ LOG -->
-  <div class="section" style="margin-bottom: 60px;">
+  <div class="section">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
       <p class="label" style="margin-bottom: 0;">Rozhodnutí</p>
       <button style="font-size: 12px; padding: 5px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">+ Nové rozhodnutí</button>
@@ -528,6 +448,59 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- SMLOUVY -->
+  <div class="section" style="margin-bottom: 60px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+      <p class="label" style="margin-bottom: 0;">Smlouvy</p>
+      <button style="font-size: 12px; padding: 5px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">+ Nová smlouva</button>
+    </div>
+
+    <div style="border: 1px solid #e9e9e7; border-radius: 8px; overflow: hidden; margin-bottom: 16px;">
+      <div style="padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f1ef;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; background: #fff8e1; color: #e65100; padding: 2px 8px; border-radius: 3px;">V přípravě</span>
+            <span style="font-size: 12px; color: #9b9a97;">SoD · Plošina</span>
+          </div>
+          <h3 style="font-size: 15px; font-weight: 600; color: #37352f;">Smlouva o dílo — Dodavatel Y</h3>
+        </div>
+        <div style="font-size: 12px; color: #9b9a97;">Hodnota: 2 650 000 Kč</div>
+      </div>
+
+      <div style="padding: 16px 20px; background: #fafaf9; border-bottom: 1px solid #f1f1ef;">
+        <div style="font-size: 12px; font-weight: 500; color: #9b9a97; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;">Pomůcky Alzáčka</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
+            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 6px;">📄 Nahrát smlouvu dodavatele</div>
+            <div style="font-size: 12px; color: #9b9a97; margin-bottom: 12px;">Alzáček ji porovná s mustrem a najde odchylky</div>
+            <div class="drop-zone" style="padding: 10px 14px; text-align: center; font-size: 12px; color: #9b9a97;">Přetáhni PDF nebo klikni</div>
+          </div>
+          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
+            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 6px;">🔍 Porovnat s mustrem</div>
+            <div style="font-size: 12px; color: #9b9a97; margin-bottom: 12px;">Alzáček zkontroluje: chybějící klauzule, změněné podmínky, rizikové odchylky od Legal mustru</div>
+            <button onclick="alert('Alzáček: nejprve nahraj smlouvu dodavatele.')" style="font-size: 12px; padding: 6px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer; width: 100%;">Spustit porovnání</button>
+          </div>
+          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
+            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 10px;">✅ Checklist SoD</div>
+            <div style="display: grid; gap: 7px;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Smluvní pokuta za prodlení</label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Záruční doba a podmínky</label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Platební milníky</label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Akceptační kritéria v příloze</label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> BOZP a ostraha</label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Harmonogram jako příloha</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 14px 20px; display: flex; align-items: center; gap: 10px;">
+        <button style="font-size: 13px; padding: 7px 16px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">Označit jako podepsáno</button>
+        <button style="font-size: 13px; padding: 7px 16px; border: 1px solid #e9e9e7; border-radius: 4px; background: #fff; color: #37352f; cursor: pointer;">Odeslat dodavateli</button>
+      </div>
+    </div>
   </div>
 
   </div><!-- /section-bc -->
