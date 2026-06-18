@@ -47,6 +47,7 @@
       transition: background .15s;
     }
     .drop-zone:hover { background: #f7f6f3; }
+    .main.fc-mode { padding: 0; overflow: hidden; }
 
     /* CHAT */
     .chat-panel {
@@ -167,6 +168,10 @@
   <a href="#" onclick="showSection('plan', this); return false" class="nav-item">
     <div class="nav-icon-box">📅</div>
     <span>Plán</span>
+  </a>
+  <a href="#" onclick="showSection('fc', this); return false" class="nav-item">
+    <div class="nav-icon-box">🏷️</div>
+    <span>FC</span>
   </a>
   <a href="#" onclick="showSection('other', this); return false" class="nav-item">
     <div class="nav-icon-box">📁</div>
@@ -1029,6 +1034,173 @@
   </div>
   </div><!-- /section-plan -->
 
+  <!-- ══ SECTION FC ══ -->
+  <div id="section-fc" style="display:none;">
+    <div style="display:flex; height:100vh; overflow:hidden;">
+
+      <!-- LEFT SUBNAV -->
+      <div style="width:172px; border-right:1px solid #e9e9e7; flex-shrink:0; background:#fff; display:flex; flex-direction:column; overflow:hidden;">
+        <div style="padding:16px 14px 10px; border-bottom:1px solid #e9e9e7; flex-shrink:0;">
+          <div style="font-size:10px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px;">CZLC5 · Funkční celky</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <span id="fc-badge-plosina" onclick="switchFC('Plošina')" style="font-size:12px; font-weight:500; padding:3px 10px; border-radius:12px; cursor:pointer; background:#37352f; color:#fff; border:1px solid #37352f;">Plošina</span>
+            <span id="fc-badge-shz" onclick="switchFC('SHZ')" style="font-size:12px; font-weight:500; padding:3px 10px; border-radius:12px; cursor:pointer; background:#fff; color:#37352f; border:1px solid #e9e9e7;">SHZ</span>
+            <span id="fc-badge-ezs" onclick="switchFC('EZS')" style="font-size:12px; font-weight:500; padding:3px 10px; border-radius:12px; cursor:pointer; background:#fff; color:#37352f; border:1px solid #e9e9e7;">EZS</span>
+            <span style="font-size:11px; padding:3px 8px; border-radius:12px; cursor:pointer; color:#9b9a97; border:1.5px dashed #e9e9e7;">+ FC</span>
+          </div>
+        </div>
+        <div style="padding:8px; flex:1; overflow-y:auto;">
+          <div style="padding:8px 10px; border-radius:6px; display:flex; align-items:center; gap:8px; color:#9b9a97; font-size:13px; margin-bottom:1px;">
+            <span>📋</span> Charter
+            <span style="margin-left:auto; font-size:10px; background:#f1f1ef; color:#9b9a97; padding:1px 5px; border-radius:3px; white-space:nowrap;">brzy</span>
+          </div>
+          <div style="padding:8px 10px; border-radius:6px; display:flex; align-items:center; gap:8px; color:#9b9a97; font-size:13px; margin-bottom:1px;">
+            <span>⚠️</span> Rizika
+            <span style="margin-left:auto; font-size:10px; background:#f1f1ef; color:#9b9a97; padding:1px 5px; border-radius:3px; white-space:nowrap;">brzy</span>
+          </div>
+          <div style="height:1px; background:#e9e9e7; margin:8px 4px;"></div>
+          <a href="#fc-kriteria" style="padding:8px 10px; border-radius:6px; display:flex; align-items:center; gap:8px; color:#37352f; font-size:13px; text-decoration:none; background:#f1f1ef; margin-bottom:1px;">
+            📝 Kritéria
+          </a>
+          <a href="#fc-tendr" style="padding:8px 10px; border-radius:6px; display:flex; align-items:center; gap:8px; color:#37352f; font-size:13px; text-decoration:none; margin-bottom:1px;">
+            📊 Tendr
+          </a>
+          <a href="#fc-rozhodnut" style="padding:8px 10px; border-radius:6px; display:flex; align-items:center; gap:8px; color:#37352f; font-size:13px; text-decoration:none; margin-bottom:1px;">
+            ⚖️ Rozhodnutí
+          </a>
+          <a href="#fc-lessons" style="padding:8px 10px; border-radius:6px; display:flex; align-items:center; gap:8px; color:#37352f; font-size:13px; text-decoration:none; margin-bottom:1px;">
+            💡 Lessons
+          </a>
+          <div style="height:1px; background:#e9e9e7; margin:8px 4px;"></div>
+          <button style="display:flex; align-items:center; gap:6px; padding:7px 10px; border-radius:6px; font-size:12px; color:#9b9a97; border:none; background:transparent; cursor:pointer; width:100%;">
+            + Přidat sekci
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div style="flex:1; overflow-y:auto; padding:40px 44px 60px;">
+
+        <!-- SECTION 1: KRITÉRIA -->
+        <div id="fc-kriteria" style="margin-bottom:40px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #e9e9e7;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:22px; height:22px; border-radius:50%; background:#f1f1ef; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:#37352f; flex-shrink:0;">1</div>
+              <span style="font-size:15px; font-weight:600; color:#37352f;">Kritéria pro tendr</span>
+              <span style="font-size:13px; color:#9b9a97;">Co a jak chceme</span>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button style="display:flex; align-items:center; gap:5px; font-size:12px; font-weight:500; padding:5px 10px; border-radius:4px; border:1px solid #bfdbfe; background:#eff6ff; color:#1e40af; cursor:pointer;">↓ Ze SharePointu</button>
+              <button style="display:flex; align-items:center; gap:5px; font-size:12px; font-weight:500; padding:5px 10px; border-radius:4px; border:1px solid #c4b5fd; background:#f5f3ff; color:#5b21b6; cursor:pointer;">✦ AI shrnutí</button>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:10px;">
+            <div style="background:#f7f6f3; border-radius:6px; padding:10px 12px;"><div style="font-size:10px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Typ zařízení</div><div style="font-size:13px; font-weight:500; color:#37352f;">Elektropohon · pevná instal.</div></div>
+            <div style="background:#f7f6f3; border-radius:6px; padding:10px 12px;"><div style="font-size:10px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Výška zdvihu</div><div style="font-size:13px; font-weight:500; color:#37352f;">min. 8 m</div></div>
+            <div style="background:#f7f6f3; border-radius:6px; padding:10px 12px;"><div style="font-size:10px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Nosnost</div><div style="font-size:13px; font-weight:500; color:#37352f;">min. 500 kg</div></div>
+            <div style="background:#f7f6f3; border-radius:6px; padding:10px 12px;"><div style="font-size:10px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Certifikace</div><div style="font-size:13px; font-weight:500; color:#37352f;">ČSN EN 1495</div></div>
+            <div style="background:#f7f6f3; border-radius:6px; padding:10px 12px;"><div style="font-size:10px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Termín montáže</div><div style="font-size:13px; font-weight:500; color:#37352f;">Q3 2027</div></div>
+            <div style="background:#f7f6f3; border-radius:6px; padding:10px 12px;"><div style="font-size:10px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px;">Rozpočet</div><div style="font-size:13px; font-weight:500; color:#37352f;">do 3 000 000 Kč</div></div>
+          </div>
+          <div style="font-size:13px; color:#37352f; line-height:1.65; padding:12px 14px; background:#f7f6f3; border-radius:6px;">Plošina musí umožnit souběžný provoz expedice bez přerušení provozu. Přednost mají dodavatelé s referencemi v logistice a záručním servisem min. 5 let.</div>
+        </div>
+
+        <!-- SECTION 2: TENDR -->
+        <div id="fc-tendr" style="margin-bottom:40px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #e9e9e7;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:22px; height:22px; border-radius:50%; background:#f1f1ef; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:#37352f; flex-shrink:0;">2</div>
+              <span style="font-size:15px; font-weight:600; color:#37352f;">Tendr</span>
+              <span style="font-size:13px; color:#9b9a97;">3 nabídky · CZLC5 · 2026</span>
+            </div>
+            <button style="display:flex; align-items:center; gap:5px; font-size:12px; font-weight:500; padding:5px 10px; border-radius:4px; border:1px solid #bfdbfe; background:#eff6ff; color:#1e40af; cursor:pointer;">📊 Nahrát Excel z procurementu</button>
+          </div>
+          <table style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.07em; padding:8px 0; border-bottom:1px solid #e9e9e7; text-align:left;">Dodavatel</th>
+                <th style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.07em; padding:8px 12px; border-bottom:1px solid #e9e9e7; text-align:left;">Cena bez DPH</th>
+                <th style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.07em; padding:8px 12px; border-bottom:1px solid #e9e9e7; text-align:left;">Lhůta</th>
+                <th style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.07em; padding:8px 12px; border-bottom:1px solid #e9e9e7; text-align:left;">Servis</th>
+                <th style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.07em; padding:8px 12px; border-bottom:1px solid #e9e9e7; text-align:left;">Výsledek</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #f0efed;">
+                <td style="padding:11px 0; font-size:13px; font-weight:500; color:#37352f;">SkyWork s.r.o. <span style="font-size:10px; font-weight:600; padding:1px 6px; border-radius:3px; background:#f0faf4; color:#2e7d32; border:1px solid #a5d6a7; margin-left:4px;">✓ Vybráno</span></td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">2 800 000 Kč</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">14 týdnů</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">5 let</td>
+                <td style="padding:11px 12px;"><span style="font-size:11px; font-weight:600; padding:2px 7px; border-radius:3px; background:#f0faf4; color:#2e7d32; border:1px solid #a5d6a7;">Přijato</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid #f0efed;">
+                <td style="padding:11px 0; font-size:13px; font-weight:500; color:#37352f;">Haulotte CZ</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">2 650 000 Kč</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">8 týdnů</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">2 roky</td>
+                <td style="padding:11px 12px;"><span style="font-size:11px; font-weight:600; padding:2px 7px; border-radius:3px; background:#f7f6f3; color:#9b9a97;">Odmítnuto</span></td>
+              </tr>
+              <tr>
+                <td style="padding:11px 0; font-size:13px; font-weight:500; color:#37352f;">Plošiny Morava</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">3 100 000 Kč</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">16 týdnů</td>
+                <td style="padding:11px 12px; font-size:13px; color:#37352f;">3 roky</td>
+                <td style="padding:11px 12px;"><span style="font-size:11px; font-weight:600; padding:2px 7px; border-radius:3px; background:#f7f6f3; color:#9b9a97;">Odmítnuto</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 3: BUSINESS ROZHODNUTÍ -->
+        <div id="fc-rozhodnut" style="margin-bottom:40px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #e9e9e7;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:22px; height:22px; border-radius:50%; background:#f1f1ef; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:#37352f; flex-shrink:0;">3</div>
+              <span style="font-size:15px; font-weight:600; color:#37352f;">Business rozhodnutí</span>
+              <span style="font-size:13px; color:#9b9a97;">Odůvodnění výběru</span>
+            </div>
+            <button style="font-size:12px; font-weight:500; padding:5px 12px; border-radius:4px; border:none; background:#37352f; color:#fff; cursor:pointer;">+ Nové rozhodnutí</button>
+          </div>
+          <div style="background:#f7f6f3; border-radius:6px; padding:16px 18px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:600; padding:2px 7px; border-radius:3px; background:#f0faf4; color:#2e7d32; border:1px solid #a5d6a7;">✓ Schváleno</span>
+              <span style="font-size:14px; font-weight:600; color:#37352f;">SkyWork s.r.o. · 2 800 000 Kč</span>
+            </div>
+            <p style="font-size:13px; color:#37352f; line-height:1.65; margin-bottom:12px;">Vybrán SkyWork navzdory vyšší ceně oproti Haulotte. Rozhodující: záruční servis 5 let vs. 2 roky, zkušenost z CZLC3 bez výpadků a smluvní penalizace za výpadek. Haulotte nabídl kratší lhůtu, ale pro 24/7 provoz skladu byl servis hodnocen jako nedostatečný.</p>
+            <div style="display:flex; gap:20px; font-size:12px; color:#9b9a97;">
+              <span>Schválil <strong style="color:#37352f;">P. Novák</strong></span>
+              <span>Datum <strong style="color:#37352f;">28. 5. 2026</strong></span>
+              <span>Projekt <strong style="color:#37352f;">CZLC5</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: LESSONS LEARNED -->
+        <div id="fc-lessons" style="margin-bottom:60px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #e9e9e7;">
+            <div style="width:22px; height:22px; border-radius:50%; background:#f1f1ef; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; color:#37352f; flex-shrink:0;">4</div>
+            <span style="font-size:15px; font-weight:600; color:#37352f;">Lessons learned</span>
+          </div>
+          <div style="margin-bottom:12px;">
+            <div style="padding:11px 0; border-bottom:1px solid #f0efed; display:flex; gap:10px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:#d3d1cb; flex-shrink:0; margin-top:7px; display:block;"></span>
+              <div><p style="font-size:13px; color:#37352f; line-height:1.55;">Při přejímce zkontrolovat revizní protokol před podpisem — na CZLC4 chyběl a zdrželo nás to 3 týdny.</p><p style="font-size:11px; color:#9b9a97; margin-top:3px;">V. Jiránek · 5. 11. 2024</p></div>
+            </div>
+            <div style="padding:11px 0; display:flex; gap:10px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:#d3d1cb; flex-shrink:0; margin-top:7px; display:block;"></span>
+              <div><p style="font-size:13px; color:#37352f; line-height:1.55;">SkyWork má delší dodací lhůtu ale lepší servisní odezvu. Pro 24/7 sklady preferovat před Haulotte.</p><p style="font-size:11px; color:#9b9a97; margin-top:3px;">P. Novák · 18. 2. 2025</p></div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #e9e9e7; padding-top:14px; display:flex; gap:10px;">
+            <textarea placeholder="Napiš poznatek…" rows="2" style="flex:1; border:1px solid #e9e9e7; border-radius:6px; padding:9px 12px; font-size:13px; font-family:'Inter','Segoe UI',sans-serif; color:#37352f; background:#fff; resize:none; outline:none; line-height:1.5;"></textarea>
+            <button style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:500; padding:9px 16px; border-radius:6px; background:#37352f; color:#fff; border:none; cursor:pointer; flex-shrink:0; align-self:flex-start;">+ Přidat</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /section-fc -->
+
 </main>
 
 <!-- CHAT PANEL -->
@@ -1044,6 +1216,26 @@
   </div>
 
   <div class="chat-messages" id="chat-messages">
+    <!-- FC AI context — shown only in FC mode -->
+    <div id="fc-ai-extras" style="display:none; margin-bottom:4px;">
+      <button onclick="alert('Připravuji briefing pro ředitele logistiky…')" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px; padding:9px 12px; border-radius:6px; background:#f5f3ff; border:1px solid #c4b5fd; color:#5b21b6; font-size:13px; font-weight:500; cursor:pointer; margin-bottom:12px; font-family:inherit;">
+        ✦ Připrav briefing pro ředitele logistiky
+      </button>
+      <div style="display:flex; flex-direction:column; gap:7px; margin-bottom:12px; padding-bottom:14px; border-bottom:1px solid #e9e9e7;">
+        <div style="background:#fef2f2; border:1px solid #fecaca; border-radius:6px; padding:10px 12px;">
+          <div style="font-size:11px; font-weight:600; color:#991b1b; margin-bottom:3px;">⚠ Chybí revizní protokol</div>
+          <p style="font-size:12px; color:#7f1d1d; line-height:1.5; margin:0;">V SoD SkyWork není specifikováno předání revizního protokolu. Doplň před podpisem.</p>
+        </div>
+        <div style="background:#fffbf0; border:1px solid #fde68a; border-radius:6px; padding:10px 12px;">
+          <div style="font-size:11px; font-weight:600; color:#92400e; margin-bottom:3px;">⚡ Kolize termínů s EZS</div>
+          <p style="font-size:12px; color:#78350f; line-height:1.5; margin:0;">Montáž Plošiny (14 týdnů od SkyWork) se překrývá s plánovanou instalací EZS v zóně A3. Zkontroluj harmonogram.</p>
+        </div>
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:10px 12px;">
+          <div style="font-size:11px; font-weight:600; color:#1e40af; margin-bottom:3px;">💡 Tip k tendru</div>
+          <p style="font-size:12px; color:#1e3a8a; line-height:1.5; margin:0;">Haulotte nabídl kratší lhůtu (8 týdnů). Pokud se GO-LIVE posune, zvažte renegociaci nebo alternativu.</p>
+        </div>
+      </div>
+    </div>
     <div class="msg">
       <div class="msg-avatar">A</div>
       <div class="msg-bubble">Ahoj! Pracuješ na projektu <strong>Plošina – CZLC5</strong>. Na co se chceš zaměřit? Můžu připravit rizika, otázky pro dodavatele, checklist nebo draft harmonogramu.</div>
@@ -1065,21 +1257,29 @@
     el.classList.add('active');
     el.querySelector('.nav-icon-box').classList.add('active-box');
 
-    const karta = document.getElementById('section-karta');
-    const bc = document.getElementById('section-bc');
-    const checklist = document.getElementById('section-checklist');
-    const rizika = document.getElementById('section-rizika');
-    const plan = document.getElementById('section-plan');
-    karta.style.display = 'none';
-    bc.style.display = 'none';
-    checklist.style.display = 'none';
-    rizika.style.display = 'none';
-    plan.style.display = 'none';
-    if (id === 'karta') karta.style.display = '';
-    else if (id === 'bc') bc.style.display = '';
-    else if (id === 'checklist') checklist.style.display = '';
-    else if (id === 'rizika') rizika.style.display = '';
-    else if (id === 'plan') plan.style.display = '';
+    const sections = ['karta','bc','checklist','rizika','plan','fc'];
+    sections.forEach(s => { const el = document.getElementById('section-' + s); if (el) el.style.display = 'none'; });
+
+    const mainEl = document.querySelector('.main');
+    const aiExtras = document.getElementById('fc-ai-extras');
+
+    if (id === 'fc') {
+      document.getElementById('section-fc').style.display = '';
+      mainEl.classList.add('fc-mode');
+      aiExtras.style.display = '';
+    } else {
+      mainEl.classList.remove('fc-mode');
+      aiExtras.style.display = 'none';
+      const target = document.getElementById('section-' + id);
+      if (target) target.style.display = '';
+    }
+  }
+
+  function switchFC(name) {
+    ['Plošina','SHZ','EZS'].forEach(fc => {
+      const badge = document.getElementById('fc-badge-' + fc.toLowerCase().replace('š','s').replace('ž','z'));
+      if (badge) { badge.style.background = fc === name ? '#37352f' : '#fff'; badge.style.color = fc === name ? '#fff' : '#37352f'; badge.style.borderColor = fc === name ? '#37352f' : '#e9e9e7'; }
+    });
   }
 
   document.querySelectorAll('#section-checklist input[type="checkbox"]').forEach(cb => {
