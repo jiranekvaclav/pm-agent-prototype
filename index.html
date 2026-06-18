@@ -341,235 +341,276 @@
 
   <div id="section-bc" style="display:none;">
 
-  <!-- ZÁHLAVÍ SEKCE -->
-  <div class="section" style="margin-top: 48px; margin-bottom: 0;">
-    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 28px;">
-      <h2 style="font-size: 18px; font-weight: 600; color: #37352f;">BC & Tendry</h2>
-      <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #9b9a97; background: #f7f6f3; padding: 2px 10px; border-radius: 3px;">Fáze: Realizace</span>
+  <div style="padding: 48px 0 80px;">
+
+    <!-- BREADCRUMB + TITLE -->
+    <div style="display:flex; align-items:center; gap:5px; font-size:12px; color:#9b9a97; margin-bottom:6px;">
+      <span style="color:#37352f; font-weight:500;">BC &amp; Tendry</span>
     </div>
-  </div>
+    <h1 style="font-size:28px; font-weight:600; color:#37352f; letter-spacing:-.025em; margin:0 0 4px;">BC &amp; Tendry</h1>
+    <div style="font-size:13px; color:#9b9a97; margin-bottom:32px;">CZLC5 — Plošina&nbsp;&nbsp;·&nbsp;&nbsp;Investiční projekt · 2,8 M Kč</div>
 
-  <!-- BUSINESS CASE -->
-  <div class="section" style="margin-bottom: 8px;">
-    <p class="label" style="margin-bottom: 16px;">Business Case</p>
+    <!-- ══ 1. STAVOVÝ PRUH ══ -->
+    <div style="border:1px solid #e9e9e7; border-radius:8px; padding:26px 32px; margin-bottom:48px; background:#fff;">
+      <div style="display:flex; align-items:flex-start; position:relative;">
 
-    <!-- Stav schválení -->
-    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding: 12px 18px; background: #f0faf4; border-radius: 8px; border: 1px solid #a5d6a7;">
-      <span style="font-size: 18px;">✅</span>
-      <div>
-        <div style="font-size: 13px; font-weight: 600; color: #2e7d32;">BC schválen — investice potvrzena</div>
-        <div style="font-size: 12px; color: #787774; margin-top: 2px;">Schválil: P. Novák (CFO) · 28. 5. 2026 · Celková investice: <strong>2 800 000 Kč</strong></div>
-      </div>
-    </div>
-
-    <!-- Varianty řešení -->
-    <div style="font-size: 12px; font-weight: 500; color: #9b9a97; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;">Zvažované varianty</div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px;">
-
-      <!-- Varianta A -->
-      <div style="background: #f7f6f3; border-radius: 8px; padding: 16px 18px; border: 1px solid #e9e9e7;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-          <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #9b9a97;">Varianta A</span>
-          <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; background: #f1f1ef; color: #9b9a97; padding: 2px 8px; border-radius: 3px;">Zamítnuto</span>
-        </div>
-        <div style="font-size: 14px; font-weight: 600; color: #37352f; margin-bottom: 4px;">Pronájem plošiny</div>
-        <div style="font-size: 13px; color: #787774; margin-bottom: 12px;">OPEX: 180 000 Kč/rok</div>
-        <div style="display: grid; gap: 5px;">
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #c62828;">✗</span> Nevlastníme zařízení, závislost na pronajímateli</div>
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #c62828;">✗</span> Dlouhodobě dražší než koupě</div>
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #2e7d32;">✓</span> Nižší počáteční investice</div>
-        </div>
-      </div>
-
-      <!-- Varianta B — vybraná -->
-      <div style="background: #fff; border-radius: 8px; padding: 16px 18px; border: 2px solid #37352f; position: relative;">
-        <div style="position: absolute; top: -1px; right: 12px; background: #37352f; color: #fff; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 0 0 4px 4px;">Vybráno</div>
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-          <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #9b9a97;">Varianta B</span>
-        </div>
-        <div style="font-size: 14px; font-weight: 600; color: #37352f; margin-bottom: 4px;">Koupě a instalace plošiny</div>
-        <div style="font-size: 13px; color: #787774; margin-bottom: 12px;">CAPEX: 2 800 000 Kč · Návratnost: 4,5 roku</div>
-        <div style="display: grid; gap: 5px;">
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #2e7d32;">✓</span> Vlastní aktivum, plná kontrola</div>
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #2e7d32;">✓</span> Kapacita +35 % vs. současný stav</div>
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #2e7d32;">✓</span> Standardní dodávka: 7–8 týdnů</div>
-        </div>
-        <div style="margin-top: 12px; padding: 10px 12px; background: #f7f6f3; border-radius: 6px; font-size: 12px; color: #37352f; border-left: 3px solid #37352f;">
-          <strong>Zdůvodnění výběru:</strong> Nejlepší poměr investice / přínos. Kapacitní přínos pokryje nárůst průtoku z projektu 4D Shuttle.
-        </div>
-      </div>
-
-      <!-- Varianta C -->
-      <div style="background: #f7f6f3; border-radius: 8px; padding: 16px 18px; border: 1px solid #e9e9e7;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-          <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #9b9a97;">Varianta C</span>
-          <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; background: #f1f1ef; color: #9b9a97; padding: 2px 8px; border-radius: 3px;">Zamítnuto</span>
-        </div>
-        <div style="font-size: 14px; font-weight: 600; color: #37352f; margin-bottom: 4px;">Plošina + rozšíření stavby</div>
-        <div style="font-size: 13px; color: #787774; margin-bottom: 12px;">CAPEX: 5 200 000 Kč · Návratnost: 8 let</div>
-        <div style="display: grid; gap: 5px;">
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #c62828;">✗</span> Překračuje schválený investiční limit</div>
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #c62828;">✗</span> Stavební povolení +6 měsíců navíc</div>
-          <div style="font-size: 12px; color: #787774; display: flex; gap: 6px;"><span style="color: #2e7d32;">✓</span> Největší kapacitní přínos</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ROZHODOVACÍ LOG -->
-  <div class="section">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-      <p class="label" style="margin-bottom: 0;">Rozhodnutí</p>
-      <button style="font-size: 12px; padding: 5px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">+ Nové rozhodnutí</button>
-    </div>
-
-    <!-- Aktivní rozhodnutí -->
-    <div style="border: 1px solid #e9e9e7; border-radius: 8px; overflow: hidden; margin-bottom: 10px;">
-
-      <!-- Hlavička karty -->
-      <div style="padding: 16px 20px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; border-bottom: 1px solid #f1f1ef;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-            <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; background: #fff8e1; color: #e65100; padding: 2px 8px; border-radius: 3px;">Čeká na rozhodnutí</span>
-            <span style="font-size: 12px; color: #9b9a97;">Tendr</span>
+        <!-- Step 1: hotovo -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:1;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#37352f; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+            <svg width="15" height="12" viewBox="0 0 15 12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,6 5.5,10 13.5,2"></polyline></svg>
           </div>
-          <h3 style="font-size: 15px; font-weight: 600; color: #37352f;">Výběr dodavatele plošiny</h3>
+          <div style="font-size:13px; font-weight:600; color:#37352f; margin-bottom:2px;">BC schválen</div>
+          <div style="font-size:11px; color:#9b9a97;">28. 5. 2026</div>
         </div>
-        <div style="font-size: 12px; color: #9b9a97; white-space: nowrap;">12. 6. 2026</div>
-      </div>
 
-      <!-- Progress kroků -->
-      <div style="padding: 14px 20px; background: #fafaf9; border-bottom: 1px solid #f1f1ef; display: flex; align-items: center; gap: 0;">
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span style="width: 20px; height: 20px; border-radius: 50%; background: #37352f; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;">✓</span>
-          <span style="font-size: 12px; font-weight: 500; color: #37352f;">Kontext</span>
-        </div>
-        <div style="width: 24px; height: 1px; background: #37352f; margin: 0 4px;"></div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span style="width: 20px; height: 20px; border-radius: 50%; background: #37352f; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;">✓</span>
-          <span style="font-size: 12px; font-weight: 500; color: #37352f;">Podklady</span>
-        </div>
-        <div style="width: 24px; height: 1px; background: #37352f; margin: 0 4px;"></div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span style="width: 20px; height: 20px; border-radius: 50%; background: #37352f; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;">✓</span>
-          <span style="font-size: 12px; font-weight: 500; color: #37352f;">Brief připraven</span>
-        </div>
-        <div style="width: 24px; height: 1px; background: #d3d1cb; margin: 0 4px;"></div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span style="width: 20px; height: 20px; border-radius: 50%; background: #f1f1ef; color: #9b9a97; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 600;">4</span>
-          <span style="font-size: 12px; color: #9b9a97;">Zaznamenat</span>
-        </div>
-      </div>
+        <!-- Spojka 1→2 (hotovo) -->
+        <div style="position:absolute; top:17px; left:12.5%; width:25%; height:2px; background:#37352f; z-index:0;"></div>
 
-      <!-- Brief od agenta -->
-      <div style="padding: 18px 20px; border-bottom: 1px solid #f1f1ef;">
-        <div style="font-size: 12px; font-weight: 500; color: #9b9a97; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;">Brief agenta</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px;">
-
-          <div style="background: #f7f6f3; border-radius: 6px; padding: 12px 14px;">
-            <div style="font-size: 11px; font-weight: 600; color: #9b9a97; margin-bottom: 6px;">Varianta A — Dodavatel X</div>
-            <div style="font-size: 13px; color: #37352f; margin-bottom: 4px; font-weight: 500;">2 400 000 Kč</div>
-            <div style="font-size: 12px; color: #787774;">Termín: 8 týdnů · Reference: 3 projekty</div>
-            <div style="margin-top: 8px; font-size: 12px; color: #e65100;">⚠ Chybí zadávací výkres v nabídce</div>
+        <!-- Step 2: aktivní -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:1;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#fff8e1; border:2px solid #e65100; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+            <div style="width:9px; height:9px; border-radius:50%; background:#e65100;"></div>
           </div>
+          <div style="font-size:13px; font-weight:600; color:#e65100; margin-bottom:2px;">Výběr dodavatele</div>
+          <div style="font-size:11px; color:#e65100;">Probíhá</div>
+        </div>
 
-          <div style="background: #f0faf4; border-radius: 6px; padding: 12px 14px; border: 1.5px solid #a5d6a7;">
-            <div style="font-size: 11px; font-weight: 600; color: #2e7d32; margin-bottom: 6px;">Varianta B — Dodavatel Y ★ Doporučeno</div>
-            <div style="font-size: 13px; color: #37352f; margin-bottom: 4px; font-weight: 500;">2 650 000 Kč</div>
-            <div style="font-size: 12px; color: #787774;">Termín: 7 týdnů · Reference: 7 projektů</div>
-            <div style="margin-top: 8px; font-size: 12px; color: #2e7d32;">✓ Kompletní dokumentace, nejlepší reference</div>
+        <!-- Spojka 2→3 (čeká) -->
+        <div style="position:absolute; top:17px; left:50%; width:25%; height:2px; background:#e9e9e7; z-index:0;"></div>
+
+        <!-- Step 3: čeká -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:1;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#fff; border:2px solid #e9e9e7; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+            <div style="width:9px; height:9px; border-radius:50%; background:#e9e9e7;"></div>
           </div>
+          <div style="font-size:13px; font-weight:600; color:#9b9a97; margin-bottom:2px;">Smlouva</div>
+          <div style="font-size:11px; color:#9b9a97;">Čeká</div>
+        </div>
 
-          <div style="background: #f7f6f3; border-radius: 6px; padding: 12px 14px;">
-            <div style="font-size: 11px; font-weight: 600; color: #9b9a97; margin-bottom: 6px;">Varianta C — Dodavatel Z</div>
-            <div style="font-size: 13px; color: #37352f; margin-bottom: 4px; font-weight: 500;">2 150 000 Kč</div>
-            <div style="font-size: 12px; color: #787774;">Termín: 10 týdnů · Reference: 1 projekt</div>
-            <div style="margin-top: 8px; font-size: 12px; color: #e65100;">⚠ Nejdelší termín, slabé reference</div>
+        <!-- Spojka 3→4 (čeká) -->
+        <div style="position:absolute; top:17px; left:75%; width:12.5%; height:2px; background:#e9e9e7; z-index:0;"></div>
+
+        <!-- Step 4: čeká -->
+        <div style="flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:1;">
+          <div style="width:34px; height:34px; border-radius:50%; background:#fff; border:2px solid #e9e9e7; display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+            <div style="width:9px; height:9px; border-radius:50%; background:#e9e9e7;"></div>
           </div>
-
+          <div style="font-size:13px; font-weight:600; color:#9b9a97; margin-bottom:2px;">Realizace</div>
+          <div style="font-size:11px; color:#9b9a97;">Čeká</div>
         </div>
-        <div style="background: #fafaf9; border-radius: 6px; padding: 12px 14px; font-size: 13px; color: #37352f; border-left: 3px solid #d3d1cb;">
-          <strong>Doporučení:</strong> Varianta B — Dodavatel Y. Vyšší cena oproti nejlevnější nabídce je vykompenzována kratším termínem, silnými referencemi a kompletní dokumentací. Varianta A má neúplnou nabídku, Varianta C ohrožuje GO LIVE.
-        </div>
-      </div>
 
-      <!-- Akce -->
-      <div style="padding: 14px 20px; display: flex; align-items: center; gap: 10px;">
-        <button style="font-size: 13px; padding: 7px 16px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">Zaznamenat rozhodnutí</button>
-        <button style="font-size: 13px; padding: 7px 16px; border: 1px solid #e9e9e7; border-radius: 4px; background: #fff; color: #37352f; cursor: pointer;">Upravit brief</button>
-        <div style="margin-left: auto; font-size: 12px; color: #9b9a97;">3 soubory · nabidka-x.pdf, nabidka-y.pdf, nabidka-z.pdf</div>
-      </div>
-
-    </div>
-
-    <!-- Uzavřené rozhodnutí -->
-    <div style="border: 1px solid #e9e9e7; border-radius: 8px; overflow: hidden; opacity: .75;">
-      <div style="padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; background: #e8f5e9; color: #2e7d32; padding: 2px 8px; border-radius: 3px;">Uzavřeno</span>
-          <span style="font-size: 14px; color: #37352f;">Schválení rozpočtu plošiny</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <span style="font-size: 13px; color: #787774;">Rozhodl: V. Jiránek · 3. 6. 2026</span>
-          <span style="font-size: 13px; color: #787774;">Schváleno: 2 800 000 Kč</span>
-        </div>
       </div>
     </div>
 
-  </div>
+    <!-- ══ 2. BUSINESS CASE ══ -->
+    <div style="margin-bottom:48px;">
+      <div style="font-size:12px; font-weight:500; color:#9b9a97; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px;">Business Case</div>
+      <div style="font-size:13px; color:#9b9a97; margin-bottom:18px;">Posouzení tří variant kapacitního rozšíření</div>
 
-  <!-- SMLOUVY -->
-  <div class="section" style="margin-bottom: 60px;">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-      <p class="label" style="margin-bottom: 0;">Smlouvy</p>
-      <button style="font-size: 12px; padding: 5px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">+ Nová smlouva</button>
-    </div>
+      <!-- Tabulka variant -->
+      <div style="display:grid; grid-template-columns:140px 1fr 1.25fr 1fr; border:1px solid #e9e9e7; border-radius:8px; overflow:hidden;">
 
-    <div style="border: 1px solid #e9e9e7; border-radius: 8px; overflow: hidden; margin-bottom: 16px;">
-      <div style="padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f1ef;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-            <span style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; background: #fff8e1; color: #e65100; padding: 2px 8px; border-radius: 3px;">V přípravě</span>
-            <span style="font-size: 12px; color: #9b9a97;">SoD · Plošina</span>
-          </div>
-          <h3 style="font-size: 15px; font-weight: 600; color: #37352f;">Smlouva o dílo — Dodavatel Y</h3>
+        <!-- Hlavičky -->
+        <div style="background:#f7f6f3; padding:16px 18px; border-bottom:1px solid #e9e9e7;"></div>
+        <div style="background:#f7f6f3; padding:16px 18px; border-bottom:1px solid #e9e9e7; border-left:1px solid #e9e9e7;">
+          <div style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em;">Varianta A</div>
         </div>
-        <div style="font-size: 12px; color: #9b9a97;">Hodnota: 2 650 000 Kč</div>
+        <div style="background:#f0faf4; padding:16px 18px; border-bottom:1px solid #a5d6a7; border-left:1px solid #a5d6a7; border-right:1px solid #a5d6a7;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:11px; font-weight:600; color:#2e7d32; text-transform:uppercase; letter-spacing:.06em;">Varianta B</span>
+            <span style="font-size:10px; font-weight:600; color:#fff; background:#2e7d32; padding:1px 7px; border-radius:3px; text-transform:uppercase; letter-spacing:.04em;">Vybráno</span>
+          </div>
+        </div>
+        <div style="background:#f7f6f3; padding:16px 18px; border-bottom:1px solid #e9e9e7; border-left:1px solid #e9e9e7;">
+          <div style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em;">Varianta C</div>
+        </div>
+
+        <!-- Řešení -->
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; font-size:12px; color:#9b9a97; font-weight:500;">Řešení</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#37352f;">Pronájem plošiny</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #d7ecd9; border-left:1px solid #a5d6a7; border-right:1px solid #a5d6a7; font-size:13px; font-weight:600; color:#37352f; background:#f6fcf8;">Koupě a instalace</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#37352f;">Plošina + stavba</div>
+
+        <!-- Investice -->
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; font-size:12px; color:#9b9a97; font-weight:500;">Investice</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#37352f;">180 000 Kč/rok<br><span style="font-size:11px; color:#9b9a97;">OPEX</span></div>
+        <div style="padding:14px 18px; border-bottom:1px solid #d7ecd9; border-left:1px solid #a5d6a7; border-right:1px solid #a5d6a7; font-size:15px; font-weight:600; color:#37352f; background:#f6fcf8;">2 800 000 Kč<br><span style="font-size:11px; color:#9b9a97; font-weight:400;">CAPEX</span></div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#37352f;">5 200 000 Kč<br><span style="font-size:11px; color:#9b9a97;">CAPEX</span></div>
+
+        <!-- Návratnost -->
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; font-size:12px; color:#9b9a97; font-weight:500;">Návratnost</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#9b9a97;">—</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #d7ecd9; border-left:1px solid #a5d6a7; border-right:1px solid #a5d6a7; font-size:13px; font-weight:600; color:#2e7d32; background:#f6fcf8;">4,5 roku</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#37352f;">8 let</div>
+
+        <!-- Kapacita -->
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; font-size:12px; color:#9b9a97; font-weight:500;">Kapacita</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#37352f;">+0 %</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #d7ecd9; border-left:1px solid #a5d6a7; border-right:1px solid #a5d6a7; font-size:13px; font-weight:600; color:#2e7d32; background:#f6fcf8;">+35 %</div>
+        <div style="padding:14px 18px; border-bottom:1px solid #f0efed; border-left:1px solid #e9e9e7; font-size:13px; color:#37352f;">+60 %</div>
+
+        <!-- Stav -->
+        <div style="padding:14px 18px; font-size:12px; color:#9b9a97; font-weight:500;">Stav</div>
+        <div style="padding:14px 18px; border-left:1px solid #e9e9e7;">
+          <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; padding:2px 8px; border-radius:3px; background:#fff5f5; color:#c62828;">Zamítnuto</span>
+        </div>
+        <div style="padding:14px 18px; border-left:1px solid #a5d6a7; border-right:1px solid #a5d6a7; border-bottom:1px solid #a5d6a7; background:#f6fcf8;">
+          <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; padding:2px 8px; border-radius:3px; background:#f0faf4; color:#2e7d32; border:1px solid #a5d6a7;">Schváleno</span>
+          <div style="font-size:11px; color:#9b9a97; margin-top:7px;">P. Novák · 28. 5. 2026</div>
+        </div>
+        <div style="padding:14px 18px; border-left:1px solid #e9e9e7;">
+          <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; padding:2px 8px; border-radius:3px; background:#fff5f5; color:#c62828;">Zamítnuto</span>
+        </div>
+
       </div>
 
-      <div style="padding: 16px 20px; background: #fafaf9; border-bottom: 1px solid #f1f1ef;">
-        <div style="font-size: 12px; font-weight: 500; color: #9b9a97; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px;">Pomůcky Alzáčka</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
-            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 6px;">📄 Nahrát smlouvu dodavatele</div>
-            <div style="font-size: 12px; color: #9b9a97; margin-bottom: 12px;">Alzáček ji porovná s mustrem a najde odchylky</div>
-            <div class="drop-zone" style="padding: 10px 14px; text-align: center; font-size: 12px; color: #9b9a97;">Přetáhni PDF nebo klikni</div>
+      <!-- Zdůvodnění výběru -->
+      <div style="display:flex; gap:10px; margin-top:14px; padding:14px 16px; background:#f7f6f3; border-radius:6px; border-left:3px solid #2e7d32;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#2e7d32" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;"><circle cx="8" cy="8" r="6.5"></circle><path d="M8 5v3.5M8 11h.01"></path></svg>
+        <p style="font-size:13px; color:#37352f; line-height:1.6; margin:0;"><strong>Proč Varianta B:</strong> Nejlepší poměr investice / přínos. Kapacitní přínos +35 % pokryje nárůst průtoku z projektu 4D Shuttle. Varianta C překračuje investiční limit, Varianta A nevytváří aktivum.</p>
+      </div>
+    </div>
+
+    <!-- ══ 3. ROZHODOVACÍ LOG — TIMELINE ══ -->
+    <div style="margin-bottom:48px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+        <div style="font-size:12px; font-weight:500; color:#9b9a97; text-transform:uppercase; letter-spacing:.08em;">Rozhodovací log</div>
+        <button style="font-size:12px; padding:5px 12px; border:none; border-radius:4px; background:#37352f; color:#fff; cursor:pointer;">+ Nové rozhodnutí</button>
+      </div>
+
+      <div style="position:relative; padding-left:30px;">
+        <!-- Svislá osa -->
+        <div style="position:absolute; left:9px; top:6px; bottom:6px; width:2px; background:#e9e9e7;"></div>
+
+        <!-- Aktivní rozhodnutí -->
+        <div style="position:relative; margin-bottom:24px;">
+          <div style="position:absolute; left:-30px; top:2px; width:20px; height:20px; border-radius:50%; background:#fff; border:2px solid #e65100; display:flex; align-items:center; justify-content:center;">
+            <div style="width:8px; height:8px; border-radius:50%; background:#e65100;"></div>
           </div>
-          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
-            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 6px;">🔍 Porovnat s mustrem</div>
-            <div style="font-size: 12px; color: #9b9a97; margin-bottom: 12px;">Alzáček zkontroluje: chybějící klauzule, změněné podmínky, rizikové odchylky od Legal mustru</div>
-            <button onclick="alert('Alzáček: nejprve nahraj smlouvu dodavatele.')" style="font-size: 12px; padding: 6px 12px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer; width: 100%;">Spustit porovnání</button>
-          </div>
-          <div style="background: #fff; border: 1px solid #e9e9e7; border-radius: 6px; padding: 14px 16px;">
-            <div style="font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 10px;">✅ Checklist SoD</div>
-            <div style="display: grid; gap: 7px;">
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Smluvní pokuta za prodlení</label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Záruční doba a podmínky</label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Platební milníky</label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Akceptační kritéria v příloze</label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> BOZP a ostraha</label>
-              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; color: #37352f;"><input type="checkbox" style="width: 14px; height: 14px; accent-color: #37352f; flex-shrink: 0;"> Harmonogram jako příloha</label>
+
+          <div style="border:1px solid #e9e9e7; border-radius:8px; padding:20px 22px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+              <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; padding:2px 8px; border-radius:3px; background:#fff8e1; color:#e65100;">Čeká na rozhodnutí</span>
+              <span style="font-size:15px; font-weight:600; color:#37352f;">Výběr dodavatele plošiny</span>
+            </div>
+
+            <div style="font-size:12px; font-weight:500; color:#9b9a97; text-transform:uppercase; letter-spacing:.07em; margin-bottom:10px;">Brief agenta — tři nabídky</div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:18px;">
+              <div style="background:#f7f6f3; border-radius:6px; padding:12px 14px;">
+                <div style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px;">A · Dodavatel X</div>
+                <div style="font-size:16px; font-weight:600; color:#37352f; letter-spacing:-.02em; margin-bottom:6px;">2 400 000 Kč</div>
+                <div style="font-size:11px; color:#e65100;">⚠ Chybí technický výkres</div>
+              </div>
+              <div style="background:#f0faf4; border:1px solid #a5d6a7; border-radius:6px; padding:12px 14px;">
+                <div style="font-size:11px; font-weight:600; color:#2e7d32; text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px;">B · Dodavatel Y · Doporučeno</div>
+                <div style="font-size:16px; font-weight:600; color:#37352f; letter-spacing:-.02em; margin-bottom:6px;">2 650 000 Kč</div>
+                <div style="font-size:11px; color:#2e7d32;">✓ Nejlepší reference v oboru</div>
+              </div>
+              <div style="background:#f7f6f3; border-radius:6px; padding:12px 14px;">
+                <div style="font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px;">C · Dodavatel Z</div>
+                <div style="font-size:16px; font-weight:600; color:#37352f; letter-spacing:-.02em; margin-bottom:6px;">2 150 000 Kč</div>
+                <div style="font-size:11px; color:#c62828;">Slabé reference (3,1 / 5)</div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:8px;">
+              <button style="background:#37352f; color:#fff; font-size:13px; font-weight:500; padding:7px 16px; border-radius:4px; border:none; cursor:pointer;">Zaznamenat rozhodnutí</button>
+              <button style="background:#fff; color:#37352f; font-size:13px; font-weight:500; padding:7px 16px; border-radius:4px; border:1px solid #e9e9e7; cursor:pointer;">Upravit brief</button>
             </div>
           </div>
         </div>
-      </div>
 
-      <div style="padding: 14px 20px; display: flex; align-items: center; gap: 10px;">
-        <button style="font-size: 13px; padding: 7px 16px; border: none; border-radius: 4px; background: #37352f; color: #fff; cursor: pointer;">Označit jako podepsáno</button>
-        <button style="font-size: 13px; padding: 7px 16px; border: 1px solid #e9e9e7; border-radius: 4px; background: #fff; color: #37352f; cursor: pointer;">Odeslat dodavateli</button>
+        <!-- Uzavřené rozhodnutí -->
+        <div style="position:relative;">
+          <div style="position:absolute; left:-30px; top:2px; width:20px; height:20px; border-radius:50%; background:#37352f; display:flex; align-items:center; justify-content:center;">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"></polyline></svg>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; padding:13px 18px; background:#fafaf8; border:1px solid #e9e9e7; border-radius:8px;">
+            <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; padding:2px 8px; border-radius:3px; background:#f0faf4; color:#2e7d32; border:1px solid #a5d6a7; white-space:nowrap; flex-shrink:0;">Uzavřeno</span>
+            <span style="font-size:14px; font-weight:500; color:#37352f; flex:1;">Schválení rozpočtu plošiny</span>
+            <span style="font-size:12px; color:#9b9a97; white-space:nowrap;">V. Jiránek</span>
+            <span style="font-size:12px; color:#9b9a97; white-space:nowrap;">3. 6. 2026</span>
+            <span style="font-size:13px; font-weight:500; color:#2e7d32; white-space:nowrap;">2 800 000 Kč</span>
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <!-- ══ 4. SMLOUVY — TABULKA ══ -->
+    <div>
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+        <div style="font-size:12px; font-weight:500; color:#9b9a97; text-transform:uppercase; letter-spacing:.08em;">Smlouvy</div>
+        <button style="font-size:12px; padding:5px 12px; border:none; border-radius:4px; background:#37352f; color:#fff; cursor:pointer;">+ Nová smlouva</button>
+      </div>
+
+      <div style="border:1px solid #e9e9e7; border-radius:8px; overflow:hidden;">
+        <!-- Hlavička tabulky -->
+        <div style="display:grid; grid-template-columns:1.6fr 0.6fr 1fr 1fr 1.4fr; background:#f7f6f3; border-bottom:1px solid #e9e9e7; font-size:11px; font-weight:600; color:#9b9a97; text-transform:uppercase; letter-spacing:.06em;">
+          <div style="padding:11px 18px;">Smlouva</div>
+          <div style="padding:11px 14px;">Typ</div>
+          <div style="padding:11px 14px;">Hodnota</div>
+          <div style="padding:11px 14px;">Stav</div>
+          <div style="padding:11px 14px;">Akce</div>
+        </div>
+
+        <!-- Řádek smlouvy -->
+        <div id="smlouva-row" style="display:grid; grid-template-columns:1.6fr 0.6fr 1fr 1fr 1.4fr; align-items:center; cursor:pointer;" onclick="toggleChecklist()">
+          <div style="padding:14px 18px; display:flex; align-items:center; gap:8px;">
+            <svg id="smlouva-chevron" width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="#9b9a97" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;"><polyline points="3,1.5 7.5,5.5 3,9.5"></polyline></svg>
+            <span style="font-size:13px; font-weight:500; color:#37352f;">Dodavatel Y — Plošina</span>
+          </div>
+          <div style="padding:14px 14px; font-size:13px; color:#37352f;">SoD</div>
+          <div style="padding:14px 14px; font-size:13px; color:#37352f;">2 650 000 Kč</div>
+          <div style="padding:14px 14px;">
+            <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; padding:2px 8px; border-radius:3px; background:#fff8e1; color:#e65100; white-space:nowrap;">V přípravě</span>
+          </div>
+          <div style="padding:14px 14px; display:flex; gap:6px;" onclick="event.stopPropagation()">
+            <button style="background:#fff; color:#37352f; font-size:12px; font-weight:500; padding:5px 11px; border-radius:4px; border:1px solid #e9e9e7; cursor:pointer;">Nahrát</button>
+            <button style="background:#fff; color:#37352f; font-size:12px; font-weight:500; padding:5px 11px; border-radius:4px; border:1px solid #e9e9e7; cursor:pointer;">Porovnat s mustrem</button>
+          </div>
+        </div>
+
+        <!-- Rozbalitelný checklist SoD -->
+        <div id="sod-checklist" style="display:none; border-top:1px solid #e9e9e7;">
+          <div style="padding:18px 22px; background:#fafaf9;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <div style="font-size:12px; font-weight:500; color:#9b9a97; text-transform:uppercase; letter-spacing:.07em;">Checklist SoD — povinné náležitosti</div>
+              <div id="sod-count" style="font-size:12px; color:#9b9a97; font-weight:500;">0 / 6</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 32px;">
+              <label id="sod-1" style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; border-radius:4px;">
+                <div class="sod-box" style="width:16px; height:16px; border-radius:3px; border:1.5px solid #d3d1cb; flex-shrink:0; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size:13px; color:#37352f;">Smluvní pokuta za prodlení</span>
+              </label>
+              <label id="sod-2" style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; border-radius:4px;">
+                <div class="sod-box" style="width:16px; height:16px; border-radius:3px; border:1.5px solid #d3d1cb; flex-shrink:0; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size:13px; color:#37352f;">Záruční doba a podmínky</span>
+              </label>
+              <label id="sod-3" style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; border-radius:4px;">
+                <div class="sod-box" style="width:16px; height:16px; border-radius:3px; border:1.5px solid #d3d1cb; flex-shrink:0; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size:13px; color:#37352f;">Platební milníky</span>
+              </label>
+              <label id="sod-4" style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; border-radius:4px;">
+                <div class="sod-box" style="width:16px; height:16px; border-radius:3px; border:1.5px solid #d3d1cb; flex-shrink:0; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size:13px; color:#37352f;">Akceptační kritéria v příloze</span>
+              </label>
+              <label id="sod-5" style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; border-radius:4px;">
+                <div class="sod-box" style="width:16px; height:16px; border-radius:3px; border:1.5px solid #d3d1cb; flex-shrink:0; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size:13px; color:#37352f;">BOZP a ostraha</span>
+              </label>
+              <label id="sod-6" style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; border-radius:4px;">
+                <div class="sod-box" style="width:16px; height:16px; border-radius:3px; border:1.5px solid #d3d1cb; flex-shrink:0; display:flex; align-items:center; justify-content:center;"></div>
+                <span style="font-size:13px; color:#37352f;">Harmonogram jako příloha</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
   </div><!-- /section-bc -->
@@ -851,6 +892,42 @@
       list.appendChild(item);
     });
   }
+
+  // SoD checklist toggle
+  function toggleChecklist() {
+    const panel = document.getElementById('sod-checklist');
+    const chevron = document.getElementById('smlouva-chevron');
+    const open = panel.style.display === 'none';
+    panel.style.display = open ? '' : 'none';
+    chevron.style.transform = open ? 'rotate(90deg)' : '';
+  }
+
+  // SoD checkbox interaction
+  document.addEventListener('DOMContentLoaded', function() {
+    const labels = document.querySelectorAll('#sod-checklist label');
+    labels.forEach(label => {
+      label.addEventListener('click', function() {
+        const box = this.querySelector('.sod-box');
+        const checked = box.dataset.checked === '1';
+        if (checked) {
+          box.dataset.checked = '0';
+          box.style.background = '';
+          box.style.borderColor = '#d3d1cb';
+          box.innerHTML = '';
+          this.style.background = '';
+        } else {
+          box.dataset.checked = '1';
+          box.style.background = '#37352f';
+          box.style.borderColor = '#37352f';
+          box.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 3.5,6.5 9,1"></polyline></svg>';
+          this.style.background = '#f0faf4';
+          this.style.borderRadius = '4px';
+        }
+        const total = document.querySelectorAll('#sod-checklist .sod-box[data-checked="1"]').length;
+        document.getElementById('sod-count').textContent = total + ' / 6';
+      });
+    });
+  });
 </script>
 
 </body>
