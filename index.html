@@ -209,13 +209,17 @@
     .fields-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 8px;
     }
     .field-card {
       background: #f7f6f3;
       border-radius: 8px;
-      padding: 12px 14px;
+      padding: 11px 13px;
+    }
+    .fc-rank {
+      font-size: 10px;
+      color: #9b9a97;
+      margin-bottom: 3px;
     }
     .field-label {
       font-size: 10px;
@@ -223,23 +227,129 @@
       text-transform: uppercase;
       letter-spacing: .08em;
       color: #9b9a97;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .field-value {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: #37352f;
     }
-    .notes-card {
+    .fc-why {
+      font-size: 11px;
+      color: #9b9a97;
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* Kritéria blocks */
+    .kr-block { margin-bottom: 0; }
+    .kr-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .kr-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #9b9a97;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .kr-ai-badge {
+      font-size: 10px;
+      background: #eef2ff;
+      color: #4338ca;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .kr-ai-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6366f1;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .kr-divider {
+      height: 0.5px;
+      background: #e9e9e7;
+      margin: 20px 0;
+    }
+    .kr-card {
       background: #f7f6f3;
+      border-radius: 8px;
+      border: 0.5px solid #e9e9e7;
+      padding: 14px 16px;
+    }
+    .kr-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #37352f;
+    }
+    .kr-hint {
+      font-size: 11px;
+      color: #9b9a97;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 0.5px solid #e9e9e7;
+    }
+
+    /* AI summary */
+    .ai-summary-card {
+      background: #f5f3ff;
+      border: 0.5px solid #c4b5fd;
       border-radius: 8px;
       padding: 14px 16px;
     }
-    .notes-card p {
+    .ai-summary-text {
       font-size: 13px;
-      color: #37352f;
-      line-height: 1.6;
+      line-height: 1.65;
+      color: #3730a3;
     }
+    .ai-summary-text strong { font-weight: 600; }
+    .ai-summary-footer {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #7c3aed;
+      opacity: .7;
+    }
+
+    /* Attachments */
+    .att-list { display: flex; flex-direction: column; gap: 7px; }
+    .att-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #f7f6f3;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 7px;
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+    .att-icon { font-size: 14px; flex-shrink: 0; }
+    .att-name { flex: 1; color: #37352f; }
+    .att-meta { font-size: 11px; color: #9b9a97; white-space: nowrap; }
+    .att-actions { display: flex; gap: 8px; margin-top: 2px; }
+    .att-btn {
+      flex: 1;
+      font-size: 12px;
+      padding: 7px 12px;
+      border: 0.5px dashed #c2c0ba;
+      border-radius: 7px;
+      background: none;
+      color: #9b9a97;
+      cursor: pointer;
+      text-align: center;
+    }
+    .att-btn:hover { background: #f7f6f3; color: #37352f; }
 
     /* Tender table */
     table { width: 100%; border-collapse: collapse; }
@@ -509,48 +619,128 @@
 
     <!-- ── KRITÉRIA ──────────────────────────────── -->
     <div id="tab-kriteria" class="tab-content active">
-      <div class="sec-header">
-        <div class="sec-title-group">
-          <span class="sec-num">1</span>
-          <span class="sec-name">Kritéria pro tendr</span>
-          <span class="sec-sub">Co a jak chceme</span>
-        </div>
-        <div class="sec-actions">
-          <button class="btn-outline-purple">↓ Ze SharePointu</button>
-          <button class="btn-purple">✦ AI shrnutí</button>
+
+      <!-- 1. Co poptáváme a proč -->
+      <div class="kr-block">
+        <div class="kr-label">Co poptáváme a proč</div>
+        <div class="kr-card">
+          <p class="kr-text">Plošina pro sklad CZLC5 — vertikální přeprava palet mezi přízemím a mezaninem. Provoz 2 směny, min. 250 cyklů/den. Klíčový požadavek: montáž za plného provozu expedice bez odstávky. Projekt navazuje na úspěšnou instalaci na CZLC4 (2024), kde jsme použili Haulotte — chceme stejnou platformu pro servisní synergii.</p>
+          <div class="kr-hint">✦ AI doplní kontext z dokumentů — nebo napiš volně</div>
         </div>
       </div>
 
-      <div class="fields-grid">
-        <div class="field-card">
-          <div class="field-label">Typ zařízení</div>
-          <div class="field-value">Elektropohon · pevná instal.</div>
+      <div class="kr-divider"></div>
+
+      <!-- 2. Kritéria (AI TOP 10) -->
+      <div class="kr-block">
+        <div class="kr-block-header">
+          <div class="kr-label" style="margin-bottom:0">
+            <span class="kr-ai-badge">AI · TOP 10 pro FC Plošina</span>
+            Kritéria
+          </div>
+          <button class="btn-ghost" style="font-size:11px;padding:4px 10px">✎ Upravit</button>
         </div>
-        <div class="field-card">
-          <div class="field-label">Výška zdvihu</div>
-          <div class="field-value">min. 8 m</div>
-        </div>
-        <div class="field-card">
-          <div class="field-label">Nosnost</div>
-          <div class="field-value">min. 500 kg</div>
-        </div>
-        <div class="field-card">
-          <div class="field-label">Certifikace</div>
-          <div class="field-value">ČSN EN 1495</div>
-        </div>
-        <div class="field-card">
-          <div class="field-label">Termín montáže</div>
-          <div class="field-value">Q3 2027</div>
-        </div>
-        <div class="field-card">
-          <div class="field-label">Rozpočet</div>
-          <div class="field-value">do 3 000 000 Kč</div>
+        <div class="fields-grid" style="grid-template-columns:1fr 1fr 1fr">
+          <div class="field-card">
+            <div class="fc-rank">#1 · nejdůležitější</div>
+            <div class="field-label">Typ pohonu</div>
+            <div class="field-value">Elektropohon · pevná instal.</div>
+            <div class="fc-why">Nutné pro 2-směnný provoz bez emisí</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#2</div>
+            <div class="field-label">Výška zdvihu</div>
+            <div class="field-value">min. 8 m</div>
+            <div class="fc-why">Světlá výška mezaninu CZLC5</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#3</div>
+            <div class="field-label">Nosnost</div>
+            <div class="field-value">min. 500 kg</div>
+            <div class="fc-why">Europaleta + zboží, peak váhy</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#4</div>
+            <div class="field-label">Certifikace</div>
+            <div class="field-value">ČSN EN 1495</div>
+            <div class="fc-why">Povinné pro CZ trh + pojišťovna</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#5</div>
+            <div class="field-label">Montáž za provozu</div>
+            <div class="field-value">Ano · povinné</div>
+            <div class="fc-why">Expedice nelze odstávit</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#6</div>
+            <div class="field-label">Termín montáže</div>
+            <div class="field-value">Q3 2027</div>
+            <div class="fc-why">Navazuje na GO-LIVE skladu</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#7</div>
+            <div class="field-label">Záruční servis</div>
+            <div class="field-value">min. 5 let</div>
+            <div class="fc-why">Z CZLC4 zkušenosti — min. 5 let</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#8</div>
+            <div class="field-label">Reference v logistice</div>
+            <div class="field-value">min. 3 sklady EU</div>
+            <div class="fc-why">Prokázaná zkušenost s provozem</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#9</div>
+            <div class="field-label">Rozpočet</div>
+            <div class="field-value">do 3 000 000 Kč</div>
+            <div class="fc-why">Schválený investiční limit</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#10</div>
+            <div class="field-label">Servisní základna CZ</div>
+            <div class="field-value">Praha nebo Brno</div>
+            <div class="fc-why">Reakční čas při výpadku max. 4 h</div>
+          </div>
         </div>
       </div>
 
-      <div class="notes-card">
-        <p>Plošina musí umožnit souběžný provoz expedice bez přerušení provozu. Přednost mají dodavatelé s referencemi v logistice a záručním servisem min. 5 let.</p>
+      <div class="kr-divider"></div>
+
+      <!-- 3. AI shrnutí (auto) -->
+      <div class="kr-block">
+        <div class="kr-label">
+          <span class="kr-ai-dot"></span>
+          AI shrnutí · aktualizuje se automaticky
+        </div>
+        <div class="ai-summary-card">
+          <p class="ai-summary-text">Poptávka míří na elektropohonnou plošinu pro náročný logistický provoz (2 směny, 250+ cyklů/den). Klíčová diferenciace od standardního tendru: <strong>povinná montáž za plného provozu</strong> a servisní kontinuita s CZLC4. Z TOP 10 kritérií jsou dealbreakery #1–5 — nabídka bez splnění kteréhokoliv z nich by měla být automaticky vyřazena. Rozpočtový strop 3M Kč odpovídá historickým cenám Haulotte (ref. CZLC4: 2,1M Kč), ale prostor pro prémiové splnění kritéria #5 existuje.</p>
+          <div class="ai-summary-footer">⏱ Naposledy aktualizováno před 2 min · ze 3 zdrojů</div>
+        </div>
       </div>
+
+      <div class="kr-divider"></div>
+
+      <!-- 4. Přílohy -->
+      <div class="kr-block">
+        <div class="kr-label">Přílohy a zdroje</div>
+        <div class="att-list">
+          <div class="att-item">
+            <span class="att-icon">📄</span>
+            <span class="att-name">Technická specifikace CZLC5 — Plošina v1.2.pdf</span>
+            <span class="att-meta">SharePoint · 3,4 MB</span>
+          </div>
+          <div class="att-item">
+            <span class="att-icon">🔗</span>
+            <span class="att-name">Asana — FC Plošina · projektový plán</span>
+            <span class="att-meta">odkaz</span>
+          </div>
+          <div class="att-actions">
+            <button class="att-btn" onclick="this.textContent='Nahrávám…'">↑ Nahrát soubor</button>
+            <button class="att-btn">⊕ Přidat odkaz</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ── NABÍDKY ────────────────────────────────── -->
