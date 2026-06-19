@@ -649,7 +649,6 @@
     <div class="subtabs-bar">
       <button class="stab active" onclick="switchTab('kriteria', this)">Kritéria</button>
       <button class="stab" onclick="switchTab('nabidky', this)">Nabídky</button>
-      <button class="stab" onclick="switchTab('rozhodnuti', this)">Rozhodnutí</button>
       <button class="stab" onclick="switchTab('poznatky', this)">Sběr poznatků</button>
     </div>
 
@@ -851,6 +850,42 @@
 
       <div class="kr-divider"></div>
 
+      <!-- Rozhodnutí -->
+      <div class="kr-block">
+        <div class="kr-block-header">
+          <div class="kr-label" style="margin-bottom:0">Rozhodnutí</div>
+          <button class="btn-dark" style="font-size:11px;padding:4px 12px" onclick="toggleAddForm('decision-form')">+ Přidat rozhodnutí</button>
+        </div>
+
+        <div id="decision-form" class="add-form" style="display:none;margin-bottom:12px">
+          <div class="add-form-label">Nové rozhodnutí</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+            <div class="form-field"><label>Název *</label><input id="d-title" placeholder="Výběr dodavatele — ..."></div>
+            <div class="form-field"><label>Popis *</label>
+              <textarea id="d-desc" rows="3" placeholder="Co bylo rozhodnuto a proč…"></textarea>
+            </div>
+            <div class="form-grid">
+              <div class="form-field"><label>Schválil *</label><input id="d-who" placeholder="Jméno"></div>
+              <div class="form-field"><label>Alternativy</label><input id="d-alt" placeholder="Dodavatel A, Dodavatel B"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn-dark" onclick="addDecision()">Uložit rozhodnutí</button>
+            <button class="btn-ghost" onclick="toggleAddForm('decision-form')">Zrušit</button>
+          </div>
+        </div>
+
+        <div id="decisions-list">
+          <div class="decision-card">
+            <h3>Výběr dodavatele — Haulotte CR</h3>
+            <p>Na základě výsledku tendru byl vybrán Haulotte CR. Nejnižší cena (2,1M Kč), přijatelná lhůta, ověřené reference v logistice. Splňuje všech 5 dealbreaker kritérií.</p>
+            <div class="decision-meta">Schválil: Tomáš Novák &nbsp;·&nbsp; 15. února 2026 &nbsp;·&nbsp; Alternativy: Toyota MH, Jungheinrich</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kr-divider"></div>
+
       <!-- Přidat / zdroje -->
       <div class="kr-block">
         <div class="kr-label">Zdroje a nové nabídky</div>
@@ -890,46 +925,6 @@
         </div>
       </div>
 
-    </div>
-
-    <!-- ── ROZHODNUTÍ ─────────────────────────────── -->
-    <div id="tab-rozhodnuti" class="tab-content">
-      <div class="sec-header">
-        <div class="sec-title-group">
-          <span class="sec-num">3</span>
-          <span class="sec-name">Rozhodnutí</span>
-          <span class="sec-sub">Výsledek tendru</span>
-        </div>
-        <div class="sec-actions">
-          <button class="btn-dark" onclick="toggleAddForm('decision-form')">+ Přidat rozhodnutí</button>
-        </div>
-      </div>
-
-      <div id="decision-form" class="add-form" style="display:none">
-        <div class="add-form-label">Nové rozhodnutí</div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
-          <div class="form-field"><label>Název *</label><input id="d-title" placeholder="Výběr dodavatele — ..."></div>
-          <div class="form-field"><label>Popis *</label>
-            <textarea id="d-desc" rows="3" placeholder="Co bylo rozhodnuto a proč…"></textarea>
-          </div>
-          <div class="form-grid">
-            <div class="form-field"><label>Schválil *</label><input id="d-who" placeholder="Jméno"></div>
-            <div class="form-field"><label>Alternativy</label><input id="d-alt" placeholder="Dodavatel A, Dodavatel B"></div>
-          </div>
-        </div>
-        <div style="display:flex;gap:8px">
-          <button class="btn-dark" onclick="addDecision()">Uložit rozhodnutí</button>
-          <button class="btn-ghost" onclick="toggleAddForm('decision-form')">Zrušit</button>
-        </div>
-      </div>
-
-      <div id="decisions-list">
-        <div class="decision-card">
-          <h3>Výběr dodavatele — Haulotte CR</h3>
-          <p>Na základě výsledku tendru byl vybrán Haulotte CR. Nejnižší cena (2,1M Kč), přijatelná lhůta, ověřené reference v logistice.</p>
-          <div class="decision-meta">Schválil: Tomáš Novák &nbsp;·&nbsp; 15. února 2026 &nbsp;·&nbsp; Alternativy: Jungheinrich, Toyota</div>
-        </div>
-      </div>
     </div>
 
     <!-- ── SBĚR POZNATKŮ ──────────────────────────── -->
