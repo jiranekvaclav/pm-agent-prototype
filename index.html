@@ -322,6 +322,42 @@
       opacity: .7;
     }
 
+    /* Nabídky dlaždice */
+    .nb-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .nb-card {
+      border: 0.5px solid #e9e9e7;
+      border-radius: 10px;
+      padding: 14px 15px;
+      background: #fff;
+    }
+    .nb-win { border-color: #bbf7d0; background: #f0fdf4; }
+    .nb-out { opacity: .65; }
+    .nb-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .nb-sup { font-size: 13px; font-weight: 600; color: #37352f; margin-bottom: 3px; }
+    .nb-price { font-size: 18px; font-weight: 700; color: #37352f; }
+    .nb-rows { display: flex; flex-direction: column; gap: 0; }
+    .nb-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #37352f;
+      padding: 5px 0;
+      border-bottom: 0.5px solid #e9e9e7;
+    }
+    .nb-row:last-child { border-bottom: none; }
+    .nb-rl { color: #9b9a97; }
+    .nb-ok { color: #15803d; font-weight: 500; }
+    .nb-no { color: #b91c1c; font-weight: 500; }
+
     /* Attachments */
     .att-list { display: flex; flex-direction: column; gap: 7px; }
     .att-item {
@@ -745,73 +781,115 @@
 
     <!-- ── NABÍDKY ────────────────────────────────── -->
     <div id="tab-nabidky" class="tab-content">
-      <div class="sec-header">
-        <div class="sec-title-group">
-          <span class="sec-num">2</span>
-          <span class="sec-name">Nabídky</span>
-          <span class="sec-sub">Přijaté od dodavatelů</span>
-        </div>
-        <div class="sec-actions">
-          <button class="btn-dark" onclick="toggleAddForm('offer-form')">+ Přidat nabídku</button>
-        </div>
-      </div>
 
-      <div id="offer-form" class="add-form" style="display:none">
-        <div class="add-form-label">Nová nabídka</div>
-        <div class="form-grid">
-          <div class="form-field"><label>Dodavatel *</label><input id="f-sup" placeholder="Název firmy"></div>
-          <div class="form-field"><label>Cena (Kč) *</label><input id="f-price" type="number" placeholder="2100000"></div>
-          <div class="form-field"><label>Lhůta dodání</label><input id="f-lead" placeholder="12 týdnů"></div>
-          <div class="form-field"><label>Záruční servis</label><input id="f-serv" placeholder="24 měsíců"></div>
-          <div class="form-field"><label>Výsledek</label>
-            <select id="f-res">
-              <option value="">Neuvedeno</option>
-              <option value="vitez">Vítěz</option>
-              <option value="rezerva">Rezerva</option>
-              <option value="odmitnuto">Odmítnuto</option>
-            </select>
+      <!-- Dlaždice nabídek -->
+      <div class="nb-grid" id="offers-grid">
+
+        <div class="nb-card nb-win">
+          <div class="nb-card-top">
+            <div>
+              <div class="nb-sup">Haulotte CR</div>
+              <div class="nb-price">2 100 000 Kč</div>
+            </div>
+            <span class="badge badge-win">Vítěz</span>
+          </div>
+          <div class="nb-rows">
+            <div class="nb-row"><span class="nb-rl">Lhůta</span><span>12 týdnů</span></div>
+            <div class="nb-row"><span class="nb-rl">Servis</span><span>24 měs. záruky</span></div>
+            <div class="nb-row"><span class="nb-rl">Reference</span><span>CZLC4, Lidl DC Brno</span></div>
+            <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-ok">✓ Ano</span></div>
           </div>
         </div>
-        <div style="display:flex;gap:8px">
-          <button class="btn-dark" onclick="addOffer()">Uložit nabídku</button>
-          <button class="btn-ghost" onclick="toggleAddForm('offer-form')">Zrušit</button>
+
+        <div class="nb-card">
+          <div class="nb-card-top">
+            <div>
+              <div class="nb-sup">Toyota MH</div>
+              <div class="nb-price">2 300 000 Kč</div>
+            </div>
+            <span class="badge badge-res">Rezerva</span>
+          </div>
+          <div class="nb-rows">
+            <div class="nb-row"><span class="nb-rl">Lhůta</span><span>10 týdnů</span></div>
+            <div class="nb-row"><span class="nb-rl">Servis</span><span>12 měs. záruky</span></div>
+            <div class="nb-row"><span class="nb-rl">Reference</span><span>2 sklady EU</span></div>
+            <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-ok">✓ Ano</span></div>
+          </div>
+        </div>
+
+        <div class="nb-card nb-out">
+          <div class="nb-card-top">
+            <div>
+              <div class="nb-sup">Jungheinrich CZ</div>
+              <div class="nb-price">2 400 000 Kč</div>
+            </div>
+            <span class="badge badge-no">Odmítnuto</span>
+          </div>
+          <div class="nb-rows">
+            <div class="nb-row"><span class="nb-rl">Lhůta</span><span>14 týdnů</span></div>
+            <div class="nb-row"><span class="nb-rl">Servis</span><span>24 měs. záruky</span></div>
+            <div class="nb-row"><span class="nb-rl">Reference</span><span>1 sklad EU</span></div>
+            <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-no">✗ Ne</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="kr-divider"></div>
+
+      <!-- AI shrnutí -->
+      <div class="kr-block">
+        <div class="kr-label">
+          <span class="kr-ai-dot"></span>
+          AI shrnutí nabídek · aktualizuje se automaticky
+        </div>
+        <div class="ai-summary-card">
+          <p class="ai-summary-text">Haulotte CR vede na všech klíčových kritériích — nejnižší cena (2,1M Kč), splnění dealbreakeru #5 (montáž za provozu) a nejsilnější reference (CZLC4). Toyota je solidní záloha, ale kratší záruční servis (12 měs.) nesplňuje kritérium #7. Jungheinrich vypadl kvůli nemožnosti montáže za provozu — automaticky diskvalifikující. Doporučení: potvrdit objednávku Haulotte, Toyota si ponechat jako zálohu do podpisu.</p>
+          <div class="ai-summary-footer">⏱ Naposledy aktualizováno před 4 min · ze 3 nabídek</div>
         </div>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Dodavatel</th>
-            <th style="text-align:right">Cena</th>
-            <th>Lhůta</th>
-            <th>Servis</th>
-            <th>Výsledek</th>
-          </tr>
-        </thead>
-        <tbody id="offers-tbody">
-          <tr>
-            <td style="font-weight:500">Haulotte CR</td>
-            <td style="text-align:right;font-variant-numeric:tabular-nums">2 100 000 Kč</td>
-            <td>12 týdnů</td>
-            <td>24 měs. záruky</td>
-            <td><span class="badge badge-win">Vítěz</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:500">Jungheinrich CZ</td>
-            <td style="text-align:right;font-variant-numeric:tabular-nums">2 400 000 Kč</td>
-            <td>14 týdnů</td>
-            <td>24 měs. záruky</td>
-            <td><span class="badge badge-no">Odmítnuto</span></td>
-          </tr>
-          <tr>
-            <td style="font-weight:500">Toyota MH</td>
-            <td style="text-align:right;font-variant-numeric:tabular-nums">2 300 000 Kč</td>
-            <td>10 týdnů</td>
-            <td>12 měs. záruky</td>
-            <td><span class="badge badge-res">Rezerva</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="kr-divider"></div>
+
+      <!-- Přidat / zdroje -->
+      <div class="kr-block">
+        <div class="kr-label">Zdroje a nové nabídky</div>
+
+        <div id="offer-form" class="add-form" style="display:none;margin-bottom:12px">
+          <div class="add-form-label">Nová nabídka</div>
+          <div class="form-grid">
+            <div class="form-field"><label>Dodavatel *</label><input id="f-sup" placeholder="Název firmy"></div>
+            <div class="form-field"><label>Cena (Kč) *</label><input id="f-price" type="number" placeholder="2100000"></div>
+            <div class="form-field"><label>Lhůta dodání</label><input id="f-lead" placeholder="12 týdnů"></div>
+            <div class="form-field"><label>Záruční servis</label><input id="f-serv" placeholder="24 měsíců"></div>
+            <div class="form-field"><label>Výsledek</label>
+              <select id="f-res">
+                <option value="">Neuvedeno</option>
+                <option value="vitez">Vítěz</option>
+                <option value="rezerva">Rezerva</option>
+                <option value="odmitnuto">Odmítnuto</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn-dark" onclick="addOffer()">Uložit nabídku</button>
+            <button class="btn-ghost" onclick="toggleAddForm('offer-form')">Zrušit</button>
+          </div>
+        </div>
+
+        <div class="att-list">
+          <div class="att-item">
+            <span class="att-icon">📁</span>
+            <span class="att-name">SharePoint — Tendr Plošina 2026 / Nabídky</span>
+            <span class="att-meta">složka · 3 soubory</span>
+          </div>
+          <div class="att-actions">
+            <button class="att-btn" onclick="toggleAddForm('offer-form')">⊕ Přidat nabídku ručně</button>
+            <button class="att-btn">🔗 Připojit složku / odkaz</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ── ROZHODNUTÍ ─────────────────────────────── -->
