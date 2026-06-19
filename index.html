@@ -26,6 +26,33 @@
       overflow: hidden;
     }
 
+    /* ── COLLAPSE TOGGLES ─── */
+    .toggle-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 44px;
+      background: #f7f6f3;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 0 6px 6px 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #9b9a97;
+      z-index: 10;
+      transition: background .15s;
+    }
+    .toggle-btn:hover { background: #ededeb; color: #37352f; }
+    #toggle-left { left: 0; border-radius: 0 6px 6px 0; }
+    #toggle-right { right: 0; border-radius: 6px 0 0 6px; }
+    .subnav.collapsed { width: 0 !important; overflow: hidden; border: none; }
+    .chat-panel.collapsed { width: 0 !important; overflow: hidden; border: none; }
+    #toggle-left.open { left: 172px; border-radius: 0 6px 6px 0; }
+    #toggle-right.open { right: 320px; border-radius: 6px 0 0 6px; }
+
     /* ── SUBNAV ─── */
     .subnav {
       width: 172px;
@@ -36,6 +63,7 @@
       flex-direction: column;
       height: 100vh;
       overflow-y: auto;
+      transition: width .2s ease;
     }
     .sn-block {
       padding: 14px 12px 12px;
@@ -511,16 +539,50 @@
       flex-direction: column;
       height: 100vh;
       background: #fff;
+      width: 320px;
+      flex-shrink: 0;
+      transition: width .2s ease;
+      overflow: hidden;
+    }
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px 11px;
+      border-bottom: 0.5px solid #e9e9e7;
+      flex-shrink: 0;
+    }
+    .alzak-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .chat-header-info { flex: 1; min-width: 0; }
+    .chat-header-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #37352f;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .chat-header-sub {
+      font-size: 10px;
+      color: #9b9a97;
+      text-transform: uppercase;
+      letter-spacing: .06em;
     }
     .chat-top {
-      padding: 12px;
+      padding: 10px 12px;
       border-bottom: 0.5px solid #e9e9e7;
       flex-shrink: 0;
     }
     .briefing-btn {
       width: 100%;
       font-size: 12px;
-      padding: 9px 12px;
+      padding: 8px 12px;
       background: #f7f6f3;
       border: 0.5px solid #e9e9e7;
       border-radius: 7px;
@@ -539,15 +601,6 @@
     }
     .warn-card.w { background: #fff7ed; border-color: #fed7aa; color: #9a3412; }
     .warn-card.t { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
-    .chat-subhdr {
-      padding: 8px 14px;
-      border-bottom: 0.5px solid #e9e9e7;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: #9b9a97;
-      flex-shrink: 0;
-    }
     .chat-messages {
       flex: 1;
       overflow-y: auto;
@@ -956,7 +1009,14 @@
 </div><!-- /main -->
 
 <!-- ═══ CHAT PANEL ════════════════════════════════════════════ -->
-<div class="chat-panel">
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-header">
+    <img src="alzak.jpg" class="alzak-avatar" alt="Alzák">
+    <div class="chat-header-info">
+      <div class="chat-header-name">Projekťák Alzáček</div>
+      <div class="chat-header-sub">AI Asistent · Plošina</div>
+    </div>
+  </div>
   <div class="chat-top">
     <button class="briefing-btn" onclick="sendBriefing()">
       Připrav briefing pro ředitele logistiky
@@ -965,9 +1025,8 @@
     <div class="warn-card w">⚠ EZS má termín montáže 2 týdny po Plošině — možná kolize</div>
     <div class="warn-card t">💡 Při tendru SHZ požaduj reference ze skladů nad 10 000 m²</div>
   </div>
-  <div class="chat-subhdr">AI asistent · Plošina</div>
   <div class="chat-messages" id="chat-msgs">
-    <div class="msg msg-ai">Dobrý den. Mám k dispozici data k FC Plošina — tendr, nabídky, rozhodnutí. Na co se chceš zeptat?</div>
+    <div class="msg msg-ai">Ahoj! Jsem Projekťák Alzáček. Mám data k FC Plošina — tendr, nabídky, rozhodnutí. Na co se chceš zeptat?</div>
   </div>
   <div class="chat-input-area">
     <textarea id="chat-in" rows="2" placeholder="Napiš otázku… (Enter = odeslat)"
@@ -976,7 +1035,31 @@
   </div>
 </div>
 
+<!-- Toggle tlačítka -->
+<button class="toggle-btn open" id="toggle-left" onclick="toggleLeft()" title="Schovat navigaci">‹</button>
+<button class="toggle-btn open" id="toggle-right" onclick="toggleRight()" title="Schovat chat">›</button>
+
 <script>
+  /* ── PANEL TOGGLES ─── */
+  function toggleLeft() {
+    const sn = document.querySelector('.subnav');
+    const btn = document.getElementById('toggle-left');
+    const open = !sn.classList.contains('collapsed');
+    sn.classList.toggle('collapsed', open);
+    btn.textContent = open ? '›' : '‹';
+    btn.style.left = open ? '0' : '172px';
+  }
+
+  function toggleRight() {
+    const cp = document.getElementById('chat-panel');
+    const btn = document.getElementById('toggle-right');
+    const open = !cp.classList.contains('collapsed');
+    cp.classList.toggle('collapsed', open);
+    btn.textContent = open ? '‹' : '›';
+    btn.style.right = open ? '0' : '320px';
+    document.body.style.gridTemplateColumns = open ? '1fr 0' : '1fr 320px';
+  }
+
   /* ── TAB SWITCHING ─── */
   function switchTab(id, el) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
