@@ -466,6 +466,51 @@
     }
     .field-card.editing .fv-input { display: block; }
 
+    /* Readiness checklist */
+    .readiness-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .readiness-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      padding: 7px 11px;
+      border-radius: 6px;
+    }
+    .readiness-item.ok { background: #f0fdf4; color: #15803d; }
+    .readiness-item.warn { background: #fff7ed; color: #9a3412; }
+    .ri-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+    .ri-text { line-height: 1.4; }
+
+    /* Briefing tlačítko */
+    .btn-briefing {
+      font-size: 13px;
+      padding: 9px 18px;
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+      letter-spacing: -.01em;
+    }
+    .btn-briefing:hover { background: #4f46e5; }
+    .btn-briefing:active { transform: scale(.97); }
+    .btn-briefing:disabled { background: #a5b4fc; cursor: default; }
+
+    /* Winner pulse animation */
+    @keyframes winPulse {
+      0% { box-shadow: 0 0 0 0 rgba(22,163,74,.4); }
+      70% { box-shadow: 0 0 0 10px rgba(22,163,74,0); }
+      100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+    }
+    .rozh-btn.just-selected { animation: winPulse .7s ease-out; }
+
     /* Rozhodnutí — výběr vítěze */
     .rozh-btn {
       border-radius: 8px;
@@ -1065,6 +1110,20 @@
 
       <div class="kr-divider"></div>
 
+      <!-- CHECKLIST PŘED ROZHODNUTÍM -->
+      <div class="kr-block" id="decision-checklist">
+        <div class="kr-label">Před rozhodnutím zkontroluj</div>
+        <div class="readiness-grid">
+          <div class="readiness-item ok"><span class="ri-icon">✓</span><span class="ri-text">3 nabídky přijaty a vyhodnoceny</span></div>
+          <div class="readiness-item ok"><span class="ri-icon">✓</span><span class="ri-text">AI hodnocení nabídek hotové</span></div>
+          <div class="readiness-item ok"><span class="ri-icon">✓</span><span class="ri-text">Rozpočet 3M Kč — nabídka 2,1M Kč <span style="color:#16a34a;font-weight:600">−900K Kč</span></span></div>
+          <div class="readiness-item warn"><span class="ri-icon">⚠</span><span class="ri-text">Chybí revizní protokol od Haulotte CR</span></div>
+          <div class="readiness-item warn"><span class="ri-icon">⚠</span><span class="ri-text">Koordinace termínu montáže s EZS</span></div>
+        </div>
+      </div>
+
+      <div class="kr-divider"></div>
+
       <!-- VÝBĚR VÍTĚZE -->
       <div class="kr-block">
         <div class="kr-label">Výběr vítěze</div>
@@ -1085,13 +1144,11 @@
             <div class="rozh-check rozh-x">✗ Odmítnuto</div>
           </div>
         </div>
-        <div style="margin-top:10px">
-          <div class="kr-label" style="margin-bottom:6px">Doplnění z Konzole K1 <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#9b9a97">(volitelné)</span></div>
-          <textarea id="d-konzole" rows="3" placeholder="Vlož text z Konzole K1…" style="font-size:12px"></textarea>
-          <div style="margin-top:8px">
-            <button class="btn-dark" onclick="ulozitRozhodnuti()">Uložit rozhodnutí</button>
-          </div>
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button class="btn-briefing" id="btn-briefing" onclick="pripravBriefing()">✦ Připrav briefing pro ředitele</button>
+          <button class="btn-ghost" onclick="ulozitRozhodnuti()" style="font-size:12px">Uložit rozhodnutí</button>
         </div>
+        <div id="briefing-done" style="display:none;margin-top:10px;font-size:12px;color:#16a34a;font-weight:500">✓ Briefing vygenerován — zkontroluj chat →</div>
       </div>
 
       <div class="kr-divider"></div>
@@ -1252,15 +1309,23 @@
   let selectedWinner = 1;
   function selectWinner(n) {
     selectedWinner = n;
+    const winnerReplies = [
+      'Zaznamenáno — Dodavatel 1 vybrán jako vítěz tendru.\n\nKrátké zdůvodnění: nejnižší nabídková cena (2 100 000 Kč), splnění všech dealbreaker kritérií a prokázaná servisní synergie s CZLC4. Chceš, abych připravil briefing pro ředitele logistiky?',
+      'Zaznamenáno — Dodavatel 2 vybrán jako vítěz.\n\n⚠ Upozorňuji: tato volba neodpovídá AI doporučení. Dodavatel 2 nesplňuje kritérium záruční doby (12 vs. 24 měsíců) a cena je o 200 000 Kč vyšší. Chceš pokračovat i přesto?',
+      'Zaznamenáno — Dodavatel 3 vybrán jako vítěz.\n\n🔴 Upozorňuji: Dodavatel 3 byl diskvalifikován — nesplňuje dealbreaker č. 3 (montáž za plného provozu). Doporučuji přehodnotit výběr.',
+    ];
     for (let i = 1; i <= 3; i++) {
       const btn = document.getElementById('rozh-d' + i);
       const card = document.getElementById('nb-d' + i);
       const check = btn.querySelector('.rozh-check');
+      btn.classList.remove('just-selected');
       if (i === n) {
         btn.className = 'rozh-btn rozh-win';
         check.className = 'rozh-check';
         check.textContent = '✓ Vítěz';
         if (card) { card.className = 'nb-card nb-win'; card.querySelector('.badge').className = 'badge badge-win'; card.querySelector('.badge').textContent = 'Vítěz'; }
+        void btn.offsetWidth; // reflow for animation restart
+        btn.classList.add('just-selected');
       } else {
         btn.className = 'rozh-btn rozh-lose';
         check.className = 'rozh-check rozh-x';
@@ -1268,6 +1333,27 @@
         if (card) { card.className = 'nb-card nb-out'; card.querySelector('.badge').className = 'badge badge-no'; card.querySelector('.badge').textContent = 'Odmítnuto'; }
       }
     }
+    // ensure chat panel is visible
+    const cp = document.getElementById('chat-panel');
+    if (cp.classList.contains('collapsed')) toggleRight();
+    setTimeout(() => sendAiReply(winnerReplies[n - 1]), 400);
+  }
+
+  function pripravBriefing() {
+    const btn = document.getElementById('btn-briefing');
+    btn.disabled = true;
+    btn.textContent = '⏳ Generuji…';
+    // ensure chat visible
+    const cp = document.getElementById('chat-panel');
+    if (cp.classList.contains('collapsed')) toggleRight();
+    appendMsg('Připrav briefing pro ředitele logistiky.', 'user');
+    const briefingText = 'Briefing — FC Plošina (CZLC5)\n\n✅ Tendr uzavřen — 3 nabídky, vítěz Dodavatel 1\n💰 Cena: 2 100 000 Kč (v rozpočtu 3M Kč, úspora 900K)\n📦 Dodání: 12 týdnů od objednávky\n🔧 Montáž: 3 týdny za plného provozu\n\n⚠ Otevřené body:\n• Chybí revizní protokol od Haulotte CR\n• Koordinace termínu montáže s EZS\n\n→ Doporučení: schválit objednávku Dodavatele 1 do pátku.';
+    setTimeout(() => {
+      sendAiReply(briefingText);
+      btn.disabled = false;
+      btn.textContent = '✦ Připrav briefing pro ředitele';
+      document.getElementById('briefing-done').style.display = 'block';
+    }, 800);
   }
 
   function ulozitRozhodnuti() {
