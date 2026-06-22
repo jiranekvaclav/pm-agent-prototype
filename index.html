@@ -641,9 +641,70 @@
       border-radius: 8px;
       padding: 13px 15px;
       margin-bottom: 8px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
     }
+    .lesson-body { flex: 1; min-width: 0; }
     .lesson-item p { font-size: 13px; color: #37352f; line-height: 1.5; }
     .lesson-meta { font-size: 11px; color: #9b9a97; margin-top: 5px; }
+    .lesson-del {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      color: #c9c8c5;
+      font-size: 15px;
+      cursor: pointer;
+      padding: 0 2px;
+      line-height: 1;
+      margin-top: 1px;
+      transition: color .12s;
+    }
+    .lesson-del:hover { color: #e03e3e; }
+
+    /* Attachment link form */
+    .att-link-form {
+      display: none;
+      margin-top: 8px;
+      display: none;
+      gap: 6px;
+      align-items: center;
+    }
+    .att-link-form input {
+      font-family: inherit;
+      font-size: 12px;
+      flex: 1;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 5px;
+      padding: 6px 9px;
+      outline: none;
+      color: #37352f;
+    }
+    .att-link-form input:focus { border-color: #6366f1; }
+    .att-link-form button { font-size: 12px; padding: 5px 11px; }
+
+    /* Winner lock */
+    .rozh-locked-bar {
+      display: none;
+      margin-top: 10px;
+      font-size: 11px;
+      color: #9b9a97;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    .rozh-locked-bar.visible { display: flex; }
+    .btn-admin-unlock {
+      font-size: 10px;
+      padding: 2px 8px;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 4px;
+      background: #fff;
+      color: #9b9a97;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-admin-unlock:hover { color: #37352f; border-color: #37352f; }
 
     textarea {
       font-family: inherit;
@@ -998,11 +1059,18 @@
         <div class="kr-block-header">
           <div class="kr-label" style="margin-bottom:0">Přílohy a zdroje</div>
           <div style="display:flex;gap:6px">
-            <button class="btn-att-hdr" onclick="alert('Nahrát soubor')">↑ Nahrát soubor</button>
-            <button class="btn-att-hdr btn-att-hdr-link">⊕ Přidat odkaz</button>
+            <button class="btn-att-hdr" onclick="document.getElementById('file-upload-zadani').click()">↑ Nahrát soubor</button>
+            <input type="file" id="file-upload-zadani" style="display:none" onchange="handleFileUpload(this,'att-list-zadani')">
+            <button class="btn-att-hdr btn-att-hdr-link" onclick="toggleLinkForm('link-form-zadani')">⊕ Přidat odkaz</button>
           </div>
         </div>
-        <div class="att-list">
+        <div class="att-link-form" id="link-form-zadani">
+          <input type="url" id="link-url-zadani" placeholder="https://…" style="flex:1">
+          <input type="text" id="link-name-zadani" placeholder="Název odkazu" style="flex:1">
+          <button class="btn-dark" onclick="addLink('link-form-zadani','link-url-zadani','link-name-zadani','att-list-zadani')">Přidat</button>
+          <button class="btn-ghost" onclick="toggleLinkForm('link-form-zadani')">×</button>
+        </div>
+        <div class="att-list" id="att-list-zadani">
           <div class="att-item">
             <span class="att-icon">📄</span>
             <span class="att-name">Technická specifikace CZLC5 — Plošina v1.2.pdf</span>
@@ -1146,9 +1214,13 @@
         </div>
         <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
           <button class="btn-briefing" id="btn-briefing" onclick="pripravBriefing()">✦ Připrav briefing pro ředitele</button>
-          <button class="btn-ghost" onclick="ulozitRozhodnuti()" style="font-size:12px">Uložit rozhodnutí</button>
+          <button class="btn-ghost" id="btn-ulozit-rozhodnuti" onclick="ulozitRozhodnuti()" style="font-size:12px">Uložit rozhodnutí</button>
         </div>
         <div id="briefing-done" style="display:none;margin-top:10px;font-size:12px;color:#16a34a;font-weight:500">✓ Briefing vygenerován — zkontroluj chat →</div>
+        <div class="rozh-locked-bar" id="rozh-locked-bar">
+          <span>🔒 Rozhodnutí uloženo — změny může provádět pouze admin</span>
+          <button class="btn-admin-unlock" onclick="adminOdemknout()">Admin: odemknout</button>
+        </div>
       </div>
 
       <div class="kr-divider"></div>
@@ -1158,32 +1230,18 @@
         <div class="kr-block-header">
           <div class="kr-label" style="margin-bottom:0">Přílohy a zdroje</div>
           <div style="display:flex;gap:6px">
-            <button class="btn-att-hdr" onclick="toggleAddForm('offer-form')">⊕ Přidat nabídku</button>
-            <button class="btn-att-hdr btn-att-hdr-link">🔗 Přidat odkaz</button>
+            <button class="btn-att-hdr" onclick="document.getElementById('file-upload-nabidky').click()">↑ Nahrát soubor</button>
+            <input type="file" id="file-upload-nabidky" style="display:none" onchange="handleFileUpload(this,'att-list-nabidky')">
+            <button class="btn-att-hdr btn-att-hdr-link" onclick="toggleLinkForm('link-form-nabidky')">🔗 Přidat odkaz</button>
           </div>
         </div>
-        <div id="offer-form" class="add-form" style="display:none;margin-bottom:12px">
-          <div class="add-form-label">Nová nabídka</div>
-          <div class="form-grid">
-            <div class="form-field"><label>Dodavatel *</label><input id="f-sup" placeholder="Název firmy"></div>
-            <div class="form-field"><label>Cena (Kč) *</label><input id="f-price" type="number" placeholder="2100000"></div>
-            <div class="form-field"><label>Lhůta dodání</label><input id="f-lead" placeholder="12 týdnů"></div>
-            <div class="form-field"><label>Záruční servis</label><input id="f-serv" placeholder="24 měsíců"></div>
-            <div class="form-field"><label>Výsledek</label>
-              <select id="f-res">
-                <option value="">Neuvedeno</option>
-                <option value="vitez">Vítěz</option>
-                <option value="rezerva">Rezerva</option>
-                <option value="odmitnuto">Odmítnuto</option>
-              </select>
-            </div>
-          </div>
-          <div style="display:flex;gap:8px">
-            <button class="btn-dark" onclick="addOffer()">Uložit nabídku</button>
-            <button class="btn-ghost" onclick="toggleAddForm('offer-form')">Zrušit</button>
-          </div>
+        <div class="att-link-form" id="link-form-nabidky">
+          <input type="url" id="link-url-nabidky" placeholder="https://…" style="flex:1">
+          <input type="text" id="link-name-nabidky" placeholder="Název odkazu" style="flex:1">
+          <button class="btn-dark" onclick="addLink('link-form-nabidky','link-url-nabidky','link-name-nabidky','att-list-nabidky')">Přidat</button>
+          <button class="btn-ghost" onclick="toggleLinkForm('link-form-nabidky')">×</button>
         </div>
-        <div class="att-list">
+        <div class="att-list" id="att-list-nabidky">
           <div class="att-item">
             <span class="att-icon">📁</span>
             <span class="att-name">SharePoint — Tendr Plošina 2026 / Nabídky</span>
@@ -1213,8 +1271,11 @@
 
       <div id="lessons-list">
         <div class="lesson-item">
-          <p>Specifikovat výšku zdvihu a nosnost explicitně — bez toho dodavatelé nabídnou standardní model.</p>
-          <div class="lesson-meta">PM &nbsp;·&nbsp; 20. února 2026</div>
+          <div class="lesson-body">
+            <p>Specifikovat výšku zdvihu a nosnost explicitně — bez toho dodavatelé nabídnou standardní model.</p>
+            <div class="lesson-meta">PM &nbsp;·&nbsp; 20. února 2026</div>
+          </div>
+          <button class="lesson-del" onclick="deleteLesson(this)" title="Smazat poznatek">×</button>
         </div>
       </div>
     </div>
@@ -1356,15 +1417,69 @@
     }, 800);
   }
 
+  let winnerLocked = false;
+
   function ulozitRozhodnuti() {
-    const konzole = document.getElementById('d-konzole').value.trim();
+    const konzole = document.getElementById('d-konzole') ? document.getElementById('d-konzole').value.trim() : '';
     const today = new Date().toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
-    const div = document.createElement('div');
-    div.className = 'decision-card';
-    div.innerHTML = `<h3>Výběr vítěze — Dodavatel ${selectedWinner}</h3><p>Vítěz tendru byl vybrán kliknutím PM.${konzole ? ' Poznámka z K1: ' + konzole : ''}</p><div class="decision-meta">${today}</div>`;
-    const list = document.getElementById('decisions-list');
-    list.insertBefore(div, list.firstChild);
-    document.getElementById('d-konzole').value = '';
+    // lock winner buttons
+    winnerLocked = true;
+    for (let i = 1; i <= 3; i++) {
+      const btn = document.getElementById('rozh-d' + i);
+      if (btn) { btn.style.pointerEvents = 'none'; btn.style.opacity = i === selectedWinner ? '1' : '0.45'; }
+    }
+    document.getElementById('rozh-locked-bar').classList.add('visible');
+    document.getElementById('btn-ulozit-rozhodnuti').disabled = true;
+    document.getElementById('btn-ulozit-rozhodnuti').textContent = '✓ Uloženo';
+    if (konzole) document.getElementById('d-konzole').value = '';
+  }
+
+  function adminOdemknout() {
+    winnerLocked = false;
+    for (let i = 1; i <= 3; i++) {
+      const btn = document.getElementById('rozh-d' + i);
+      if (btn) { btn.style.pointerEvents = ''; btn.style.opacity = ''; }
+    }
+    document.getElementById('rozh-locked-bar').classList.remove('visible');
+    const ulBtn = document.getElementById('btn-ulozit-rozhodnuti');
+    ulBtn.disabled = false;
+    ulBtn.textContent = 'Uložit rozhodnutí';
+  }
+
+  /* ── PŘÍLOHY — file upload ─── */
+  function handleFileUpload(input, listId) {
+    const file = input.files[0];
+    if (!file) return;
+    const ext = file.name.split('.').pop().toLowerCase();
+    const icon = ['pdf','doc','docx','xls','xlsx'].includes(ext) ? '📄' : ['jpg','png','gif','svg'].includes(ext) ? '🖼' : '📎';
+    const size = file.size > 1024*1024 ? (file.size/1024/1024).toFixed(1)+' MB' : (file.size/1024).toFixed(0)+' kB';
+    const item = document.createElement('div');
+    item.className = 'att-item';
+    item.innerHTML = `<span class="att-icon">${icon}</span><span class="att-name">${file.name}</span><span class="att-meta">${size}</span>`;
+    document.getElementById(listId).appendChild(item);
+    input.value = '';
+  }
+
+  /* ── PŘÍLOHY — přidat odkaz ─── */
+  function toggleLinkForm(formId) {
+    const f = document.getElementById(formId);
+    const visible = f.style.display === 'flex';
+    f.style.display = visible ? 'none' : 'flex';
+    if (!visible) f.querySelector('input[type="url"]').focus();
+  }
+
+  function addLink(formId, urlId, nameId, listId) {
+    const url = document.getElementById(urlId).value.trim();
+    const name = document.getElementById(nameId).value.trim();
+    if (!url) return;
+    const label = name || url.replace(/^https?:\/\//, '').split('/')[0];
+    const item = document.createElement('div');
+    item.className = 'att-item';
+    item.innerHTML = `<span class="att-icon">🔗</span><a class="att-name" href="${url}" target="_blank" rel="noopener" style="color:#4338ca;text-decoration:none">${label}</a><span class="att-meta">odkaz</span>`;
+    document.getElementById(listId).appendChild(item);
+    document.getElementById(urlId).value = '';
+    document.getElementById(nameId).value = '';
+    toggleLinkForm(formId);
   }
 
   /* ── PANEL TOGGLES ─── */
@@ -1388,11 +1503,41 @@
   }
 
   /* ── TAB SWITCHING ─── */
+  const tabChips = {
+    kriteria: [
+      { label: 'Navrhni kritéria',      q: 'Navrhni 10 kritérií pro tendr na plošinu.' },
+      { label: 'Co poptáváme?',         q: 'Shrň co poptáváme v tendru Plošina.' },
+      { label: 'Jaké přílohy?',         q: 'Jaké přílohy a dokumenty přiložit k zadání tendru?' },
+      { label: 'Generuj zadání',        q: 'Generuj kompletní zadání tendru pro Plošinu CZLC5.' },
+    ],
+    nabidky: [
+      { label: 'Kdo je vítěz?',         q: 'Kdo je vítěz tendru?' },
+      { label: 'Co chybí?',             q: 'Co chybí k rozhodnutí?' },
+      { label: 'Shrnutí pro ředitele',  q: 'Připrav shrnutí pro ředitele logistiky.' },
+      { label: 'Rizika',                q: 'Jaká jsou rizika tohoto tendru?' },
+    ],
+    poznatky: [
+      { label: 'Shrnutí poznatků',      q: 'Shrň všechny poznatky z tohoto tendru.' },
+      { label: 'Co příště zlepšit?',    q: 'Co bychom příště měli udělat lépe?' },
+      { label: 'Porovnej s CZLC4',      q: 'Porovnej výsledky tendru s projektem CZLC4.' },
+      { label: 'Chyby a ponaučení',     q: 'Jaké chyby jsme v tendru udělali a co si odnášíme?' },
+    ],
+  };
+
+  function updateChips(tabId) {
+    const chips = tabChips[tabId] || tabChips.nabidky;
+    const bar = document.getElementById('chat-suggestions');
+    bar.innerHTML = chips.map(c =>
+      `<button class="chat-chip" onclick="askChip('${c.q.replace(/'/g,"\\'")}'">${c.label}</button>`
+    ).join('');
+  }
+
   function switchTab(id, el) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.stab').forEach(s => s.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
     el.classList.add('active');
+    updateChips(id);
   }
 
   /* ── FORM TOGGLE ─── */
@@ -1446,9 +1591,13 @@
     const today = new Date().toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
     const div = document.createElement('div');
     div.className = 'lesson-item';
-    div.innerHTML = `<p>${text}</p><div class="lesson-meta">PM &nbsp;·&nbsp; ${today}</div>`;
+    div.innerHTML = `<div class="lesson-body"><p>${text}</p><div class="lesson-meta">PM &nbsp;·&nbsp; ${today}</div></div><button class="lesson-del" onclick="deleteLesson(this)" title="Smazat poznatek">×</button>`;
     document.getElementById('lessons-list').insertBefore(div, document.getElementById('lessons-list').firstChild);
     document.getElementById('lesson-input').value = '';
+  }
+
+  function deleteLesson(btn) {
+    btn.closest('.lesson-item').remove();
   }
 
   /* ── CHAT ─── */
@@ -1484,6 +1633,38 @@
     {
       keys: ['cena','náklady','budget','rozpočet','kolik'],
       reply: 'Finanční přehled:\n\n💰 Vítězná nabídka: 2 100 000 Kč\n📊 Schválený rozpočet: 3 000 000 Kč\n✅ Úspora oproti limitu: 900 000 Kč (30 %)\n\nRef. CZLC4 (Haulotte 2024): 2 100 000 Kč — stejná cena, servisní synergie potvrzena.'
+    },
+    {
+      keys: ['navrhni kritéria','10 kritérií','kritéria pro tendr'],
+      reply: 'Navrhovaná kritéria pro tendr na plošinu (seřazeno dle důležitosti):\n\n🔴 Dealbreakery:\n1. Elektropohon — žádný spalovací motor\n2. Výška zdvihu min. 8 m\n3. Montáž za plného provozu\n\n🟡 Klíčová kritéria:\n4. Nosnost min. 500 kg\n5. Certifikace ČSN EN 1495\n6. Záruční servis min. 24 měsíců\n7. Termín dodání do Q3 2027\n\n⚪ Preferenční:\n8. Reference ze skladů nad 10 000 m²\n9. Servisní synergie s existujícím zařízením\n10. Cena v rámci schváleného rozpočtu 3M Kč'
+    },
+    {
+      keys: ['co poptáváme','shrň co poptáváme','poptávka'],
+      reply: 'Poptáváme elektropohonnou nakládací plošinu pro logistické centrum CZLC5 — vertikální přeprava palet mezi přízemím a mezaninem. Provoz 2 směny, min. 250 cyklů/den, výška zdvihu min. 8 m, nosnost min. 500 kg. Klíčový požadavek: montáž za plného provozu expedice. Navazujeme na CZLC4 (Haulotte 2024) pro servisní synergii.'
+    },
+    {
+      keys: ['jaké přílohy','dokumenty přiložit','přílohy k zadání'],
+      reply: 'Doporučené přílohy k zadání tendru:\n\n📄 Technická specifikace (rozměry, výška, nosnost, provozní parametry)\n📄 Půdorys prostoru s vyznačením instalačního místa\n📄 Projektová dokumentace skladu CZLC5\n🔗 Odkaz na referenční projekt CZLC4 (Haulotte)\n📄 BOZP požadavky pro montáž za provozu\n\nVolitelně: fotodokumentace stávajícího stavu, výkres mezaninu.'
+    },
+    {
+      keys: ['generuj zadání tendru','kompletní zadání'],
+      reply: 'Kompletní zadání tendru — FC Plošina CZLC5:\n\nPředmět: Dodávka, instalace a zprovoznění elektropohonné nakládací plošiny\nMísto: Logistické centrum CZLC5, ČR\nTermín montáže: Q3 2027\nRozpočet: max. 3 000 000 Kč bez DPH\n\nMinimální technické požadavky:\n• Výška zdvihu: min. 8 m\n• Nosnost: min. 500 kg\n• Pohon: elektrický (bez spalovacího motoru)\n• Certifikace: ČSN EN 1495\n• Záruční servis: min. 24 měsíců\n\nSpeciální podmínky:\n• Montáž za plného provozu expedice\n• Reference ze srovnatelného provozu\n\nTermín podání nabídek: dle výzvy PM.'
+    },
+    {
+      keys: ['shrnutí poznatků','poznatky z tendru'],
+      reply: 'Shrnutí poznatků z tendru FC Plošina:\n\n✅ Co fungovalo:\n• Jasná dealbreaker kritéria zrychlila vyhodnocení\n• AI summary ušetřilo ~2h práce PM\n• Servisní synergie jako kritérium — správné rozhodnutí\n\n⚠ Co zlepšit:\n• Specifikovat výšku zdvihu a nosnost explicitně od začátku\n• Zajistit revizní protokol dříve v procesu\n• Koordinovat harmonogram s EZS předem\n\nPočet nabídek: 3 · Vítěz vybrán: ✅ · Průběh: bez komplikací'
+    },
+    {
+      keys: ['příště zlepšit','co bychom příště','zlepšení procesu'],
+      reply: 'Doporučení pro příští tendr stejného typu:\n\n1. Technická specifikace — přiložit výkres prostoru a světlé výšky hned v zadání\n2. Revizní protokol — vyžádat od dodavatele jako podmínku podpisu smlouvy, ne až před GO-LIVE\n3. Koordinace s ostatními FC — harmonogram Plošiny vs. EZS posoudit na kickoffu\n4. Referenční návštěva — zahrnout do kritérií povinnou prohlídku referenčního skladu\n5. AI summary — využít pro rychlejší porovnání nabídek (ušetří 2–3h)'
+    },
+    {
+      keys: ['porovnej s czlc4','srovnání czlc4','czlc4'],
+      reply: 'Srovnání tendru CZLC5 vs. CZLC4:\n\nCZLC4 (2024): Haulotte CR · 2 100 000 Kč · dodání 10 týdnů · bez výběrového řízení\nCZLC5 (2026): Dodavatel 1 · 2 100 000 Kč · dodání 12 týdnů · 3 nabídky, formální tendr\n\n✅ Stejná cena navzdory inflaci — výborný výsledek\n✅ Formální tendr zajistil transparentnost\n⚠ O 2 týdny delší dodání — způsobeno dostupností výroby v H1 2026'
+    },
+    {
+      keys: ['chyby','ponaučení','jaké chyby'],
+      reply: 'Chyby a ponaučení z tendru Plošina:\n\n1. ❌ Výška zdvihu nebyla v prvním kole explicitní → Dodavatel 3 nabídl standardní 6m model, muselo se dořešovat\n2. ❌ Revizní protokol nebyl v podmínkách tendru → chybí teď, blokuje GO-LIVE schválení\n3. ❌ Harmonogram EZS nebyl překontrolován → potenciální kolize montáží\n\nPozitivní: dealbreaker kritéria fungovala přesně jak bylo zamýšleno, AI vyhodnocení ušetřilo čas.'
     },
   ];
 
