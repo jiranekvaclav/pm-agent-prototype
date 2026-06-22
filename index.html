@@ -1439,53 +1439,56 @@
         <div style="font-size:12px;color:#9b9a97;margin-top:2px">CZLC5 · Plošina</div>
       </div>
       <div style="display:flex;gap:8px">
-        <button class="btn-purple" id="btn-gen-charter" onclick="generujCharter()" style="font-size:12px">✦ Generuj zadání</button>
         <button class="btn-dark" onclick="exportCharterToExcel()" style="font-size:12px">⬇ Excel</button>
         <button class="btn-ghost" onclick="exportCharterToPdf()" style="font-size:12px;border-color:#e9e9e7">⬇ PDF</button>
       </div>
     </div>
 
-    <!-- Název záměru (AI spouštěč) -->
+    <!-- Název záměru — jen nadpis -->
     <div class="ch-section">
       <div class="ch-label">Název záměru</div>
-      <div class="ch-hint">Název by měl být stručný, pokud možno dobře zapamatovatelný. Napiš klíčová slova — AI doplní zbytek zadání.</div>
-      <textarea class="ch-ta" id="ch-nazev" rows="2" placeholder="Napiš klíčová slova nebo název záměru…"></textarea>
+      <div class="ch-hint">Stručný název projektu — pokud možno snadno zapamatovatelný.</div>
+      <textarea class="ch-ta" id="ch-nazev" rows="2" placeholder="Napiš stručný název záměru…"></textarea>
     </div>
 
-    <div class="ch-section">
-      <div class="ch-label">Co je příležitostí či problémem, který chceš řešit?</div>
-      <div class="ch-hint">Popiš výchozí stav a kořenovou příčinu problému. Ideálně uveď čísla (např. HIT rate, SJL). Co je příležitost? — AI z tohoto popisu doplní zbytek zadání.</div>
-      <textarea class="ch-ta" id="ch-problem" rows="4" placeholder="Napiš pár vět o problému nebo příležitosti, kterou chceš řešit…"></textarea>
+    <!-- Klíčová sekce — PM vyplní, AI generuje zbytek -->
+    <div class="ch-section" style="border:1.5px solid #c4b5fd;border-radius:8px;padding:12px 14px;background:#faf9ff">
+      <div class="ch-label" style="color:#6366f1">⭐ Co je příležitostí či problémem, který chceš řešit?</div>
+      <div class="ch-hint" style="color:#7c7af0">Klíčová sekce — napiš pár vět nebo klíčových slov. AI z tohoto popisu automaticky doplní celé zbývající zadání.</div>
+      <textarea class="ch-ta" id="ch-problem" rows="5" placeholder="Napiš pár vět o problému nebo příležitosti, kterou chceš řešit…" style="background:#fff"></textarea>
+      <div style="margin-top:8px">
+        <button class="btn-purple" id="btn-gen-charter" onclick="generujCharter()" style="font-size:12px">✦ Generuj zadání z tohoto popisu</button>
+      </div>
     </div>
 
     <div class="ch-section">
       <div class="ch-label">PROČ to potřebujeme dělat?</div>
       <div class="ch-hint">Proč to potřebuješ dělat? Co se stane, když to neuděláš? Zvyšuje / snižuje to komplexitu? Jaký je business kontext? Existují jiné varianty řešení?</div>
-      <textarea class="ch-ta" id="ch-proc" rows="5" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+      <textarea class="ch-ta" id="ch-proc" rows="5" placeholder="AI vyplní na základě popisu problému…"></textarea>
     </div>
 
     <div class="ch-section">
       <div class="ch-label">Jaké jsou či mají být přínosy?</div>
       <div class="ch-hint">Jaké přínosy má projekt přinést? Zvýšení příjmů, snížení výdajů, zvýšení kvality? Ideálně s čísly. Příklad: „Redukce N na převozy o 10 %"</div>
-      <textarea class="ch-ta" id="ch-prinosy" rows="4" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+      <textarea class="ch-ta" id="ch-prinosy" rows="4" placeholder="AI vyplní na základě popisu problému…"></textarea>
     </div>
 
     <div class="ch-section">
       <div class="ch-label">Jaký má být cíl?</div>
       <div class="ch-hint">Stav, do kterého se chceš dostat. Obsahuje CO, DO KDY a ZA KOLIK (trojimperativ). Př.: „Postavená plošina a vybavená technologií do 15.9.2024 za 30M Kč"</div>
-      <textarea class="ch-ta" id="ch-cil" rows="3" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+      <textarea class="ch-ta" id="ch-cil" rows="3" placeholder="AI vyplní na základě popisu problému…"></textarea>
     </div>
 
     <div class="ch-section">
       <div class="ch-label">Které KPI nebo strategický cíl logistiky bude ovlivněn?</div>
       <div class="ch-hint">Provozní KPI (JBL, SJL atd.) nebo strategické KPI (240K JBL, 35 SJL, Kvalita EXP, HIT rate, DPO atd.)</div>
-      <textarea class="ch-ta" id="ch-kpi" rows="3" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+      <textarea class="ch-ta" id="ch-kpi" rows="3" placeholder="AI vyplní na základě popisu problému…"></textarea>
     </div>
 
     <div class="ch-section">
       <div class="ch-label">Jaké jsou hlavní předpoklady?</div>
       <div class="ch-hint">Faktory, které mohou mít zásadní vliv na realizaci. Př.: „Stěhování RMA až po 1.4.2024" nebo „Max. počet JBL v CZLC4 nepřekročí 75K JBL/den"</div>
-      <textarea class="ch-ta" id="ch-predpoklady" rows="3" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+      <textarea class="ch-ta" id="ch-predpoklady" rows="3" placeholder="AI vyplní na základě popisu problému…"></textarea>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:4px">
