@@ -1389,8 +1389,8 @@
 
     <div class="ch-section">
       <div class="ch-label">Co je příležitostí či problémem, který chceš řešit?</div>
-      <div class="ch-hint">Popiš výchozí stav a kořenovou příčinu problému. Ideálně uveď čísla (např. HIT rate, SJL). Co je příležitost?</div>
-      <textarea class="ch-ta" id="ch-problem" rows="4" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+      <div class="ch-hint">Popiš výchozí stav a kořenovou příčinu problému. Ideálně uveď čísla (např. HIT rate, SJL). Co je příležitost? — AI z tohoto popisu doplní zbytek charteru.</div>
+      <textarea class="ch-ta" id="ch-problem" rows="4" placeholder="Napiš pár vět o problému nebo příležitosti, kterou chceš řešit…"></textarea>
     </div>
 
     <div class="ch-section">
@@ -1856,25 +1856,31 @@
 
   /* ── PROJECT CHARTER — generuj ─── */
   function generujCharter() {
-    const raw = document.getElementById('ch-nazev').value.trim();
-    if (!raw) { alert('Nejdřív napiš název záměru nebo klíčová slova.'); return; }
+    const nazev   = document.getElementById('ch-nazev').value.trim();
+    const problem = document.getElementById('ch-problem').value.trim();
+    if (!nazev)   { alert('Nejdřív napiš Název záměru.'); return; }
+    if (!problem) { alert('Napiš nejdřív popis příležitosti / problému — AI z něj doplní zbytek.'); return; }
+
     const btn = document.getElementById('btn-gen-charter');
     btn.textContent = '⏳ Generuji…'; btn.disabled = true;
 
-    // normalise: use raw as project name
-    const p = raw;
-
     setTimeout(() => {
       const fields = {
-        'ch-problem': `Výchozí stav: ${p} — aktuálně chybí kapacita / efektivita v daném procesu, což způsobuje prodlevy, zvýšené náklady nebo rizika pro provoz LC.\n\nKořenová příčina: nedostatečná infrastruktura nebo technologie pro požadovaný objem operací. Příležitost: modernizací procesu lze dosáhnout úspory N a zvýšení SJL/JBL.`,
-        'ch-proc': `1. Projekt je nutný pro udržení plánovaného objemu operací a splnění strategických cílů LC.\n2. Bez realizace hrozí: přetížení procesu, pokles SJL, zvýšení nákladů na kompenzační opatření.\n3. Projekt snižuje provozní komplexitu — standardizuje proces a odstraňuje manuální workaroundy.\n4. Business kontext: projekt navazuje na strategii rozvoje LC a je součástí roadmapy OPS.\n5. Alternativy byly zváženy; tato varianta přináší nejlepší poměr nákladů a přínosů.`,
-        'ch-prinosy': `• Zvýšení efektivity procesu o odhadovaných 15–20 %\n• Snížení provozních nákladů (N) o cca 10 %\n• Zvýšení kapacity o X JBL/den — umožní splnit plánovaný objem\n• Zlepšení SJL / kvality EXP díky eliminaci přetížení\n• Servisní synergie s existujícím vybavením — nižší TCO`,
-        'ch-cil': `${p} — plně realizováno, zprovozněno a předáno do provozu do Q3 2027 za schválený rozpočet. Projekt splňuje všechna technická a bezpečnostní kritéria a je připraven pro plný provoz 2-směnného provozu LC.`,
-        'ch-kpi': `Provozní KPI:\n• SJL (skladové jednotky/den)\n• JBL (jednotky/den na pracovníka)\n• Kvalita EXP (% bez chyb)\n\nStrategické KPI:\n• Podpora cíle 240K JBL / 35 SJL\n• HIT rate — snížení vlivu kapacitního omezení\n• DPO — nepřímý dopad přes optimalizaci procesu`,
-        'ch-predpoklady': `• Schválený investiční rozpočet před zahájením výběrového řízení\n• Dostupnost prostoru pro instalaci v plánovaném termínu\n• Koordinace harmonogramu s ostatními FC v LC (bez kolizí)\n• Dodavatel splní technické specifikace a termín montáže\n• Provoz LC nebude přerušen v průběhu realizace`,
-        'ch-cas': `Kickoff: Q1 2027\nVýběr dodavatele: Q1–Q2 2027\nDodání zařízení: Q2 2027\nMontáž a zprovoznění: Q3 2027\nPředání do provozu: Q3 2027`,
-        'ch-naklady': `Odhadovaná výše investice: dle výběrového řízení\nSchválený limit: dle business case\nOperační náklady (servis, údržba): zahrnuty v TCO analýze`,
-        'ch-rizika': `🔴 Skluz termínu dodání dodavatele\n🔴 Kolize s harmonogramem jiných FC\n🟡 Nárůst ceny nad schválený rozpočet\n🟡 Dostupnost odborného personálu pro montáž\n⚪ Technická neslučitelnost s existující infrastrukturou`,
+        'ch-proc': `1. ${nazev} je nutné realizovat, protože: ${problem.split('.')[0]}.\n2. Bez realizace hrozí pokračování stávajícího stavu — zvýšené náklady, nižší efektivita nebo kapacitní omezení.\n3. Projekt snižuje provozní komplexitu a eliminuje manuální kompenzační opatření.\n4. Business kontext: záměr navazuje na strategii rozvoje LC a je součástí OPS roadmapy.\n5. Alternativy byly zváženy; tato varianta přináší nejlepší poměr nákladů a přínosů v daném časovém horizontu.`,
+
+        'ch-prinosy': `Přínosy vycházejí z popsaného problému:\n• Eliminace / zmírnění problému: ${problem.substring(0, 80).trim()}…\n• Zvýšení efektivity procesu o odhadovaných 15–20 %\n• Snížení provozních nákladů (N) — přímá i nepřímá úspora\n• Zvýšení kapacity / kvality výstupu (SJL, JBL, EXP)\n• Snížení rizika provozního výpadku nebo kapacitního přetížení`,
+
+        'ch-cil': `${nazev} — plně realizováno a předáno do provozu do Q3 2027 v rámci schváleného rozpočtu.\n\nProjekt řeší popsaný problém: ${problem.substring(0, 100).trim()}…\n\nVýsledný stav splňuje všechna technická, bezpečnostní a kapacitní kritéria pro 2-směnný provoz LC.`,
+
+        'ch-kpi': `Provozní KPI (přímý dopad):\n• SJL — skladové / zpracované jednotky za den\n• JBL — výkon na pracovníka\n• Kvalita EXP — % zásilek bez chyby\n\nStrategické KPI (nepřímý dopad):\n• Cíl 240K JBL / 35 SJL\n• HIT rate — snížení kapacitního omezení\n• DPO — optimalizace procesu`,
+
+        'ch-predpoklady': `Předpoklady k úspěšné realizaci:\n• Schválený investiční rozpočet před zahájením výběrového řízení\n• Dostupnost prostoru a infrastruktury v plánovaném termínu\n• Koordinace harmonogramu s ostatními FC v LC — bez kolizí\n• Dodavatel splní specifikaci a termín; provoz LC nebude přerušen\n• Stabilní provozní podmínky v období realizace (bez neočekávaných výkyvů objemu)`,
+
+        'ch-cas': `Příprava a výběrové řízení: Q1 2027\nVýběr dodavatele: Q1–Q2 2027\nDodání / výroba: Q2 2027\nMontáž a zprovoznění: Q3 2027\nPředání do provozu + akceptace: Q3 2027`,
+
+        'ch-naklady': `Investiční náklady: dle výsledku výběrového řízení\nSchválený rozpočtový limit: dle business case záměru\nProvozní náklady (servis, spotřeba, údržba): zahrnuty v TCO analýze\nOčekávaná návratnost: posouzena v rámci BC`,
+
+        'ch-rizika': `🔴 Skluz termínu dodání ze strany dodavatele\n🔴 Kolize harmonogramu s jiným FC v LC\n🟡 Nárůst ceny nad schválený limit\n🟡 Nedostupnost kvalifikovaného personálu pro montáž\n🟡 Technická neslučitelnost s existující infrastrukturou\n⚪ Změna obchodních priorit v průběhu realizace`,
       };
 
       Object.entries(fields).forEach(([id, text]) => {
