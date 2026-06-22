@@ -417,6 +417,55 @@
     }
     .nb-summary-out .nb-summary-text { color: #9b9a97; }
 
+    /* AI Badge */
+    .ai-badge {
+      font-size: 10px;
+      background: #6366f1;
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+      vertical-align: middle;
+    }
+
+    /* Upravit badge button */
+    .btn-edit-badge {
+      font-size: 11px;
+      padding: 4px 11px;
+      border-radius: 5px;
+      border: 1px solid #6366f1;
+      color: #6366f1;
+      background: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      transition: background .12s;
+    }
+    .btn-edit-badge:hover { background: #eef2ff; }
+    .btn-edit-badge.editing {
+      background: #6366f1;
+      color: #fff;
+    }
+
+    /* Field card edit mode */
+    .field-card.editing .field-value { display: none; }
+    .field-card .fv-input {
+      display: none;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: #37352f;
+      border: 0.5px solid #6366f1;
+      border-radius: 4px;
+      padding: 3px 7px;
+      width: 100%;
+      outline: none;
+      background: #fff;
+    }
+    .field-card.editing .fv-input { display: block; }
+
     /* Rozhodnutí — výběr vítěze */
     .rozh-btn {
       border-radius: 8px;
@@ -801,9 +850,9 @@
       <div class="kr-block">
         <div class="kr-block-header">
           <div class="kr-label" style="margin-bottom:0">
-            Kritéria <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#9b9a97">(AI Summary)</span>
+            Kritéria <span class="ai-badge">✦ AI Summary</span>
           </div>
-          <button class="btn-ghost" style="font-size:11px;padding:4px 10px">✎ Upravit</button>
+          <button class="btn-edit-badge" id="btn-upravit-kriteria" onclick="toggleKriteriaEdit()">✎ Upravit</button>
         </div>
         <div class="fields-grid">
           <div class="field-card">
@@ -867,7 +916,7 @@
 
       <!-- SHRNUTÍ -->
       <div class="kr-block">
-        <div class="kr-label"><span class="kr-ai-dot"></span>Shrnutí</div>
+        <div class="kr-label">Shrnutí <span class="ai-badge">✦ AI Summary</span></div>
         <div class="ai-summary-card">
           <p class="ai-summary-text">Poptávka cílí na elektropohonnou plošinu pro náročný logistický provoz. Dealbreakery #1–3 automaticky diskvalifikují nabídky bez splnění. Rozpočtový strop 3M Kč odpovídá historickým cenám Haulotte (ref. CZLC4: 2,1M Kč). Servisní synergie s CZLC4 je silný argument pro volbu stejného dodavatele.</p>
         </div>
@@ -926,7 +975,7 @@
               </div>
             </div>
             <div class="nb-summary-card">
-              <div class="nb-summary-label"><span class="kr-ai-dot"></span>Summary nabídky</div>
+              <div class="nb-summary-label">Summary nabídky <span class="ai-badge">✦ AI Summary</span></div>
               <p class="nb-summary-text">Nejsilnější nabídka — splňuje všechny dealbreakery, nejnižší cena, nejlepší reference. Servisní synergie s CZLC4 snižuje TCO. Doporučeno k výběru.</p>
             </div>
           </div>
@@ -949,7 +998,7 @@
               </div>
             </div>
             <div class="nb-summary-card nb-summary-out">
-              <div class="nb-summary-label"><span class="kr-ai-dot" style="background:#e9e9e7"></span>Summary nabídky</div>
+              <div class="nb-summary-label">Summary nabídky <span class="ai-badge" style="background:#e9e9e7;color:#9b9a97;border-color:#e9e9e7">✦ AI Summary</span></div>
               <p class="nb-summary-text">Záruční servis pouze 12 měs. nesplňuje kritérium #7. Vyšší cena než vítěz bez kompenzující výhody.</p>
             </div>
           </div>
@@ -972,7 +1021,7 @@
               </div>
             </div>
             <div class="nb-summary-card nb-summary-out">
-              <div class="nb-summary-label"><span class="kr-ai-dot" style="background:#e9e9e7"></span>Summary nabídky</div>
+              <div class="nb-summary-label">Summary nabídky <span class="ai-badge" style="background:#e9e9e7;color:#9b9a97;border-color:#e9e9e7">✦ AI Summary</span></div>
               <p class="nb-summary-text">Diskvalifikováno — nesplňuje dealbreaker #3 (montáž za provozu). Nejvyšší cena, nejdelší montáž.</p>
             </div>
           </div>
@@ -984,7 +1033,7 @@
 
       <!-- CELKOVÉ SHRNUTÍ -->
       <div class="kr-block">
-        <div class="kr-label"><span class="kr-ai-dot"></span>Celkové shrnutí nabídek <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#9b9a97">(AI Summary)</span></div>
+        <div class="kr-label">Celkové shrnutí nabídek <span class="ai-badge">✦ AI Summary</span></div>
         <div class="ai-summary-card">
           <p class="ai-summary-text">Dodavatel 1 vede na všech klíčových kritériích — nejnižší cena, splnění všech dealbreakerů, nejkratší montáž. Dodavatel 2 odmítnut pro nedostatečnou záruční dobu. Dodavatel 3 diskvalifikován — nesplňuje dealbreaker montáže za provozu a je nejdražší. Doporučení: potvrdit objednávku Dodavatele 1.</p>
         </div>
@@ -995,32 +1044,6 @@
       <!-- ROZHODNUTÍ -->
       <div class="kr-block">
         <div class="kr-label">Rozhodnutí</div>
-
-        <div style="margin-bottom:12px">
-          <div style="font-size:11px;color:#9b9a97;margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:.07em">Vyber vítěze tendru</div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
-            <div class="rozh-btn rozh-win" id="rozh-d1" onclick="selectWinner(1)">
-              <div class="rozh-name">Dodavatel 1</div>
-              <div class="rozh-price">2 100 000 Kč</div>
-              <div class="rozh-check">✓ Vítěz</div>
-            </div>
-            <div class="rozh-btn rozh-lose" id="rozh-d2" onclick="selectWinner(2)">
-              <div class="rozh-name">Dodavatel 2</div>
-              <div class="rozh-price">2 300 000 Kč</div>
-              <div class="rozh-check rozh-x">✗ Odmítnuto</div>
-            </div>
-            <div class="rozh-btn rozh-lose" id="rozh-d3" onclick="selectWinner(3)">
-              <div class="rozh-name">Dodavatel 3</div>
-              <div class="rozh-price">2 400 000 Kč</div>
-              <div class="rozh-check rozh-x">✗ Odmítnuto</div>
-            </div>
-          </div>
-          <div style="font-size:11px;color:#9b9a97;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.07em">Doplnění z Konzole K1 <span style="font-weight:400;text-transform:none">(volitelné — zkopíruj sem relevantní text)</span></div>
-          <textarea id="d-konzole" rows="3" placeholder="Vlož text z Konzole K1…" style="font-size:12px"></textarea>
-          <div style="margin-top:8px;display:flex;gap:8px">
-            <button class="btn-dark" onclick="ulozitRozhodnuti()">Uložit rozhodnutí</button>
-          </div>
-        </div>
 
         <div id="decisions-list">
           <div class="decision-card">
@@ -1134,6 +1157,39 @@
 <button class="toggle-btn open" id="toggle-right" onclick="toggleRight()" title="Schovat chat">›</button>
 
 <script>
+  /* ── KRITÉRIA — inline edit ─── */
+  let kriteriaEditMode = false;
+  function toggleKriteriaEdit() {
+    kriteriaEditMode = !kriteriaEditMode;
+    const btn = document.getElementById('btn-upravit-kriteria');
+    const cards = document.querySelectorAll('#tab-kriteria .field-card');
+    if (kriteriaEditMode) {
+      btn.textContent = '✓ Uložit';
+      btn.classList.add('editing');
+      cards.forEach(card => {
+        const valEl = card.querySelector('.field-value');
+        if (!valEl) return;
+        let inp = card.querySelector('.fv-input');
+        if (!inp) {
+          inp = document.createElement('input');
+          inp.className = 'fv-input';
+          valEl.after(inp);
+        }
+        inp.value = valEl.textContent;
+        card.classList.add('editing');
+      });
+    } else {
+      btn.textContent = '✎ Upravit';
+      btn.classList.remove('editing');
+      cards.forEach(card => {
+        const valEl = card.querySelector('.field-value');
+        const inp = card.querySelector('.fv-input');
+        if (valEl && inp) valEl.textContent = inp.value;
+        card.classList.remove('editing');
+      });
+    }
+  }
+
   /* ── CO POPTÁVÁME — generuj zadání ─── */
   const poptavameVariants = [
     'Plošina pro sklad CZLC5 — vertikální přeprava palet, provoz 2 směny, 250 cyklů/den. Montáž za plného provozu expedice. Elektropohon, pevná instalace, výška zdvihu min. 8 m. Navazuje na CZLC4 (Haulotte 2024) pro servisní synergii.',
