@@ -1316,10 +1316,11 @@
     <div class="msg msg-ai">Ahoj! Jsem Projekťák Alzáček. Mám data k FC Plošina — tendr, nabídky, rozhodnutí. Na co se chceš zeptat?</div>
   </div>
   <div class="chat-suggestions" id="chat-suggestions">
-    <button class="chat-chip" onclick="askChip('Kdo je vítěz tendru?')">Kdo je vítěz?</button>
+    <button class="chat-chip" onclick="askChip('Kdo je vítěz tendru a proč?')">Kdo je vítěz?</button>
     <button class="chat-chip" onclick="askChip('Co chybí k rozhodnutí?')">Co chybí?</button>
     <button class="chat-chip" onclick="askChip('Připrav shrnutí pro ředitele logistiky.')">Shrnutí pro ředitele</button>
     <button class="chat-chip" onclick="askChip('Jaká jsou rizika tohoto tendru?')">Rizika</button>
+    <button class="chat-chip" onclick="askChip('Navrhni 10 kritérií pro tendr na plošinu.')">Navrhni kritéria</button>
   </div>
   <div class="chat-input-area">
     <textarea id="chat-in" rows="2" placeholder="Napiš otázku… (Enter = odeslat)"
@@ -1559,10 +1560,6 @@
       rcVitez.querySelector('.ri-text').innerHTML = `Vítěz tendru vybrán — <strong>Dodavatel ${n}</strong>`;
       updateReadinessScore();
     }
-    // ensure chat panel is visible
-    const cp = document.getElementById('chat-panel');
-    if (cp.classList.contains('collapsed')) toggleRight();
-    setTimeout(() => sendAiReply(winnerReplies[n - 1]), 400);
   }
 
   function pripravBriefing() {
@@ -1616,11 +1613,12 @@
     const file = input.files[0];
     if (!file) return;
     const ext = file.name.split('.').pop().toLowerCase();
-    const icon = ['pdf','doc','docx','xls','xlsx'].includes(ext) ? '📄' : ['jpg','png','gif','svg'].includes(ext) ? '🖼' : '📎';
+    const icon = ['pdf'].includes(ext) ? '📄' : ['doc','docx'].includes(ext) ? '📝' : ['xls','xlsx','csv'].includes(ext) ? '📊' : ['jpg','jpeg','png','gif','svg','webp'].includes(ext) ? '🖼' : '📎';
     const size = file.size > 1024*1024 ? (file.size/1024/1024).toFixed(1)+' MB' : (file.size/1024).toFixed(0)+' kB';
+    const url = URL.createObjectURL(file);
     const item = document.createElement('div');
     item.className = 'att-item';
-    item.innerHTML = `<span class="att-icon">${icon}</span><span class="att-name">${file.name}</span><span class="att-meta">${size}</span>`;
+    item.innerHTML = `<span class="att-icon">${icon}</span><a class="att-name" href="${url}" target="_blank" rel="noopener" style="color:#4338ca;text-decoration:none;cursor:pointer" title="Otevřít soubor">${file.name}</a><span class="att-meta">${size}</span>`;
     document.getElementById(listId).appendChild(item);
     input.value = '';
   }
@@ -1668,41 +1666,11 @@
   }
 
   /* ── TAB SWITCHING ─── */
-  const tabChips = {
-    kriteria: [
-      { label: 'Navrhni kritéria',      q: 'Navrhni 10 kritérií pro tendr na plošinu.' },
-      { label: 'Co poptáváme?',         q: 'Shrň co poptáváme v tendru Plošina.' },
-      { label: 'Jaké přílohy?',         q: 'Jaké přílohy a dokumenty přiložit k zadání tendru?' },
-      { label: 'Generuj zadání',        q: 'Generuj kompletní zadání tendru pro Plošinu CZLC5.' },
-    ],
-    nabidky: [
-      { label: 'Kdo je vítěz?',         q: 'Kdo je vítěz tendru?' },
-      { label: 'Co chybí?',             q: 'Co chybí k rozhodnutí?' },
-      { label: 'Shrnutí pro ředitele',  q: 'Připrav shrnutí pro ředitele logistiky.' },
-      { label: 'Rizika',                q: 'Jaká jsou rizika tohoto tendru?' },
-    ],
-    poznatky: [
-      { label: 'Shrnutí poznatků',      q: 'Shrň všechny poznatky z tohoto tendru.' },
-      { label: 'Co příště zlepšit?',    q: 'Co bychom příště měli udělat lépe?' },
-      { label: 'Porovnej s CZLC4',      q: 'Porovnej výsledky tendru s projektem CZLC4.' },
-      { label: 'Chyby a ponaučení',     q: 'Jaké chyby jsme v tendru udělali a co si odnášíme?' },
-    ],
-  };
-
-  function updateChips(tabId) {
-    const chips = tabChips[tabId] || tabChips.nabidky;
-    const bar = document.getElementById('chat-suggestions');
-    bar.innerHTML = chips.map(c =>
-      `<button class="chat-chip" onclick="askChip('${c.q.replace(/'/g,"\\'")}'">${c.label}</button>`
-    ).join('');
-  }
-
   function switchTab(id, el) {
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.stab').forEach(s => s.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
     el.classList.add('active');
-    updateChips(id);
   }
 
   /* ── FORM TOGGLE ─── */
