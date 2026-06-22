@@ -486,6 +486,40 @@
     .ri-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
     .ri-text { line-height: 1.4; }
 
+    /* Project Charter */
+    .ch-section {
+      margin-bottom: 16px;
+    }
+    .ch-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #37352f;
+      margin-bottom: 4px;
+    }
+    .ch-hint {
+      font-size: 11px;
+      color: #9b9a97;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .ch-ta {
+      font-family: inherit;
+      width: 100%;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 6px;
+      padding: 9px 11px;
+      font-size: 13px;
+      color: #37352f;
+      resize: vertical;
+      outline: none;
+      background: #f7f6f3;
+      line-height: 1.6;
+    }
+    .ch-ta:focus { border-color: #6366f1; background: #fff; }
+    .ch-ta.ai-filled { border-color: #c4b5fd; background: #faf9ff; }
+
     /* Mikrofon */
     .btn-mic {
       width: 30px; height: 30px;
@@ -958,11 +992,10 @@
       <span class="sn-pill-outline">Plošina</span>
     </div>
     <div class="sn-sections">
-      <div class="sn-item soon">
+      <div class="sn-item" id="sn-charter" onclick="showView('charter')">
         <span class="sn-inner">📋 Project Charter</span>
-        <span class="sn-badge">brzy</span>
       </div>
-      <div class="sn-item active">
+      <div class="sn-item active" id="sn-tendr" onclick="showView('tendr')">
         <span class="sn-inner">📊 Tendr</span>
       </div>
       <div class="sn-item soon">
@@ -982,6 +1015,9 @@
 
   <!-- CONTENT AREA -->
   <div class="content-area">
+
+  <!-- ── VIEW: TENDR ─── -->
+  <div id="view-tendr" style="display:contents">
 
     <!-- Sub-tabs (Tendr) -->
     <div class="subtabs-bar">
@@ -1327,6 +1363,85 @@
         </div>
       </div>
     </div>
+
+  </div><!-- /view-tendr -->
+
+  <!-- ── VIEW: PROJECT CHARTER ─── -->
+  <div id="view-charter" style="display:none;flex:1;overflow-y:auto;padding:28px 28px 40px;flex-direction:column">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-shrink:0">
+      <div>
+        <div style="font-size:15px;font-weight:700;color:#37352f">Zadání na projekt</div>
+        <div style="font-size:12px;color:#9b9a97;margin-top:2px">CZLC5 · Plošina · Project Charter</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn-purple" id="btn-gen-charter" onclick="generujCharter()" style="font-size:12px">✦ Generuj charter</button>
+        <button class="btn-dark" onclick="exportCharterToExcel()" style="font-size:12px">⬇ Stáhnout Excel</button>
+      </div>
+    </div>
+
+    <!-- Název záměru (AI spouštěč) -->
+    <div class="ch-section">
+      <div class="ch-label">Název záměru</div>
+      <div class="ch-hint">Název by měl být stručný, pokud možno dobře zapamatovatelný. Napiš klíčová slova — AI doplní celý charter.</div>
+      <textarea class="ch-ta" id="ch-nazev" rows="2" placeholder="Napiš klíčová slova nebo název záměru…"></textarea>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-label">Co je příležitostí či problémem, který chceš řešit?</div>
+      <div class="ch-hint">Popiš výchozí stav a kořenovou příčinu problému. Ideálně uveď čísla (např. HIT rate, SJL). Co je příležitost?</div>
+      <textarea class="ch-ta" id="ch-problem" rows="4" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-label">PROČ to potřebujeme dělat?</div>
+      <div class="ch-hint">Proč to potřebuješ dělat? Co se stane, když to neuděláš? Zvyšuje / snižuje to komplexitu? Jaký je business kontext? Existují jiné varianty řešení?</div>
+      <textarea class="ch-ta" id="ch-proc" rows="5" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-label">Jaké jsou či mají být přínosy?</div>
+      <div class="ch-hint">Jaké přínosy má projekt přinést? Zvýšení příjmů, snížení výdajů, zvýšení kvality? Ideálně s čísly. Příklad: „Redukce N na převozy o 10 %"</div>
+      <textarea class="ch-ta" id="ch-prinosy" rows="4" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-label">Jaký má být cíl?</div>
+      <div class="ch-hint">Stav, do kterého se chceš dostat. Obsahuje CO, DO KDY a ZA KOLIK (trojimperativ). Př.: „Postavená plošina a vybavená technologií do 15.9.2024 za 30M Kč"</div>
+      <textarea class="ch-ta" id="ch-cil" rows="3" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-label">Které KPI nebo strategický cíl logistiky bude ovlivněn?</div>
+      <div class="ch-hint">Provozní KPI (JBL, SJL atd.) nebo strategické KPI (240K JBL, 35 SJL, Kvalita EXP, HIT rate, DPO atd.)</div>
+      <textarea class="ch-ta" id="ch-kpi" rows="3" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-label">Jaké jsou hlavní předpoklady?</div>
+      <div class="ch-hint">Faktory, které mohou mít zásadní vliv na realizaci. Př.: „Stěhování RMA až po 1.4.2024" nebo „Max. počet JBL v CZLC4 nepřekročí 75K JBL/den"</div>
+      <textarea class="ch-ta" id="ch-predpoklady" rows="3" placeholder="AI vyplní na základě názvu záměru…"></textarea>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:4px">
+      <div class="ch-section" style="margin-bottom:0">
+        <div class="ch-label">ČAS — hlavní milníky</div>
+        <div class="ch-hint">Jak bude realizace rozvržena? Termín dokončení? Milníky?</div>
+        <textarea class="ch-ta" id="ch-cas" rows="4" placeholder="AI vyplní…"></textarea>
+      </div>
+      <div class="ch-section" style="margin-bottom:0">
+        <div class="ch-label">NÁKLADY</div>
+        <div class="ch-hint">Jaká je představa o nákladech? Max. odhadovaná částka?</div>
+        <textarea class="ch-ta" id="ch-naklady" rows="4" placeholder="AI vyplní…"></textarea>
+      </div>
+      <div class="ch-section" style="margin-bottom:0">
+        <div class="ch-label">RIZIKA / PŘEDPOKLADY</div>
+        <div class="ch-hint">Co může ohrozit dosažení výstupů, cíle a přínosů?</div>
+        <textarea class="ch-ta" id="ch-rizika" rows="4" placeholder="AI vyplní…"></textarea>
+      </div>
+    </div>
+
+  </div><!-- /view-charter -->
 
   </div><!-- /content-area -->
 </div><!-- /main -->
@@ -1729,6 +1844,87 @@
     document.getElementById(urlId).value = '';
     document.getElementById(nameId).value = '';
     toggleLinkForm(formId);
+  }
+
+  /* ── VIEW SWITCHING ─── */
+  function showView(name) {
+    document.getElementById('view-tendr').style.display  = name === 'tendr'   ? 'contents' : 'none';
+    document.getElementById('view-charter').style.display = name === 'charter' ? 'flex'     : 'none';
+    document.getElementById('sn-tendr').classList.toggle('active',  name === 'tendr');
+    document.getElementById('sn-charter').classList.toggle('active', name === 'charter');
+  }
+
+  /* ── PROJECT CHARTER — generuj ─── */
+  function generujCharter() {
+    const raw = document.getElementById('ch-nazev').value.trim();
+    if (!raw) { alert('Nejdřív napiš název záměru nebo klíčová slova.'); return; }
+    const btn = document.getElementById('btn-gen-charter');
+    btn.textContent = '⏳ Generuji…'; btn.disabled = true;
+
+    // normalise: use raw as project name
+    const p = raw;
+
+    setTimeout(() => {
+      const fields = {
+        'ch-problem': `Výchozí stav: ${p} — aktuálně chybí kapacita / efektivita v daném procesu, což způsobuje prodlevy, zvýšené náklady nebo rizika pro provoz LC.\n\nKořenová příčina: nedostatečná infrastruktura nebo technologie pro požadovaný objem operací. Příležitost: modernizací procesu lze dosáhnout úspory N a zvýšení SJL/JBL.`,
+        'ch-proc': `1. Projekt je nutný pro udržení plánovaného objemu operací a splnění strategických cílů LC.\n2. Bez realizace hrozí: přetížení procesu, pokles SJL, zvýšení nákladů na kompenzační opatření.\n3. Projekt snižuje provozní komplexitu — standardizuje proces a odstraňuje manuální workaroundy.\n4. Business kontext: projekt navazuje na strategii rozvoje LC a je součástí roadmapy OPS.\n5. Alternativy byly zváženy; tato varianta přináší nejlepší poměr nákladů a přínosů.`,
+        'ch-prinosy': `• Zvýšení efektivity procesu o odhadovaných 15–20 %\n• Snížení provozních nákladů (N) o cca 10 %\n• Zvýšení kapacity o X JBL/den — umožní splnit plánovaný objem\n• Zlepšení SJL / kvality EXP díky eliminaci přetížení\n• Servisní synergie s existujícím vybavením — nižší TCO`,
+        'ch-cil': `${p} — plně realizováno, zprovozněno a předáno do provozu do Q3 2027 za schválený rozpočet. Projekt splňuje všechna technická a bezpečnostní kritéria a je připraven pro plný provoz 2-směnného provozu LC.`,
+        'ch-kpi': `Provozní KPI:\n• SJL (skladové jednotky/den)\n• JBL (jednotky/den na pracovníka)\n• Kvalita EXP (% bez chyb)\n\nStrategické KPI:\n• Podpora cíle 240K JBL / 35 SJL\n• HIT rate — snížení vlivu kapacitního omezení\n• DPO — nepřímý dopad přes optimalizaci procesu`,
+        'ch-predpoklady': `• Schválený investiční rozpočet před zahájením výběrového řízení\n• Dostupnost prostoru pro instalaci v plánovaném termínu\n• Koordinace harmonogramu s ostatními FC v LC (bez kolizí)\n• Dodavatel splní technické specifikace a termín montáže\n• Provoz LC nebude přerušen v průběhu realizace`,
+        'ch-cas': `Kickoff: Q1 2027\nVýběr dodavatele: Q1–Q2 2027\nDodání zařízení: Q2 2027\nMontáž a zprovoznění: Q3 2027\nPředání do provozu: Q3 2027`,
+        'ch-naklady': `Odhadovaná výše investice: dle výběrového řízení\nSchválený limit: dle business case\nOperační náklady (servis, údržba): zahrnuty v TCO analýze`,
+        'ch-rizika': `🔴 Skluz termínu dodání dodavatele\n🔴 Kolize s harmonogramem jiných FC\n🟡 Nárůst ceny nad schválený rozpočet\n🟡 Dostupnost odborného personálu pro montáž\n⚪ Technická neslučitelnost s existující infrastrukturou`,
+      };
+
+      Object.entries(fields).forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        if (el) { el.value = text; el.classList.add('ai-filled'); }
+      });
+
+      btn.textContent = '✦ Generuj charter'; btn.disabled = false;
+    }, 1400);
+  }
+
+  /* ── PROJECT CHARTER — export Excel ─── */
+  function exportCharterToExcel() {
+    const get = id => (document.getElementById(id) || {}).value || '';
+    const nazev = get('ch-nazev') || 'CZLC5';
+
+    const rows = [
+      ['ZADÁNÍ NA PROJEKT'],
+      [],
+      ['', '', 'ZADAVATEL / BUSINESS OWNER'],
+      [],
+      ['', 'PROJEKTOVÝ ZÁMĚR (ZADÁNÍ PRO PROJEKT)'],
+      ['', '', 'Název záměru', get('ch-nazev')],
+      ['', '', 'Co je příležitostí či problémem, který chceš řešit?', get('ch-problem')],
+      ['', '', 'PROČ to potřebujeme dělat?', get('ch-proc')],
+      ['', '', 'Jaké jsou či mají být přínosy?', get('ch-prinosy')],
+      ['', '', 'Jaký má být cíl?', get('ch-cil')],
+      ['', '', 'Které KPI nebo strategický cíl logistiky bude ovlivněn?', get('ch-kpi')],
+      ['', '', 'Jaké jsou hlavní předpoklady?', get('ch-predpoklady')],
+      [],
+      ['', '', 'ČAS — hlavní milníky', '', '', 'NÁKLADY', '', '', '', 'RIZIKA / PŘEDPOKLADY'],
+      ['', '', get('ch-cas'), '', '', get('ch-naklady'), '', '', '', get('ch-rizika')],
+      [],
+      ['', '', 'Projektový záměr schválil dne:', '', '', '', '', '', '', '', ''],
+    ];
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+
+    // column widths
+    ws['!cols'] = [{ wch: 4 }, { wch: 32 }, { wch: 40 }, { wch: 60 }, { wch: 4 }, { wch: 40 }, { wch: 4 }, { wch: 4 }, { wch: 4 }, { wch: 40 }];
+
+    // row heights for content rows
+    ws['!rows'] = rows.map((r, i) => {
+      const maxLen = Math.max(...r.map(v => String(v || '').split('\n').length));
+      return { hpt: Math.max(15, maxLen * 14) };
+    });
+
+    XLSX.utils.book_append_sheet(wb, ws, '1. Zadání na projekt');
+    XLSX.writeFile(wb, `Project_Charter_${nazev.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30)}.xlsx`);
   }
 
   /* ── PANEL TOGGLES ─── */
