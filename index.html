@@ -1618,7 +1618,7 @@
     const url = URL.createObjectURL(file);
     const item = document.createElement('div');
     item.className = 'att-item';
-    item.innerHTML = `<span class="att-icon">${icon}</span><a class="att-name" href="${url}" target="_blank" rel="noopener" style="color:#4338ca;text-decoration:none;cursor:pointer" title="Otevřít soubor">${file.name}</a><span class="att-meta">${size}</span>`;
+    item.innerHTML = `<span class="att-icon">${icon}</span><a class="att-name" href="${url}" target="_blank" rel="noopener" style="color:#4338ca;text-decoration:none;cursor:pointer" title="Otevřít soubor">${file.name}</a><span class="att-meta">${size}</span><button onclick="this.closest('.att-item').remove()" style="margin-left:auto;background:none;border:none;color:#c9c8c5;font-size:15px;cursor:pointer;padding:0 2px;line-height:1;flex-shrink:0" title="Odebrat přílohu" onmouseover="this.style.color='#e03e3e'" onmouseout="this.style.color='#c9c8c5'">×</button>`;
     document.getElementById(listId).appendChild(item);
     input.value = '';
   }
