@@ -386,6 +386,57 @@
     .nb-ok { color: #15803d; font-weight: 500; }
     .nb-no { color: #b91c1c; font-weight: 500; }
 
+    /* Nabídky — sloupce s pair kartami */
+    .nb-col { display: flex; flex-direction: column; gap: 8px; }
+    .nb-summary-card {
+      background: #f5f3ff;
+      border: 0.5px solid #c4b5fd;
+      border-radius: 8px;
+      padding: 11px 13px;
+    }
+    .nb-summary-out {
+      background: #f7f6f3;
+      border-color: #e9e9e7;
+    }
+    .nb-summary-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-weight: 600;
+      color: #7c3aed;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .nb-summary-out .nb-summary-label { color: #9b9a97; }
+    .nb-summary-text {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #3730a3;
+    }
+    .nb-summary-out .nb-summary-text { color: #9b9a97; }
+
+    /* Přílohy — tlačítka v headeru */
+    .btn-att-hdr {
+      font-size: 11px;
+      padding: 5px 11px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      background: #6366f1;
+      color: #fff;
+    }
+    .btn-att-hdr:hover { background: #4f46e5; }
+    .btn-att-hdr-link {
+      background: #eef2ff;
+      color: #4338ca;
+      border: 0.5px solid #c7d2fe;
+    }
+    .btn-att-hdr-link:hover { background: #e0e7ff; }
+
     /* Attachments */
     .att-list { display: flex; flex-direction: column; gap: 7px; }
     .att-item {
@@ -700,64 +751,64 @@
 
     <!-- Sub-tabs (Tendr) -->
     <div class="subtabs-bar">
-      <button class="stab active" onclick="switchTab('kriteria', this)">Kritéria</button>
+      <button class="stab active" onclick="switchTab('kriteria', this)">Zadání tendru</button>
       <button class="stab" onclick="switchTab('nabidky', this)">Nabídky</button>
       <button class="stab" onclick="switchTab('poznatky', this)">Sběr poznatků</button>
     </div>
 
-    <!-- ── KRITÉRIA ──────────────────────────────── -->
+    <!-- ── ZADÁNÍ TENDRU ─────────────────────────── -->
     <div id="tab-kriteria" class="tab-content active">
 
-      <!-- 1. Co poptáváme a proč -->
+      <!-- CO POPTÁVÁME -->
       <div class="kr-block">
-        <div class="kr-label">Co poptáváme a proč</div>
-        <div class="kr-card">
-          <p class="kr-text">Plošina pro sklad CZLC5 — vertikální přeprava palet mezi přízemím a mezaninem. Provoz 2 směny, min. 250 cyklů/den. Klíčový požadavek: montáž za plného provozu expedice bez odstávky. Projekt navazuje na úspěšnou instalaci na CZLC4 (2024), kde jsme použili Haulotte — chceme stejnou platformu pro servisní synergii.</p>
-          <div class="kr-hint">✦ AI doplní kontext z dokumentů — nebo napiš volně</div>
+        <div class="kr-label"><span class="kr-ai-dot"></span>Co poptáváme</div>
+        <div class="ai-summary-card">
+          <p class="ai-summary-text">Plošina pro sklad CZLC5 — vertikální přeprava palet mezi přízemím a mezaninem. Provoz 2 směny, min. 250 cyklů/den. Klíčový požadavek: montáž za plného provozu expedice bez odstávky. Navazuje na CZLC4 (Haulotte 2024) — chceme stejnou platformu pro servisní synergii.</p>
+          <div class="ai-summary-footer">⏱ Aktualizováno před 1 min · ze 2 zdrojů &nbsp;·&nbsp; <span style="cursor:pointer;text-decoration:underline">upravit</span></div>
         </div>
       </div>
 
       <div class="kr-divider"></div>
 
-      <!-- 2. Kritéria (AI TOP 10) -->
+      <!-- KRITÉRIA -->
       <div class="kr-block">
         <div class="kr-block-header">
           <div class="kr-label" style="margin-bottom:0">
-            <span class="kr-ai-badge">AI · TOP 10 pro FC Plošina</span>
+            <span class="kr-ai-badge">AI · TOP 9 pro FC Plošina</span>
             Kritéria
           </div>
           <button class="btn-ghost" style="font-size:11px;padding:4px 10px">✎ Upravit</button>
         </div>
-        <div class="fields-grid" style="grid-template-columns:1fr 1fr 1fr">
+        <div class="fields-grid">
           <div class="field-card">
-            <div class="fc-rank">#1 · nejdůležitější</div>
+            <div class="fc-rank">#1 · dealbreaker</div>
             <div class="field-label">Typ pohonu</div>
             <div class="field-value">Elektropohon · pevná instal.</div>
             <div class="fc-why">Nutné pro 2-směnný provoz bez emisí</div>
           </div>
           <div class="field-card">
-            <div class="fc-rank">#2</div>
+            <div class="fc-rank">#2 · dealbreaker</div>
             <div class="field-label">Výška zdvihu</div>
             <div class="field-value">min. 8 m</div>
             <div class="fc-why">Světlá výška mezaninu CZLC5</div>
           </div>
           <div class="field-card">
-            <div class="fc-rank">#3</div>
+            <div class="fc-rank">#3 · dealbreaker</div>
+            <div class="field-label">Montáž za provozu</div>
+            <div class="field-value">Ano · povinné</div>
+            <div class="fc-why">Expedici nelze odstávit</div>
+          </div>
+          <div class="field-card">
+            <div class="fc-rank">#4</div>
             <div class="field-label">Nosnost</div>
             <div class="field-value">min. 500 kg</div>
             <div class="fc-why">Europaleta + zboží, peak váhy</div>
           </div>
           <div class="field-card">
-            <div class="fc-rank">#4</div>
+            <div class="fc-rank">#5</div>
             <div class="field-label">Certifikace</div>
             <div class="field-value">ČSN EN 1495</div>
             <div class="fc-why">Povinné pro CZ trh + pojišťovna</div>
-          </div>
-          <div class="field-card">
-            <div class="fc-rank">#5</div>
-            <div class="field-label">Montáž za provozu</div>
-            <div class="field-value">Ano · povinné</div>
-            <div class="fc-why">Expedice nelze odstávit</div>
           </div>
           <div class="field-card">
             <div class="fc-rank">#6</div>
@@ -769,7 +820,7 @@
             <div class="fc-rank">#7</div>
             <div class="field-label">Záruční servis</div>
             <div class="field-value">min. 5 let</div>
-            <div class="fc-why">Z CZLC4 zkušenosti — min. 5 let</div>
+            <div class="fc-why">Z CZLC4 zkušenosti</div>
           </div>
           <div class="field-card">
             <div class="fc-rank">#8</div>
@@ -783,34 +834,31 @@
             <div class="field-value">do 3 000 000 Kč</div>
             <div class="fc-why">Schválený investiční limit</div>
           </div>
-          <div class="field-card">
-            <div class="fc-rank">#10</div>
-            <div class="field-label">Servisní základna CZ</div>
-            <div class="field-value">Praha nebo Brno</div>
-            <div class="fc-why">Reakční čas při výpadku max. 4 h</div>
-          </div>
         </div>
       </div>
 
       <div class="kr-divider"></div>
 
-      <!-- 3. AI shrnutí (auto) -->
+      <!-- SHRNUTÍ -->
       <div class="kr-block">
-        <div class="kr-label">
-          <span class="kr-ai-dot"></span>
-          AI shrnutí · aktualizuje se automaticky
-        </div>
+        <div class="kr-label"><span class="kr-ai-dot"></span>Shrnutí</div>
         <div class="ai-summary-card">
-          <p class="ai-summary-text">Poptávka míří na elektropohonnou plošinu pro náročný logistický provoz (2 směny, 250+ cyklů/den). Klíčová diferenciace od standardního tendru: <strong>povinná montáž za plného provozu</strong> a servisní kontinuita s CZLC4. Z TOP 10 kritérií jsou dealbreakery #1–5 — nabídka bez splnění kteréhokoliv z nich by měla být automaticky vyřazena. Rozpočtový strop 3M Kč odpovídá historickým cenám Haulotte (ref. CZLC4: 2,1M Kč), ale prostor pro prémiové splnění kritéria #5 existuje.</p>
+          <p class="ai-summary-text">Poptávka cílí na elektropohonnou plošinu pro náročný logistický provoz. Dealbreakery #1–3 automaticky diskvalifikují nabídky bez splnění. Rozpočtový strop 3M Kč odpovídá historickým cenám Haulotte (ref. CZLC4: 2,1M Kč). Servisní synergie s CZLC4 je silný argument pro volbu stejného dodavatele.</p>
           <div class="ai-summary-footer">⏱ Naposledy aktualizováno před 2 min · ze 3 zdrojů</div>
         </div>
       </div>
 
       <div class="kr-divider"></div>
 
-      <!-- 4. Přílohy -->
+      <!-- PŘÍLOHY A ZDROJE -->
       <div class="kr-block">
-        <div class="kr-label">Přílohy a zdroje</div>
+        <div class="kr-block-header">
+          <div class="kr-label" style="margin-bottom:0">Přílohy a zdroje</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn-att-hdr" onclick="alert('Nahrát soubor')">↑ Nahrát soubor</button>
+            <button class="btn-att-hdr btn-att-hdr-link">⊕ Přidat odkaz</button>
+          </div>
+        </div>
         <div class="att-list">
           <div class="att-item">
             <span class="att-icon">📄</span>
@@ -822,10 +870,6 @@
             <span class="att-name">Asana — FC Plošina · projektový plán</span>
             <span class="att-meta">odkaz</span>
           </div>
-          <div class="att-actions">
-            <button class="att-btn" onclick="this.textContent='Nahrávám…'">↑ Nahrát soubor</button>
-            <button class="att-btn">⊕ Přidat odkaz</button>
-          </div>
         </div>
       </div>
 
@@ -834,82 +878,102 @@
     <!-- ── NABÍDKY ────────────────────────────────── -->
     <div id="tab-nabidky" class="tab-content">
 
-      <!-- Dlaždice nabídek -->
-      <div class="nb-grid" id="offers-grid">
+      <!-- CENOVÉ NABÍDKY -->
+      <div class="kr-block">
+        <div class="kr-label">Cenové nabídky</div>
+        <div class="nb-grid">
 
-        <div class="nb-card nb-win">
-          <div class="nb-card-top">
-            <div>
-              <div class="nb-sup">Haulotte CR</div>
-              <div class="nb-price">2 100 000 Kč</div>
+          <!-- Haulotte -->
+          <div class="nb-col">
+            <div class="nb-card nb-win">
+              <div class="nb-card-top">
+                <div>
+                  <div class="nb-sup">Haulotte CR</div>
+                  <div class="nb-price">2 100 000 Kč</div>
+                </div>
+                <span class="badge badge-win">Vítěz</span>
+              </div>
+              <div class="nb-rows">
+                <div class="nb-row"><span class="nb-rl">Lhůta</span><span>12 týdnů</span></div>
+                <div class="nb-row"><span class="nb-rl">Servis</span><span>24 měs. záruky</span></div>
+                <div class="nb-row"><span class="nb-rl">Reference</span><span>CZLC4, Lidl DC Brno</span></div>
+                <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-ok">✓ Ano</span></div>
+              </div>
             </div>
-            <span class="badge badge-win">Vítěz</span>
-          </div>
-          <div class="nb-rows">
-            <div class="nb-row"><span class="nb-rl">Lhůta</span><span>12 týdnů</span></div>
-            <div class="nb-row"><span class="nb-rl">Servis</span><span>24 měs. záruky</span></div>
-            <div class="nb-row"><span class="nb-rl">Reference</span><span>CZLC4, Lidl DC Brno</span></div>
-            <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-ok">✓ Ano</span></div>
-          </div>
-        </div>
-
-        <div class="nb-card">
-          <div class="nb-card-top">
-            <div>
-              <div class="nb-sup">Toyota MH</div>
-              <div class="nb-price">2 300 000 Kč</div>
+            <div class="nb-summary-card">
+              <div class="nb-summary-label"><span class="kr-ai-dot"></span>Summary nabídky</div>
+              <p class="nb-summary-text">Nejsilnější nabídka — splňuje všechny dealbreakery, nejnižší cena, nejlepší reference. Servisní synergie s CZLC4 snižuje TCO. Doporučeno k výběru.</p>
             </div>
-            <span class="badge badge-res">Rezerva</span>
           </div>
-          <div class="nb-rows">
-            <div class="nb-row"><span class="nb-rl">Lhůta</span><span>10 týdnů</span></div>
-            <div class="nb-row"><span class="nb-rl">Servis</span><span>12 měs. záruky</span></div>
-            <div class="nb-row"><span class="nb-rl">Reference</span><span>2 sklady EU</span></div>
-            <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-ok">✓ Ano</span></div>
-          </div>
-        </div>
 
-        <div class="nb-card nb-out">
-          <div class="nb-card-top">
-            <div>
-              <div class="nb-sup">Jungheinrich CZ</div>
-              <div class="nb-price">2 400 000 Kč</div>
+          <!-- Toyota -->
+          <div class="nb-col">
+            <div class="nb-card">
+              <div class="nb-card-top">
+                <div>
+                  <div class="nb-sup">Toyota MH</div>
+                  <div class="nb-price">2 300 000 Kč</div>
+                </div>
+                <span class="badge badge-res">Rezerva</span>
+              </div>
+              <div class="nb-rows">
+                <div class="nb-row"><span class="nb-rl">Lhůta</span><span>10 týdnů</span></div>
+                <div class="nb-row"><span class="nb-rl">Servis</span><span>12 měs. záruky</span></div>
+                <div class="nb-row"><span class="nb-rl">Reference</span><span>2 sklady EU</span></div>
+                <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-ok">✓ Ano</span></div>
+              </div>
             </div>
-            <span class="badge badge-no">Odmítnuto</span>
+            <div class="nb-summary-card">
+              <div class="nb-summary-label"><span class="kr-ai-dot"></span>Summary nabídky</div>
+              <p class="nb-summary-text">Solidní záloha — splňuje dealbreakery, kratší lhůta, ale záruční servis pouze 12 měs. nesplňuje kritérium #7. Vhodná jako pojistka do podpisu Haulotte.</p>
+            </div>
           </div>
-          <div class="nb-rows">
-            <div class="nb-row"><span class="nb-rl">Lhůta</span><span>14 týdnů</span></div>
-            <div class="nb-row"><span class="nb-rl">Servis</span><span>24 měs. záruky</span></div>
-            <div class="nb-row"><span class="nb-rl">Reference</span><span>1 sklad EU</span></div>
-            <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-no">✗ Ne</span></div>
-          </div>
-        </div>
 
+          <!-- Jungheinrich -->
+          <div class="nb-col">
+            <div class="nb-card nb-out">
+              <div class="nb-card-top">
+                <div>
+                  <div class="nb-sup">Jungheinrich CZ</div>
+                  <div class="nb-price">2 400 000 Kč</div>
+                </div>
+                <span class="badge badge-no">Odmítnuto</span>
+              </div>
+              <div class="nb-rows">
+                <div class="nb-row"><span class="nb-rl">Lhůta</span><span>14 týdnů</span></div>
+                <div class="nb-row"><span class="nb-rl">Servis</span><span>24 měs. záruky</span></div>
+                <div class="nb-row"><span class="nb-rl">Reference</span><span>1 sklad EU</span></div>
+                <div class="nb-row"><span class="nb-rl">Montáž za provozu</span><span class="nb-no">✗ Ne</span></div>
+              </div>
+            </div>
+            <div class="nb-summary-card nb-summary-out">
+              <div class="nb-summary-label"><span class="kr-ai-dot" style="background:#e9e9e7"></span>Summary nabídky</div>
+              <p class="nb-summary-text">Diskvalifikováno — nesplňuje dealbreaker #3 (montáž za provozu). Nejvyšší cena a nejméně referencí. Nezohledňovat v dalším průběhu.</p>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <div class="kr-divider"></div>
 
-      <!-- AI shrnutí -->
+      <!-- CELKOVÉ SHRNUTÍ -->
       <div class="kr-block">
-        <div class="kr-label">
-          <span class="kr-ai-dot"></span>
-          AI shrnutí nabídek · aktualizuje se automaticky
-        </div>
+        <div class="kr-label"><span class="kr-ai-dot"></span>Celkové shrnutí nabídek</div>
         <div class="ai-summary-card">
-          <p class="ai-summary-text">Haulotte CR vede na všech klíčových kritériích — nejnižší cena (2,1M Kč), splnění dealbreakeru #5 (montáž za provozu) a nejsilnější reference (CZLC4). Toyota je solidní záloha, ale kratší záruční servis (12 měs.) nesplňuje kritérium #7. Jungheinrich vypadl kvůli nemožnosti montáže za provozu — automaticky diskvalifikující. Doporučení: potvrdit objednávku Haulotte, Toyota si ponechat jako zálohu do podpisu.</p>
+          <p class="ai-summary-text">Haulotte CR vede na všech klíčových kritériích — nejnižší cena (2,1M Kč), splnění všech dealbreakerů a nejsilnější reference (CZLC4). Toyota je solidní záloha, ale záruční servis 12 měs. nesplňuje kritérium #7. Jungheinrich diskvalifikován kvůli nemožnosti montáže za provozu. Doporučení: potvrdit objednávku Haulotte do konce týdne, Toyota ponechat jako zálohu do podpisu smlouvy.</p>
           <div class="ai-summary-footer">⏱ Naposledy aktualizováno před 4 min · ze 3 nabídek</div>
         </div>
       </div>
 
       <div class="kr-divider"></div>
 
-      <!-- Rozhodnutí -->
+      <!-- ROZHODNUTÍ -->
       <div class="kr-block">
         <div class="kr-block-header">
           <div class="kr-label" style="margin-bottom:0">Rozhodnutí</div>
           <button class="btn-dark" style="font-size:11px;padding:4px 12px" onclick="toggleAddForm('decision-form')">+ Přidat rozhodnutí</button>
         </div>
-
         <div id="decision-form" class="add-form" style="display:none;margin-bottom:12px">
           <div class="add-form-label">Nové rozhodnutí</div>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
@@ -927,11 +991,10 @@
             <button class="btn-ghost" onclick="toggleAddForm('decision-form')">Zrušit</button>
           </div>
         </div>
-
         <div id="decisions-list">
           <div class="decision-card">
             <h3>Výběr dodavatele — Haulotte CR</h3>
-            <p>Na základě výsledku tendru byl vybrán Haulotte CR. Nejnižší cena (2,1M Kč), přijatelná lhůta, ověřené reference v logistice. Splňuje všech 5 dealbreaker kritérií.</p>
+            <p>Na základě výsledku tendru byl vybrán Haulotte CR. Nejnižší cena (2,1M Kč), přijatelná lhůta, ověřené reference v logistice. Splňuje všechny dealbreaker kritéria.</p>
             <div class="decision-meta">Schválil: Tomáš Novák &nbsp;·&nbsp; 15. února 2026 &nbsp;·&nbsp; Alternativy: Toyota MH, Jungheinrich</div>
           </div>
         </div>
@@ -939,10 +1002,15 @@
 
       <div class="kr-divider"></div>
 
-      <!-- Přidat / zdroje -->
+      <!-- PŘÍLOHY A ZDROJE -->
       <div class="kr-block">
-        <div class="kr-label">Zdroje a nové nabídky</div>
-
+        <div class="kr-block-header">
+          <div class="kr-label" style="margin-bottom:0">Přílohy a zdroje</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn-att-hdr" onclick="toggleAddForm('offer-form')">⊕ Přidat nabídku</button>
+            <button class="btn-att-hdr btn-att-hdr-link">🔗 Přidat odkaz</button>
+          </div>
+        </div>
         <div id="offer-form" class="add-form" style="display:none;margin-bottom:12px">
           <div class="add-form-label">Nová nabídka</div>
           <div class="form-grid">
@@ -964,16 +1032,11 @@
             <button class="btn-ghost" onclick="toggleAddForm('offer-form')">Zrušit</button>
           </div>
         </div>
-
         <div class="att-list">
           <div class="att-item">
             <span class="att-icon">📁</span>
             <span class="att-name">SharePoint — Tendr Plošina 2026 / Nabídky</span>
             <span class="att-meta">složka · 3 soubory</span>
-          </div>
-          <div class="att-actions">
-            <button class="att-btn" onclick="toggleAddForm('offer-form')">⊕ Přidat nabídku ručně</button>
-            <button class="att-btn">🔗 Připojit složku / odkaz</button>
           </div>
         </div>
       </div>
