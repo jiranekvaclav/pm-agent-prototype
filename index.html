@@ -1825,10 +1825,29 @@
       <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Standardní specifikace a proč</div>
       <div class="wiki-spec-row"><span class="wiki-spec-label">Materiál podlahy</span><span class="wiki-spec-val">DTD třída P6 <span style="color:#9b9a97">(ne P5 — nevyhověla revizi v CZLC4)</span></span></div>
       <div class="wiki-spec-row"><span class="wiki-spec-label">Nosnost</span><span class="wiki-spec-val">min. 500 kg/m²</span></div>
-      <div class="wiki-spec-row"><span class="wiki-spec-label">Pohon</span><span class="wiki-spec-val">elektrický, pevná instalace</span></div>
-      <div class="wiki-spec-row"><span class="wiki-spec-label">Výška zdvihu</span><span class="wiki-spec-val">min. 8 m</span></div>
       <div class="wiki-spec-row"><span class="wiki-spec-label">Certifikace</span><span class="wiki-spec-val">ČSN EN 1495</span></div>
-      <div class="wiki-provenance">zdroj: zápis z jednání 27. 5. 26, tendr CZLC4 · <a href="#" onclick="return false" style="color:#6366f1">opravit</a></div>
+
+      <div style="margin-top:10px">
+        <button class="btn-ghost" style="font-size:12px;border-color:#e9e9e7" onclick="openSpecModal()">Zobrazit všech 5 →</button>
+      </div>
+
+      <div class="wiki-provenance">zdroj: zápis z jednání 27. 5. 26, tendr CZLC4</div>
+    </div>
+
+    <!-- Modal: všech 5 specifikací -->
+    <div id="wiki-spec-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:100;align-items:center;justify-content:center" onclick="if(event.target===this)closeSpecModal()">
+      <div style="background:#fff;border-radius:12px;padding:20px 22px;max-width:520px;width:90%;max-height:80vh;overflow-y:auto">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div style="font-size:14px;font-weight:600;color:#37352f">Standardní specifikace — Plošina</div>
+          <button onclick="closeSpecModal()" style="background:none;border:none;font-size:18px;color:#9b9a97;cursor:pointer;line-height:1;padding:2px 4px">×</button>
+        </div>
+        <div class="wiki-spec-row"><span class="wiki-spec-label">Materiál podlahy</span><span class="wiki-spec-val">DTD třída P6 <span style="color:#9b9a97">(ne P5 — nevyhověla revizi v CZLC4)</span></span></div>
+        <div class="wiki-spec-row"><span class="wiki-spec-label">Nosnost</span><span class="wiki-spec-val">min. 500 kg/m²</span></div>
+        <div class="wiki-spec-row"><span class="wiki-spec-label">Pohon</span><span class="wiki-spec-val">elektrický, pevná instalace</span></div>
+        <div class="wiki-spec-row"><span class="wiki-spec-label">Výška zdvihu</span><span class="wiki-spec-val">min. 8 m</span></div>
+        <div class="wiki-spec-row"><span class="wiki-spec-label">Certifikace</span><span class="wiki-spec-val">ČSN EN 1495</span></div>
+        <div class="wiki-provenance">zdroj: zápis z jednání 27. 5. 26, tendr CZLC4 · <a href="#" onclick="return false" style="color:#6366f1">opravit tvrzení</a></div>
+      </div>
     </div>
 
     <!-- Historie tendrů -->
@@ -2680,6 +2699,14 @@
 
   function closeLessonsModal() {
     document.getElementById('wiki-lessons-modal').style.display = 'none';
+  }
+
+  function openSpecModal() {
+    document.getElementById('wiki-spec-modal').style.display = 'flex';
+  }
+
+  function closeSpecModal() {
+    document.getElementById('wiki-spec-modal').style.display = 'none';
   }
 
   function wikiAsk() {
