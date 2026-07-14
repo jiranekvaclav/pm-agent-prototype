@@ -152,6 +152,91 @@
       padding: 5px 0;
       color: #5f5e5a;
     }
+    .wiki-stat {
+      background: #f7f6f3;
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    .wiki-stat-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: #37352f;
+      line-height: 1.2;
+    }
+    .wiki-stat-label {
+      font-size: 10.5px;
+      color: #9b9a97;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-top: 2px;
+    }
+    .wiki-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #faeee7;
+      border: 1px solid #f0997b;
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+    .wiki-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #37352f;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .wiki-spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12.5px;
+      padding: 7px 0;
+      border-bottom: 0.5px solid #e9e9e7;
+    }
+    .wiki-spec-row:last-child { border-bottom: none; }
+    .wiki-spec-label { color: #9b9a97; flex-shrink: 0; }
+    .wiki-spec-val { color: #37352f; text-align: right; }
+    .wiki-tender-row {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 10px;
+      align-items: baseline;
+      font-size: 12.5px;
+      padding: 7px 0;
+      border-bottom: 0.5px solid #e9e9e7;
+    }
+    .wiki-tender-row:last-child { border-bottom: none; }
+    .wiki-tender-year { color: #9b9a97; font-weight: 600; }
+    .wiki-tender-price { color: #37352f; font-weight: 600; text-align: right; }
+    .wiki-lesson-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      color: #5f5e5a;
+      padding: 6px 0;
+      line-height: 1.5;
+    }
+    .wiki-supplier-card {
+      background: #f7f6f3;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .wiki-supplier-bar {
+      height: 5px;
+      border-radius: 3px;
+      background: #e9e9e7;
+      margin: 8px 0 6px;
+      overflow: hidden;
+    }
+    .wiki-supplier-bar-fill {
+      height: 100%;
+      background: #6366f1;
+      border-radius: 3px;
+    }
     .sn-item {
       display: flex;
       align-items: center;
@@ -1600,43 +1685,77 @@
         <span style="font-size:18px">📚</span>
         <div style="font-size:15px;font-weight:700;color:#37352f">Co o Plošinách víme</div>
       </div>
-      <div style="font-size:11px;color:#9b9a97">aktualizováno 10. 7. 2026 · 3 projekty · 14 zdrojů</div>
+      <div style="font-size:11px;color:#9b9a97">🕓 aktualizováno 10. 7. 2026</div>
     </div>
-    <div style="font-size:12px;color:#9b9a97;margin-bottom:18px">Typová stránka · syntéza napříč CZLC4, CZLC5 a staršími projekty</div>
+    <div style="font-size:12px;color:#9b9a97;margin-bottom:16px">Typová stránka · syntéza napříč CZLC3, CZLC4, CZLC5 a staršími projekty</div>
 
-    <div class="wiki-card" style="margin-bottom:12px">
-      <div class="wiki-card-title">📊 Přehled</div>
-      <div class="wiki-card-text">Plošina se ve skladech LOG stavěla 3×: CZLC3 (2023), CZLC4 (2024), CZLC5 (2026 — probíhá). Naposledy aktualizováno 10. 7. 2026. Do syntézy přispělo 14 zdrojů (tendry, zápisy, lessons, e-maily).</div>
+    <!-- Rychlá fakta -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+      <div class="wiki-stat"><div class="wiki-stat-num">3×</div><div class="wiki-stat-label">Realizováno</div></div>
+      <div class="wiki-stat"><div class="wiki-stat-num">Dodavatel 1</div><div class="wiki-stat-label">Vítěz 3/3</div></div>
+      <div class="wiki-stat"><div class="wiki-stat-num">2,0–2,2M</div><div class="wiki-stat-label">Kč, rozpětí ceny</div></div>
+      <div class="wiki-stat"><div class="wiki-stat-num">14</div><div class="wiki-stat-label">Zdrojů v syntéze</div></div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-      <div class="wiki-card">
-        <div class="wiki-card-title">📋 Standardní specifikace a proč</div>
-        <div class="wiki-card-text">DTD desky vždy třída P6, ne P5 — kvůli požadované požární odolnosti (P5 nevyhověla revizi v CZLC4). Nosnost min. 500 kg/m². Elektrický pohon, výška zdvihu min. 8 m, certifikace ČSN EN 1495.</div>
-      </div>
-      <div class="wiki-card">
-        <div class="wiki-card-title">🏭 Dodavatelé</div>
-        <div class="wiki-card-text">Dodavatel 1 vyhrál 3× z 3, cena 2,0–2,2 mil. Kč, spolehlivý v termínech. <a href="#" onclick="return false" style="color:#6366f1">Detail dodavatele →</a></div>
-      </div>
-      <div class="wiki-card">
-        <div class="wiki-card-title">📈 Historie tendrů</div>
-        <div class="wiki-card-text">CZLC3: Dodavatel 1, 1,9M Kč. CZLC4: Dodavatel 1, 2,0M Kč (sleva 5 % za opakovanou objednávku). CZLC5: Dodavatel 1, 2,1M Kč — 3 nabídky, viz Tendr.</div>
-      </div>
-      <div class="wiki-card">
-        <div class="wiki-card-title">💡 Lessons learned</div>
-        <div class="wiki-card-text">Revizní protokol vyžádat 2 týdny předem. Zábradlí objednávat samostatně, dlouhá dodací lhůta. Specifikovat výšku zdvihu a nosnost explicitně od začátku.</div>
-      </div>
-      <div class="wiki-card warn" style="grid-column:1 / -1">
-        <div class="wiki-card-title" style="color:#c0392b">⚠ Otevřené rozpory</div>
-        <div class="wiki-card-text" style="color:#993c1d">Zápis z 27. 5. 2026 uvádí jinou nosnost než tendr z 10. 6. 2026 — nutno ověřit.</div>
+    <!-- Akční upozornění -->
+    <div class="wiki-alert" style="margin-bottom:18px">
+      <span style="font-size:15px">⚠</span>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#993c1d">Otevřený rozpor — nutno ověřit</div>
+        <div style="font-size:12.5px;color:#993c1d;margin-top:2px">Zápis z jednání (27. 5. 2026) uvádí jinou nosnost než tendr CZLC5 (10. 6. 2026).</div>
       </div>
     </div>
 
-    <div style="border-top:0.5px solid #e9e9e7;padding-top:12px">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9b9a97;margin-bottom:8px">Zdroje</div>
-      <div class="wiki-source-row"><span>📄 Tendr Plošina CZLC5.xlsx</span><span style="color:#9b9a97">10. 6. 2026</span></div>
-      <div class="wiki-source-row"><span>📄 Zápis z jednání 27. 5. 2026</span><span style="color:#9b9a97">27. 5. 2026</span></div>
-      <div class="wiki-source-row"><span>📄 Lessons CZLC4 Plošina.docx</span><span style="color:#9b9a97">2. 11. 2025</span></div>
+    <!-- Hlavní obsah: 2 sloupce -->
+    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px">
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div class="wiki-card">
+          <div class="wiki-section-title">📋 Standardní specifikace a proč</div>
+          <div class="wiki-spec-row"><span class="wiki-spec-label">Materiál podlahy</span><span class="wiki-spec-val">DTD třída P6 <span style="color:#9b9a97">(ne P5 — nevyhověla revizi v CZLC4 kvůli požární odolnosti)</span></span></div>
+          <div class="wiki-spec-row"><span class="wiki-spec-label">Nosnost</span><span class="wiki-spec-val">min. 500 kg/m²</span></div>
+          <div class="wiki-spec-row"><span class="wiki-spec-label">Pohon</span><span class="wiki-spec-val">elektrický, pevná instalace</span></div>
+          <div class="wiki-spec-row"><span class="wiki-spec-label">Výška zdvihu</span><span class="wiki-spec-val">min. 8 m</span></div>
+          <div class="wiki-spec-row"><span class="wiki-spec-label">Certifikace</span><span class="wiki-spec-val">ČSN EN 1495</span></div>
+        </div>
+
+        <div class="wiki-card">
+          <div class="wiki-section-title">📈 Historie tendrů</div>
+          <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC3</span><span>Dodavatel 1 · 3 nabídky</span><span class="wiki-tender-price">1,9M Kč</span></div>
+          <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC4</span><span>Dodavatel 1 · sleva 5 % za opakovanou objednávku</span><span class="wiki-tender-price">2,0M Kč</span></div>
+          <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC5</span><span>Dodavatel 1 · 3 nabídky, viz Tendr</span><span class="wiki-tender-price">2,1M Kč</span></div>
+        </div>
+
+        <div class="wiki-card">
+          <div class="wiki-section-title">💡 Lessons learned</div>
+          <div class="wiki-lesson-row"><span>✓</span><span>Revizní protokol vyžádat od dodavatele 2 týdny předem — jinak blokuje GO-LIVE schválení.</span></div>
+          <div class="wiki-lesson-row"><span>✓</span><span>Zábradlí objednávat samostatně — dlouhá dodací lhůta, mimo standardní dodávku plošiny.</span></div>
+          <div class="wiki-lesson-row"><span>✓</span><span>Specifikovat výšku zdvihu a nosnost explicitně od prvního kola tendru — jinak dodavatelé nabídnou standardní model.</span></div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div class="wiki-supplier-card">
+          <div class="wiki-section-title" style="margin-bottom:6px">🏭 Dodavatel 1</div>
+          <div style="font-size:12px;color:#5f5e5a">Vítěz 3 ze 3 tendrů</div>
+          <div class="wiki-supplier-bar"><div class="wiki-supplier-bar-fill" style="width:100%"></div></div>
+          <div style="font-size:11px;color:#9b9a97">spolehlivost v termínech</div>
+          <div style="margin-top:10px"><a href="#" onclick="return false" style="font-size:12px;color:#6366f1">Detail dodavatele →</a></div>
+        </div>
+
+        <div class="wiki-card">
+          <div class="wiki-section-title">Zdroje</div>
+          <div class="wiki-source-row"><span>📄 Tendr Plošina CZLC5.xlsx</span><span style="color:#9b9a97">10. 6. 26</span></div>
+          <div class="wiki-source-row"><span>📄 Zápis z jednání</span><span style="color:#9b9a97">27. 5. 26</span></div>
+          <div class="wiki-source-row"><span>📄 Lessons CZLC4.docx</span><span style="color:#9b9a97">2. 11. 25</span></div>
+          <div style="margin-top:6px"><a href="#" onclick="return false" style="font-size:11.5px;color:#6366f1">Zobrazit všech 14 →</a></div>
+        </div>
+
+      </div>
+
     </div>
 
   </div><!-- /view-wiki -->
