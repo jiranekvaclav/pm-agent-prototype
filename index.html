@@ -220,6 +220,20 @@
       padding: 6px 0;
       line-height: 1.5;
     }
+    .wiki-lesson-group {
+      margin-bottom: 14px;
+    }
+    .wiki-lesson-group-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #37352f;
+      margin-bottom: 2px;
+    }
+    .wiki-lesson-count {
+      font-weight: 400;
+      color: #9b9a97;
+      font-size: 11px;
+    }
     .wiki-supplier-card {
       background: #f7f6f3;
       border-radius: 8px;
@@ -1769,7 +1783,7 @@
       <div class="wiki-stat"><div class="wiki-stat-num">3×</div><div class="wiki-stat-label">Realizováno</div></div>
       <div class="wiki-stat"><div class="wiki-stat-num">Dodavatel 1</div><div class="wiki-stat-label">Vítěz 3/3</div></div>
       <div class="wiki-stat"><div class="wiki-stat-num">2,0–2,2M</div><div class="wiki-stat-label">Kč, rozpětí ceny</div></div>
-      <div class="wiki-stat"><div class="wiki-stat-num">14</div><div class="wiki-stat-label">Zdrojů v syntéze</div></div>
+      <div class="wiki-stat"><div class="wiki-stat-num">89</div><div class="wiki-stat-label">Zdrojů v syntéze</div></div>
     </div>
 
     <!-- Aktivita — živý log co AI právě dělá -->
@@ -1777,7 +1791,7 @@
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9b9a97;margin-bottom:4px">🔄 Aktivita</div>
       <div class="wiki-activity-row"><span class="wiki-activity-time">dnes</span><span class="wiki-activity-dot"></span><span class="wiki-activity-text">AI zpracoval <b>Zápis z jednání 27. 5.</b> → aktualizovalo se: Standardní specifikace, vznikl Otevřený rozpor</span></div>
       <div class="wiki-activity-row"><span class="wiki-activity-time">10. 6. 26</span><span class="wiki-activity-dot"></span><span class="wiki-activity-text">AI zpracoval <b>Tendr Plošina CZLC5.xlsx</b> → aktualizovalo se: Historie tendrů, Dodavatel 1</span></div>
-      <div class="wiki-activity-row"><span class="wiki-activity-time">2. 11. 25</span><span class="wiki-activity-dot"></span><span class="wiki-activity-text">AI zpracoval <b>Lessons CZLC4.docx</b> → aktualizovalo se: Lessons learned (+2 body)</span></div>
+      <div class="wiki-activity-row"><span class="wiki-activity-time">2. 11. 25</span><span class="wiki-activity-dot"></span><span class="wiki-activity-text">AI zpracoval <b>75 dokončených úkolů z Asana</b> (tag Plošina) → shlukl do 4 témat v Lessons learned</span></div>
       <div style="margin-top:4px"><a href="#" onclick="return false" style="font-size:11px;color:#6366f1">Zobrazit celou historii (14 záznamů) →</a></div>
     </div>
 
@@ -1814,11 +1828,33 @@
         </div>
 
         <div class="wiki-card">
-          <div class="wiki-section-title">💡 Lessons learned</div>
-          <div class="wiki-lesson-row"><span>✓</span><span>Revizní protokol vyžádat od dodavatele 2 týdny předem — jinak blokuje GO-LIVE schválení.</span></div>
-          <div class="wiki-lesson-row"><span>✓</span><span>Zábradlí objednávat samostatně — dlouhá dodací lhůta, mimo standardní dodávku plošiny.</span></div>
-          <div class="wiki-lesson-row"><span>✓</span><span>Specifikovat výšku zdvihu a nosnost explicitně od prvního kola tendru — jinak dodavatelé nabídnou standardní model.</span></div>
-          <div class="wiki-provenance">↳ z: Lessons CZLC4.docx + 2 další zdroje</div>
+          <div class="wiki-section-title">💡 Lessons learned <span style="font-weight:400;color:#9b9a97;font-size:11px">· shluknuto z 75 záznamů</span></div>
+
+          <div class="wiki-lesson-group">
+            <div class="wiki-lesson-group-title">⚡ Kolize s návaznými profesemi <span class="wiki-lesson-count">18×</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Sprinklery, elektro, LAN a EPS mohou kolidovat v mnoha bodech — kontrolovat už v projekční fázi, ne až při realizaci.</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Pozor na kolizi el. rozvaděčů haly a potrubí se sloupy/vazníky plošiny.</span></div>
+          </div>
+
+          <div class="wiki-lesson-group">
+            <div class="wiki-lesson-group-title">🧱 Vlastnosti DTD desek <span class="wiki-lesson-count">9×</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Zatékání do haly může desky poškodit vlhkem — řešit hydroizolaci před montáží.</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Dotloukání desek způsobuje vibrace — mohou padat svítidla, koordinovat s elektro.</span></div>
+          </div>
+
+          <div class="wiki-lesson-group">
+            <div class="wiki-lesson-group-title">🚧 Bezpečnost a značení <span class="wiki-lesson-count">14×</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Zábradlí počítat i s otvory pro budoucí dopravníky/výtahy, pokud se instalují až po plošině.</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Rozdílná výška překlopné branky mezi patry (1NP 2200 mm vs. 2NP 2500 mm) — nesjednocovat automaticky.</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Nástupní schody a nechráněné elektro žlaby na stropě označit žlutočernou páskou.</span></div>
+          </div>
+
+          <div class="wiki-lesson-group" style="margin-bottom:0">
+            <div class="wiki-lesson-group-title">🏗 Konstrukce a podepření <span class="wiki-lesson-count">6×</span></div>
+            <div class="wiki-lesson-row"><span>✓</span><span>Podpěry pod rošty dávat přímo ke zdi u průchodů mezi halami — jinak riziko průhybu roštu.</span></div>
+          </div>
+
+          <div class="wiki-provenance">↳ z: Asana, 75 dokončených úkolů s tagem Plošina · <a href="#" onclick="return false" style="color:#6366f1">zobrazit všechny</a></div>
         </div>
 
       </div>
