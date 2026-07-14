@@ -234,6 +234,25 @@
       color: #9b9a97;
       font-size: 11px;
     }
+    .wiki-lesson-tile {
+      background: #f7f6f3;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      color: #37352f;
+      line-height: 1.5;
+    }
+    .wiki-badge {
+      display: inline-block;
+      font-size: 10.5px;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-bottom: 7px;
+    }
+    .wiki-badge-kolize { background: #EEEDFE; color: #3C3489; }
+    .wiki-badge-dtd { background: #E1F5EE; color: #085041; }
+    .wiki-badge-bezp { background: #FAECE7; color: #712B13; }
+    .wiki-badge-konstr { background: #FBEAF0; color: #72243E; }
     .wiki-supplier-card {
       background: #f7f6f3;
       border-radius: 8px;
@@ -1791,7 +1810,7 @@
       </div>
       <div style="background:#f7f6f3;border-radius:8px;padding:12px 14px">
         <div style="font-size:12px;color:#9b9a97">Zdrojů celkem</div>
-        <div style="font-size:20px;font-weight:600;color:#37352f;margin-top:2px">89</div>
+        <div style="font-size:20px;font-weight:600;color:#37352f;margin-top:2px">24</div>
       </div>
     </div>
 
@@ -1824,30 +1843,20 @@
     <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px;margin-bottom:14px">
       <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Lessons learned</div>
 
-      <div class="wiki-lesson-group">
-        <div class="wiki-lesson-group-title">Kolize s návaznými profesemi <span class="wiki-lesson-count">28×</span></div>
-        <div class="wiki-lesson-row"><span>✓</span><span>Sprinklery, elektro, LAN a EPS mohou kolidovat v mnoha bodech — kontrolovat už v projekční fázi, ne až při realizaci.</span></div>
-        <div class="wiki-lesson-row"><span>✓</span><span>Pozor na kolizi el. rozvaděčů haly a potrubí se sloupy/vazníky plošiny.</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-kolize">kolize profesí</span><div>Sprinklery, elektro, LAN a EPS mohou kolidovat v mnoha bodech.</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-kolize">kolize profesí</span><div>Pozor na kolizi el. rozvaděčů haly a potrubí se sloupy a vazníky plošiny.</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-kolize">kolize profesí</span><div>Při realizaci otvoru zkontrolovat kolizi inž. vybavení (sprinklery, EPS, HSP).</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-dtd">DTD desky</span><div>Zatékání do haly může desky poškodit vlhkem — řešit hydroizolaci předem.</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-dtd">DTD desky</span><div>Dotloukání desek způsobuje vibrace — mohou padat svítidla.</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div>Zábradlí počítat i s otvory pro budoucí dopravníky nebo výtahy.</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div>Rozdílná výška překlopné branky mezi patry (1NP 2200 mm vs. 2NP 2500 mm).</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div>Nástupní schody označit žlutočernou páskou.</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div>Namontované elektro žlaby na stropě ohraničit páskou, ať do nich nikdo nevrazí.</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-konstr">konstrukce</span><div>Podpěry pod rošty dávat přímo ke zdi u průchodů mezi halami.</div></div>
       </div>
 
-      <div class="wiki-lesson-group">
-        <div class="wiki-lesson-group-title">Vlastnosti DTD desek <span class="wiki-lesson-count">15×</span></div>
-        <div class="wiki-lesson-row"><span>✓</span><span>Zatékání do haly může desky poškodit vlhkem — řešit hydroizolaci před montáží.</span></div>
-        <div class="wiki-lesson-row"><span>✓</span><span>Dotloukání desek způsobuje vibrace — mohou padat svítidla, koordinovat s elektro.</span></div>
-      </div>
-
-      <div class="wiki-lesson-group">
-        <div class="wiki-lesson-group-title">Bezpečnost a značení <span class="wiki-lesson-count">22×</span></div>
-        <div class="wiki-lesson-row"><span>✓</span><span>Zábradlí počítat i s otvory pro budoucí dopravníky/výtahy, pokud se instalují až po plošině.</span></div>
-        <div class="wiki-lesson-row"><span>✓</span><span>Rozdílná výška překlopné branky mezi patry (1NP 2200 mm vs. 2NP 2500 mm) — nesjednocovat automaticky.</span></div>
-      </div>
-
-      <div class="wiki-lesson-group" style="margin-bottom:0">
-        <div class="wiki-lesson-group-title">Konstrukce a podepření <span class="wiki-lesson-count">10×</span></div>
-        <div class="wiki-lesson-row"><span>✓</span><span>Podpěry pod rošty dávat přímo ke zdi u průchodů mezi halami — jinak riziko průhybu roštu.</span></div>
-      </div>
-
-      <div class="wiki-provenance">zdroj: 75 dokončených úkolů v Asana, tag Plošina · <a href="#" onclick="return false" style="color:#6366f1">zobrazit vše</a></div>
+      <div class="wiki-provenance">zdroj: Asana, 10 dokončených úkolů s tagem Plošina · <a href="#" onclick="return false" style="color:#6366f1">zobrazit vše</a></div>
     </div>
 
     <!-- Dodavatel + Zdroje vedle sebe -->
@@ -1861,7 +1870,7 @@
         <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:8px">Zdroje</div>
         <div class="wiki-source-row"><span>Tendr Plošina CZLC5.xlsx</span><span style="color:#9b9a97">10. 6. 26</span></div>
         <div class="wiki-source-row"><span>Zápis z jednání</span><span style="color:#9b9a97">27. 5. 26</span></div>
-        <div class="wiki-source-row"><span>Asana, 75 úkolů</span><span style="color:#9b9a97">průběžně</span></div>
+        <div class="wiki-source-row"><span>Asana, 10 úkolů</span><span style="color:#9b9a97">průběžně</span></div>
         <a href="#" onclick="return false" style="font-size:12px;color:#6366f1">Zobrazit všechny →</a>
       </div>
     </div>
