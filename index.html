@@ -237,6 +237,81 @@
       background: #6366f1;
       border-radius: 3px;
     }
+    .wiki-provenance {
+      font-size: 10.5px;
+      color: #b3b2ac;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 0.5px dashed #e9e9e7;
+    }
+    .wiki-activity {
+      background: #fff;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+    }
+    .wiki-activity-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 12px;
+      padding: 4px 0;
+    }
+    .wiki-activity-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6366f1;
+      flex-shrink: 0;
+      margin-right: 2px;
+    }
+    .wiki-activity-time {
+      color: #b3b2ac;
+      font-size: 11px;
+      flex-shrink: 0;
+      min-width: 58px;
+    }
+    .wiki-activity-text { color: #5f5e5a; }
+    .wiki-network {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0 2px;
+    }
+    .wiki-net-node {
+      font-size: 11px;
+      border-radius: 6px;
+      padding: 5px 10px;
+      text-align: center;
+      border: 0.5px solid #e9e9e7;
+      background: #fff;
+      color: #5f5e5a;
+    }
+    .wiki-net-node.wiki-net-node--main {
+      background: #37352f;
+      color: #fff;
+      border-color: #37352f;
+      font-weight: 600;
+    }
+    .wiki-net-line {
+      width: 1px;
+      height: 10px;
+      background: #e9e9e7;
+    }
+    .wiki-net-row {
+      display: flex;
+      gap: 8px;
+    }
+    .wiki-ask-box {
+      border: 1.5px solid #c4b5fd;
+      border-radius: 10px;
+      background: #faf9ff;
+      padding: 14px 16px;
+      margin-top: 18px;
+    }
     .sn-item {
       display: flex;
       align-items: center;
@@ -1697,6 +1772,15 @@
       <div class="wiki-stat"><div class="wiki-stat-num">14</div><div class="wiki-stat-label">Zdrojů v syntéze</div></div>
     </div>
 
+    <!-- Aktivita — živý log co AI právě dělá -->
+    <div class="wiki-activity">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9b9a97;margin-bottom:4px">🔄 Aktivita</div>
+      <div class="wiki-activity-row"><span class="wiki-activity-time">dnes</span><span class="wiki-activity-dot"></span><span class="wiki-activity-text">AI zpracoval <b>Zápis z jednání 27. 5.</b> → aktualizovalo se: Standardní specifikace, vznikl Otevřený rozpor</span></div>
+      <div class="wiki-activity-row"><span class="wiki-activity-time">10. 6. 26</span><span class="wiki-activity-dot"></span><span class="wiki-activity-text">AI zpracoval <b>Tendr Plošina CZLC5.xlsx</b> → aktualizovalo se: Historie tendrů, Dodavatel 1</span></div>
+      <div class="wiki-activity-row"><span class="wiki-activity-time">2. 11. 25</span><span class="wiki-activity-dot"></span><span class="wiki-activity-text">AI zpracoval <b>Lessons CZLC4.docx</b> → aktualizovalo se: Lessons learned (+2 body)</span></div>
+      <div style="margin-top:4px"><a href="#" onclick="return false" style="font-size:11px;color:#6366f1">Zobrazit celou historii (14 záznamů) →</a></div>
+    </div>
+
     <!-- Akční upozornění -->
     <div class="wiki-alert" style="margin-bottom:18px">
       <span style="font-size:15px">⚠</span>
@@ -1718,6 +1802,7 @@
           <div class="wiki-spec-row"><span class="wiki-spec-label">Pohon</span><span class="wiki-spec-val">elektrický, pevná instalace</span></div>
           <div class="wiki-spec-row"><span class="wiki-spec-label">Výška zdvihu</span><span class="wiki-spec-val">min. 8 m</span></div>
           <div class="wiki-spec-row"><span class="wiki-spec-label">Certifikace</span><span class="wiki-spec-val">ČSN EN 1495</span></div>
+          <div class="wiki-provenance">↳ z: Zápis z jednání 27. 5. 26, Tendr CZLC4 · <a href="#" onclick="return false" style="color:#6366f1">opravit tvrzení</a></div>
         </div>
 
         <div class="wiki-card">
@@ -1725,6 +1810,7 @@
           <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC3</span><span>Dodavatel 1 · 3 nabídky</span><span class="wiki-tender-price">1,9M Kč</span></div>
           <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC4</span><span>Dodavatel 1 · sleva 5 % za opakovanou objednávku</span><span class="wiki-tender-price">2,0M Kč</span></div>
           <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC5</span><span>Dodavatel 1 · 3 nabídky, viz Tendr</span><span class="wiki-tender-price">2,1M Kč</span></div>
+          <div class="wiki-provenance">↳ z: 3 tendrové Excely (CZLC3, CZLC4, CZLC5)</div>
         </div>
 
         <div class="wiki-card">
@@ -1732,6 +1818,7 @@
           <div class="wiki-lesson-row"><span>✓</span><span>Revizní protokol vyžádat od dodavatele 2 týdny předem — jinak blokuje GO-LIVE schválení.</span></div>
           <div class="wiki-lesson-row"><span>✓</span><span>Zábradlí objednávat samostatně — dlouhá dodací lhůta, mimo standardní dodávku plošiny.</span></div>
           <div class="wiki-lesson-row"><span>✓</span><span>Specifikovat výšku zdvihu a nosnost explicitně od prvního kola tendru — jinak dodavatelé nabídnou standardní model.</span></div>
+          <div class="wiki-provenance">↳ z: Lessons CZLC4.docx + 2 další zdroje</div>
         </div>
 
       </div>
@@ -1747,6 +1834,21 @@
         </div>
 
         <div class="wiki-card">
+          <div class="wiki-section-title">🕸 Propojené stránky</div>
+          <div class="wiki-network">
+            <div class="wiki-net-node">Dopravníky</div>
+            <div class="wiki-net-line"></div>
+            <div class="wiki-net-row">
+              <div class="wiki-net-node wiki-net-node--main">Plošina</div>
+              <div class="wiki-net-node">Dodavatel 1</div>
+            </div>
+            <div class="wiki-net-line"></div>
+            <div class="wiki-net-node">Regálové systémy</div>
+          </div>
+          <div style="font-size:11px;color:#9b9a97;text-align:center;margin-top:4px">Dodavatel 1 dodává i na 2 další FC</div>
+        </div>
+
+        <div class="wiki-card">
           <div class="wiki-section-title">Zdroje</div>
           <div class="wiki-source-row"><span>📄 Tendr Plošina CZLC5.xlsx</span><span style="color:#9b9a97">10. 6. 26</span></div>
           <div class="wiki-source-row"><span>📄 Zápis z jednání</span><span style="color:#9b9a97">27. 5. 26</span></div>
@@ -1756,6 +1858,16 @@
 
       </div>
 
+    </div>
+
+    <!-- Interaktivní box: doplnit / opravit -->
+    <div class="wiki-ask-box">
+      <div style="font-size:12px;font-weight:700;color:#6366f1;margin-bottom:6px">✦ Doplnit nebo opravit tuhle stránku</div>
+      <div style="font-size:12px;color:#7c7af0;margin-bottom:8px">Víš o něčem, co tu chybí nebo je špatně? Napiš to — AI to zapracuje do syntézy a označí zdroj jako "od PM".</div>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="wiki-ask-input" placeholder="Např. Dodavatel 1 teď nabízí i rychlejší montáž za příplatek…" style="flex:1;border:0.5px solid #c4b5fd;border-radius:6px;padding:8px 10px;font-size:12.5px;font-family:inherit;background:#fff">
+        <button class="btn-purple" style="font-size:12px" onclick="wikiAsk()">Odeslat</button>
+      </div>
     </div>
 
   </div><!-- /view-wiki -->
@@ -2524,6 +2636,15 @@
       dots.innerHTML = '';
       typeOut(dots, replyText);
     }, delay);
+  }
+
+  function wikiAsk() {
+    const inp = document.getElementById('wiki-ask-input');
+    const text = inp.value.trim();
+    if (!text) return;
+    appendMsg('Doplnění k "Co o Plošinách víme": ' + text, 'user');
+    inp.value = '';
+    sendAiReply('Díky, zapsal jsem si to. Zařadím to do syntézy jako poznatek od PM a propíšu do relevantních sekcí (nejspíš Dodavatel 1 / Lessons learned). Uvidíš to při příští návštěvě stránky s označením zdroje "od PM".');
   }
 
   function sendMsg() {
