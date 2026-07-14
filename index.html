@@ -253,6 +253,17 @@
     .wiki-badge-dtd { background: #E1F5EE; color: #085041; }
     .wiki-badge-bezp { background: #FAECE7; color: #712B13; }
     .wiki-badge-konstr { background: #FBEAF0; color: #72243E; }
+    .wiki-badge-tech { background: #E6F1FB; color: #0C447C; }
+    .wiki-spec-tile-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #37352f;
+      margin-bottom: 2px;
+    }
+    .wiki-spec-tile-val {
+      font-size: 12.5px;
+      color: #5f5e5a;
+    }
     .wiki-supplier-card {
       background: #f7f6f3;
       border-radius: 8px;
@@ -1823,9 +1834,12 @@
     <!-- Standardní specifikace -->
     <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px;margin-bottom:14px">
       <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Standardní specifikace a proč</div>
-      <div class="wiki-spec-row"><span class="wiki-spec-label">Materiál podlahy</span><span class="wiki-spec-val">DTD třída P6 <span style="color:#9b9a97">(ne P5 — nevyhověla revizi v CZLC4)</span></span></div>
-      <div class="wiki-spec-row"><span class="wiki-spec-label">Nosnost</span><span class="wiki-spec-val">min. 500 kg/m²</span></div>
-      <div class="wiki-spec-row"><span class="wiki-spec-label">Certifikace</span><span class="wiki-spec-val">ČSN EN 1495</span></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-dtd">DTD desky</span><div class="wiki-spec-tile-label">Materiál podlahy</div><div class="wiki-spec-tile-val">DTD třída P6 (ne P5 — nevyhověla revizi v CZLC4)</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-konstr">konstrukce</span><div class="wiki-spec-tile-label">Nosnost</div><div class="wiki-spec-tile-val">min. 500 kg/m²</div></div>
+        <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div class="wiki-spec-tile-label">Certifikace</div><div class="wiki-spec-tile-val">ČSN EN 1495</div></div>
+      </div>
 
       <div style="margin-top:10px">
         <button class="btn-ghost" style="font-size:12px;border-color:#e9e9e7" onclick="openSpecModal()">Zobrazit všech 5 →</button>
@@ -1836,16 +1850,18 @@
 
     <!-- Modal: všech 5 specifikací -->
     <div id="wiki-spec-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:100;align-items:center;justify-content:center" onclick="if(event.target===this)closeSpecModal()">
-      <div style="background:#fff;border-radius:12px;padding:20px 22px;max-width:520px;width:90%;max-height:80vh;overflow-y:auto">
+      <div style="background:#fff;border-radius:12px;padding:20px 22px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
           <div style="font-size:14px;font-weight:600;color:#37352f">Standardní specifikace — Plošina</div>
           <button onclick="closeSpecModal()" style="background:none;border:none;font-size:18px;color:#9b9a97;cursor:pointer;line-height:1;padding:2px 4px">×</button>
         </div>
-        <div class="wiki-spec-row"><span class="wiki-spec-label">Materiál podlahy</span><span class="wiki-spec-val">DTD třída P6 <span style="color:#9b9a97">(ne P5 — nevyhověla revizi v CZLC4)</span></span></div>
-        <div class="wiki-spec-row"><span class="wiki-spec-label">Nosnost</span><span class="wiki-spec-val">min. 500 kg/m²</span></div>
-        <div class="wiki-spec-row"><span class="wiki-spec-label">Pohon</span><span class="wiki-spec-val">elektrický, pevná instalace</span></div>
-        <div class="wiki-spec-row"><span class="wiki-spec-label">Výška zdvihu</span><span class="wiki-spec-val">min. 8 m</span></div>
-        <div class="wiki-spec-row"><span class="wiki-spec-label">Certifikace</span><span class="wiki-spec-val">ČSN EN 1495</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-dtd">DTD desky</span><div class="wiki-spec-tile-label">Materiál podlahy</div><div class="wiki-spec-tile-val">DTD třída P6 (ne P5 — nevyhověla revizi v CZLC4)</div></div>
+          <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-konstr">konstrukce</span><div class="wiki-spec-tile-label">Nosnost</div><div class="wiki-spec-tile-val">min. 500 kg/m²</div></div>
+          <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-tech">technologie</span><div class="wiki-spec-tile-label">Pohon</div><div class="wiki-spec-tile-val">elektrický, pevná instalace</div></div>
+          <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-tech">technologie</span><div class="wiki-spec-tile-label">Výška zdvihu</div><div class="wiki-spec-tile-val">min. 8 m</div></div>
+          <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div class="wiki-spec-tile-label">Certifikace</div><div class="wiki-spec-tile-val">ČSN EN 1495</div></div>
+        </div>
         <div class="wiki-provenance">zdroj: zápis z jednání 27. 5. 26, tendr CZLC4 · <a href="#" onclick="return false" style="color:#6366f1">opravit tvrzení</a></div>
       </div>
     </div>
