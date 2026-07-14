@@ -1767,64 +1767,109 @@
   </div><!-- /view-charter -->
 
   <!-- ── VIEW: WIKI (typová stránka poznatků) ─── -->
-  <div id="view-wiki" style="display:none;flex:1;overflow-y:auto;padding:28px 32px 40px;flex-direction:column;max-width:760px">
+  <div id="view-wiki" style="display:none;flex:1;overflow-y:auto;padding:28px 28px 40px;flex-direction:column">
 
-    <div style="font-size:15px;font-weight:700;color:#37352f">📚 Plošina WIKI</div>
-    <div style="font-size:11.5px;color:#9b9a97;margin-top:3px;margin-bottom:14px">Syntéza napříč CZLC3, CZLC4 a CZLC5 · naposledy doplnil AI ze zápisu z jednání 27. 5. 2026 · <a href="#" onclick="return false" style="color:#6366f1">historie úprav</a></div>
-
-    <!-- Most zpátky k živému projektu -->
-    <div style="display:flex;align-items:center;justify-content:space-between;background:#f7f6f3;border-radius:8px;padding:10px 14px;margin-bottom:18px">
-      <span style="font-size:12.5px;color:#5f5e5a">Pracuješ na tendru CZLC5 — tahle stránka má přímý dopad na tvoje kritéria.</span>
-      <button class="btn-purple" style="font-size:11.5px;padding:6px 12px;flex-shrink:0;margin-left:12px" onclick="setPageMode('projekt')">Použít v aktuálním tendru →</button>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
+      <div style="font-size:15px;font-weight:700;color:#37352f">📚 Plošina WIKI</div>
+      <button class="btn-purple" style="font-size:12px" onclick="setPageMode('projekt')">Použít v aktuálním tendru</button>
     </div>
+    <div style="font-size:12px;color:#9b9a97;margin-bottom:18px">Syntéza napříč CZLC3, CZLC4 a CZLC5 · naposledy doplněno ze zápisu z jednání, 27. 5. 2026</div>
 
-    <!-- Lead — souhrn -->
-    <p style="font-size:13.5px;line-height:1.75;color:#37352f;margin:0 0 20px">Plošina se ve skladech LOG stavěla už třikrát — v CZLC3 (2023), CZLC4 (2024) a nyní v CZLC5. Ve všech třech vyhrál tendr <b>Dodavatel 1</b>, s cenou mezi 1,9 a 2,1 mil. Kč. Technická specifikace se mezi projekty ustálila; hlavní opakující se riziko realizace je kolize s návaznými profesemi (sprinklery, elektro) a nedořešené bezpečnostní značení.</p>
-
-    <!-- Akční upozornění -->
-    <div class="wiki-alert" style="margin-bottom:22px">
-      <span style="font-size:15px">⚠</span>
-      <div>
-        <div style="font-size:12px;font-weight:700;color:#993c1d">Otevřený rozpor — nutno ověřit</div>
-        <div style="font-size:12.5px;color:#993c1d;margin-top:2px">Zápis z jednání (27. 5. 2026) uvádí jinou nosnost než tendr CZLC5 (10. 6. 2026). <a href="#" onclick="return false" style="color:#993c1d;text-decoration:underline">Porovnat oba zdroje</a></div>
+    <!-- Rychlá fakta — plošné dlaždice, jedna accent barva -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+      <div style="background:#f7f6f3;border-radius:8px;padding:12px 14px">
+        <div style="font-size:12px;color:#9b9a97">Realizováno</div>
+        <div style="font-size:20px;font-weight:600;color:#37352f;margin-top:2px">3×</div>
+      </div>
+      <div style="background:#f7f6f3;border-radius:8px;padding:12px 14px">
+        <div style="font-size:12px;color:#9b9a97">Vítězný dodavatel</div>
+        <div style="font-size:20px;font-weight:600;color:#37352f;margin-top:2px">Dodavatel 1</div>
+      </div>
+      <div style="background:#f7f6f3;border-radius:8px;padding:12px 14px">
+        <div style="font-size:12px;color:#9b9a97">Cenové rozpětí</div>
+        <div style="font-size:20px;font-weight:600;color:#37352f;margin-top:2px">1,9–2,1M Kč</div>
+      </div>
+      <div style="background:#f7f6f3;border-radius:8px;padding:12px 14px">
+        <div style="font-size:12px;color:#9b9a97">Zdrojů celkem</div>
+        <div style="font-size:20px;font-weight:600;color:#37352f;margin-top:2px">89</div>
       </div>
     </div>
 
+    <!-- Akční upozornění — jediná role barva mimo accent -->
+    <div style="display:flex;gap:10px;background:#faeee7;border-radius:8px;padding:11px 14px;margin-bottom:18px">
+      <span style="font-size:14px;color:#993c1d">⚠</span>
+      <div style="font-size:12.5px;color:#993c1d;line-height:1.5">Otevřený rozpor — zápis z jednání (27. 5. 2026) uvádí jinou nosnost než tendr CZLC5 (10. 6. 2026). <a href="#" onclick="return false" style="color:#993c1d;text-decoration:underline">Porovnat zdroje</a></div>
+    </div>
+
     <!-- Standardní specifikace -->
-    <div style="font-size:13px;font-weight:700;color:#37352f;margin-bottom:8px">Standardní specifikace a proč</div>
-    <p style="font-size:13px;line-height:1.75;color:#37352f;margin:0 0 6px">Podlaha se provádí z DTD desek třídy P6 — ne P5, která v CZLC4 nevyhověla revizi kvůli požární odolnosti. Nosnost min. 500 kg/m², pohon elektrický s pevnou instalací, výška zdvihu min. 8 m, certifikace ČSN EN 1495.</p>
-    <div class="wiki-provenance" style="margin-top:0;padding-top:0;border-top:none">↳ zdroj: zápis z jednání 27. 5. 26, tendr CZLC4 · <a href="#" onclick="return false" style="color:#6366f1">opravit tvrzení</a></div>
+    <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Standardní specifikace a proč</div>
+      <div class="wiki-spec-row"><span class="wiki-spec-label">Materiál podlahy</span><span class="wiki-spec-val">DTD třída P6 <span style="color:#9b9a97">(ne P5 — nevyhověla revizi v CZLC4)</span></span></div>
+      <div class="wiki-spec-row"><span class="wiki-spec-label">Nosnost</span><span class="wiki-spec-val">min. 500 kg/m²</span></div>
+      <div class="wiki-spec-row"><span class="wiki-spec-label">Pohon</span><span class="wiki-spec-val">elektrický, pevná instalace</span></div>
+      <div class="wiki-spec-row"><span class="wiki-spec-label">Výška zdvihu</span><span class="wiki-spec-val">min. 8 m</span></div>
+      <div class="wiki-spec-row"><span class="wiki-spec-label">Certifikace</span><span class="wiki-spec-val">ČSN EN 1495</span></div>
+      <div class="wiki-provenance">zdroj: zápis z jednání 27. 5. 26, tendr CZLC4 · <a href="#" onclick="return false" style="color:#6366f1">opravit</a></div>
+    </div>
 
     <!-- Historie tendrů -->
-    <div style="font-size:13px;font-weight:700;color:#37352f;margin:22px 0 8px">Historie tendrů</div>
-    <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC3</span><span>Dodavatel 1 · 3 nabídky</span><span class="wiki-tender-price">1,9M Kč</span></div>
-    <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC4</span><span>Dodavatel 1 · sleva 5 % za opakovanou objednávku</span><span class="wiki-tender-price">2,0M Kč</span></div>
-    <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC5</span><span>Dodavatel 1 · 3 nabídky, viz Tendr</span><span class="wiki-tender-price">2,1M Kč</span></div>
+    <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Historie tendrů</div>
+      <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC3</span><span>Dodavatel 1 · 3 nabídky</span><span class="wiki-tender-price">1,9M Kč</span></div>
+      <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC4</span><span>Dodavatel 1 · sleva 5 % za opakovanou objednávku</span><span class="wiki-tender-price">2,0M Kč</span></div>
+      <div class="wiki-tender-row"><span class="wiki-tender-year">CZLC5</span><span>Dodavatel 1 · 3 nabídky, viz Tendr</span><span class="wiki-tender-price">2,1M Kč</span></div>
+    </div>
 
     <!-- Lessons learned -->
-    <div style="font-size:13px;font-weight:700;color:#37352f;margin:22px 0 8px">Lessons learned</div>
-    <p style="font-size:13px;line-height:1.75;color:#37352f;margin:0 0 10px"><b>Kolize s návaznými profesemi</b> je nejčastěji zmiňované téma napříč realizacemi — sprinklery, elektro, LAN a EPS mohou kolidovat v mnoha bodech, doporučuje se kontrola už v projekční fázi, ne až při montáži. Pozor i na kolizi el. rozvaděčů haly a potrubí se sloupy a vazníky plošiny.</p>
-    <p style="font-size:13px;line-height:1.75;color:#37352f;margin:0 0 10px"><b>Vlastnosti DTD desek</b> — zatékání do haly je poškozuje vlhkem, řešit hydroizolaci před montáží. Jejich dotloukání způsobuje vibrace, kvůli kterým mohou padat svítidla — koordinovat s elektro.</p>
-    <p style="font-size:13px;line-height:1.75;color:#37352f;margin:0 0 10px"><b>Bezpečnost a značení</b> — zábradlí počítat i s otvory pro budoucí dopravníky/výtahy. Výška překlopné branky se mezi patry liší (1NP 2200 mm vs. 2NP 2500 mm) — nesjednocovat automaticky. Nástupní schody a nechráněné elektro žlaby na stropě označit žlutočernou páskou.</p>
-    <p style="font-size:13px;line-height:1.75;color:#37352f;margin:0 0 6px"><b>Konstrukce</b> — podpěry pod rošty dávat přímo ke zdi u průchodů mezi halami, jinak riziko průhybu roštu.</p>
-    <div class="wiki-provenance" style="margin-top:8px;padding-top:0;border-top:none">↳ zdroj: 75 dokončených úkolů v Asana s tagem Plošina · <a href="#" onclick="return false" style="color:#6366f1">zobrazit vše</a></div>
+    <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Lessons learned</div>
 
-    <!-- Dodavatel a související -->
-    <div style="font-size:13px;font-weight:700;color:#37352f;margin:22px 0 8px">Dodavatel</div>
-    <p style="font-size:13px;line-height:1.75;color:#37352f;margin:0">Dodavatel 1 vyhrál všechny tři dosavadní tendry na Plošinu a je spolehlivý v termínech. Dodává i na <a href="#" onclick="return false" style="color:#6366f1">Dopravníky</a> a <a href="#" onclick="return false" style="color:#6366f1">Regálové systémy</a>. <a href="#" onclick="return false" style="color:#6366f1">Detail dodavatele →</a></p>
+      <div class="wiki-lesson-group">
+        <div class="wiki-lesson-group-title">Kolize s návaznými profesemi <span class="wiki-lesson-count">28×</span></div>
+        <div class="wiki-lesson-row"><span>✓</span><span>Sprinklery, elektro, LAN a EPS mohou kolidovat v mnoha bodech — kontrolovat už v projekční fázi, ne až při realizaci.</span></div>
+        <div class="wiki-lesson-row"><span>✓</span><span>Pozor na kolizi el. rozvaděčů haly a potrubí se sloupy/vazníky plošiny.</span></div>
+      </div>
 
-    <!-- Zdroje -->
-    <div style="font-size:13px;font-weight:700;color:#37352f;margin:22px 0 8px">Zdroje</div>
-    <div class="wiki-source-row"><span>📄 Tendr Plošina CZLC5.xlsx</span><span style="color:#9b9a97">10. 6. 26</span></div>
-    <div class="wiki-source-row"><span>📄 Zápis z jednání</span><span style="color:#9b9a97">27. 5. 26</span></div>
-    <div class="wiki-source-row"><span>📄 Lessons CZLC4.docx</span><span style="color:#9b9a97">2. 11. 25</span></div>
-    <div class="wiki-source-row"><span>🔗 Asana — 75 dokončených úkolů, tag Plošina</span><span style="color:#9b9a97">průběžně</span></div>
-    <div style="margin-top:6px"><a href="#" onclick="return false" style="font-size:11.5px;color:#6366f1">Zobrazit všechny zdroje →</a></div>
+      <div class="wiki-lesson-group">
+        <div class="wiki-lesson-group-title">Vlastnosti DTD desek <span class="wiki-lesson-count">15×</span></div>
+        <div class="wiki-lesson-row"><span>✓</span><span>Zatékání do haly může desky poškodit vlhkem — řešit hydroizolaci před montáží.</span></div>
+        <div class="wiki-lesson-row"><span>✓</span><span>Dotloukání desek způsobuje vibrace — mohou padat svítidla, koordinovat s elektro.</span></div>
+      </div>
 
-    <!-- Interaktivní box: doplnit / opravit -->
-    <div class="wiki-ask-box" style="margin-top:22px">
-      <div style="font-size:12px;font-weight:700;color:#6366f1;margin-bottom:6px">✦ Doplnit nebo opravit tuhle stránku</div>
-      <div style="font-size:12px;color:#7c7af0;margin-bottom:8px">Víš o něčem, co tu chybí nebo je špatně? Napiš to — AI to zapracuje do syntézy a označí zdroj jako "od PM".</div>
+      <div class="wiki-lesson-group">
+        <div class="wiki-lesson-group-title">Bezpečnost a značení <span class="wiki-lesson-count">22×</span></div>
+        <div class="wiki-lesson-row"><span>✓</span><span>Zábradlí počítat i s otvory pro budoucí dopravníky/výtahy, pokud se instalují až po plošině.</span></div>
+        <div class="wiki-lesson-row"><span>✓</span><span>Rozdílná výška překlopné branky mezi patry (1NP 2200 mm vs. 2NP 2500 mm) — nesjednocovat automaticky.</span></div>
+      </div>
+
+      <div class="wiki-lesson-group" style="margin-bottom:0">
+        <div class="wiki-lesson-group-title">Konstrukce a podepření <span class="wiki-lesson-count">10×</span></div>
+        <div class="wiki-lesson-row"><span>✓</span><span>Podpěry pod rošty dávat přímo ke zdi u průchodů mezi halami — jinak riziko průhybu roštu.</span></div>
+      </div>
+
+      <div class="wiki-provenance">zdroj: 75 dokončených úkolů v Asana, tag Plošina · <a href="#" onclick="return false" style="color:#6366f1">zobrazit vše</a></div>
+    </div>
+
+    <!-- Dodavatel + Zdroje vedle sebe -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px">
+        <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:8px">Dodavatel 1</div>
+        <div style="font-size:12.5px;color:#5f5e5a;margin-bottom:8px">Vítěz 3 ze 3 tendrů, spolehlivý v termínech. Dodává i na <a href="#" onclick="return false" style="color:#6366f1">Dopravníky</a> a <a href="#" onclick="return false" style="color:#6366f1">Regálové systémy</a>.</div>
+        <a href="#" onclick="return false" style="font-size:12px;color:#6366f1">Detail dodavatele →</a>
+      </div>
+      <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px">
+        <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:8px">Zdroje</div>
+        <div class="wiki-source-row"><span>Tendr Plošina CZLC5.xlsx</span><span style="color:#9b9a97">10. 6. 26</span></div>
+        <div class="wiki-source-row"><span>Zápis z jednání</span><span style="color:#9b9a97">27. 5. 26</span></div>
+        <div class="wiki-source-row"><span>Asana, 75 úkolů</span><span style="color:#9b9a97">průběžně</span></div>
+        <a href="#" onclick="return false" style="font-size:12px;color:#6366f1">Zobrazit všechny →</a>
+      </div>
+    </div>
+
+    <!-- Doplnit / opravit -->
+    <div class="wiki-ask-box" style="margin-top:18px">
+      <div style="font-size:12px;font-weight:600;color:#6366f1;margin-bottom:6px">Doplnit nebo opravit tuhle stránku</div>
+      <div style="font-size:12px;color:#7c7af0;margin-bottom:8px">Víš o něčem, co tu chybí nebo je špatně? Napiš to — AI to zapracuje a označí zdroj jako „od PM".</div>
       <div style="display:flex;gap:8px">
         <input type="text" id="wiki-ask-input" placeholder="Např. Dodavatel 1 teď nabízí i rychlejší montáž za příplatek…" style="flex:1;border:0.5px solid #c4b5fd;border-radius:6px;padding:8px 10px;font-size:12.5px;font-family:inherit;background:#fff">
         <button class="btn-purple" style="font-size:12px" onclick="wikiAsk()">Odeslat</button>
