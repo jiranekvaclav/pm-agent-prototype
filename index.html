@@ -100,6 +100,58 @@
       flex: 1;
       padding: 8px 6px;
     }
+    .pv-toggle {
+      display: flex;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 7px;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+    .pv-toggle-btn {
+      flex: 1;
+      border: none;
+      background: #fff;
+      color: #9b9a97;
+      font-size: 11px;
+      font-family: inherit;
+      padding: 6px 4px;
+      cursor: pointer;
+    }
+    .pv-toggle-btn.active {
+      background: #eef0ff;
+      color: #6366f1;
+      font-weight: 600;
+    }
+    .wiki-card {
+      border: 0.5px solid #e9e9e7;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #f7f6f3;
+    }
+    .wiki-card-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .wiki-card-text {
+      font-size: 12.5px;
+      color: #5f5e5a;
+      line-height: 1.6;
+    }
+    .wiki-card.warn {
+      border: 1.5px solid #f0997b;
+      background: #faeee7;
+    }
+    .wiki-source-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      padding: 5px 0;
+      color: #5f5e5a;
+    }
     .sn-item {
       display: flex;
       align-items: center;
@@ -1055,7 +1107,13 @@
       <div class="sn-label">Funkční celek</div>
       <span class="sn-pill-outline">Plošina</span>
     </div>
-    <div class="sn-sections">
+    <div class="sn-block">
+      <div class="pv-toggle">
+        <button class="pv-toggle-btn active" id="pv-projekt" onclick="setPageMode('projekt')">📁 Projekt</button>
+        <button class="pv-toggle-btn" id="pv-poznatky" onclick="setPageMode('poznatky')">📚 Poznatky</button>
+      </div>
+    </div>
+    <div class="sn-sections" id="sn-sections-projekt">
       <div class="sn-item" id="sn-charter" onclick="showView('charter')">
         <span class="sn-inner">📋 Zadání pro projekt</span>
       </div>
@@ -1072,6 +1130,19 @@
       </div>
       <div class="sn-item soon">
         <span class="sn-inner">💡 Lessons Learned</span>
+        <span class="sn-badge">brzy</span>
+      </div>
+    </div>
+    <div class="sn-sections" id="sn-sections-poznatky" style="display:none">
+      <div class="sn-item active">
+        <span class="sn-inner">📚 Co o Plošinách víme</span>
+      </div>
+      <div class="sn-item soon">
+        <span class="sn-inner">🏭 Dodavatel 1</span>
+        <span class="sn-badge">brzy</span>
+      </div>
+      <div class="sn-item soon">
+        <span class="sn-inner">🏭 Dodavatel 2</span>
         <span class="sn-badge">brzy</span>
       </div>
     </div>
@@ -1444,6 +1515,16 @@
       </div>
     </div>
 
+    <!-- Box: Z historie -->
+    <div class="ch-section" style="border:1.5px solid #6366f1;border-radius:8px;padding:12px 14px;background:#fff">
+      <div class="ch-label" style="color:#6366f1;display:flex;align-items:center;gap:6px">📚 Z historie · 3 předchozí projekty Plošina</div>
+      <div class="ch-hint" style="color:#5f5e5a">Dodavatel typicky Dodavatel 1, cena kolem 2,1 mil. Kč. DTD desky vždy třída P6 — kvůli požární odolnosti, ne P5 (levnější, ale nedostatečná). Hlavní lessons: revizní protokol si vyžádat 2 týdny předem.</div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn-purple" style="font-size:11px;padding:5px 13px" onclick="setPageMode('poznatky')">Zobrazit detail</button>
+        <button class="btn-ghost" style="font-size:11px;padding:5px 13px;border-color:#e9e9e7">Použít jako návrh</button>
+      </div>
+    </div>
+
     <!-- Název záměru — jen nadpis -->
     <div class="ch-section">
       <div class="ch-label">Název záměru</div>
@@ -1510,6 +1591,46 @@
     </div>
 
   </div><!-- /view-charter -->
+
+  <!-- ── VIEW: WIKI (typová stránka poznatků) ─── -->
+  <div id="view-wiki" style="display:none;flex:1;overflow-y:auto;padding:28px 28px 40px;flex-direction:column">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:18px">📚</span>
+        <div style="font-size:15px;font-weight:700;color:#37352f">Co o Plošinách víme</div>
+      </div>
+      <div style="font-size:11px;color:#9b9a97">aktualizováno 10. 7. 2026 · 3 projekty · 14 zdrojů</div>
+    </div>
+    <div style="font-size:12px;color:#9b9a97;margin-bottom:18px">Typová stránka · syntéza napříč CZLC4, CZLC5 a staršími projekty</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div class="wiki-card">
+        <div class="wiki-card-title">📋 Standardní specifikace</div>
+        <div class="wiki-card-text">DTD desky vždy třída P6, ne P5 — kvůli požární odolnosti. Nosnost min. 500 kg/m². Elektrický pohon, výška zdvihu min. 8 m, certifikace ČSN EN 1495.</div>
+      </div>
+      <div class="wiki-card">
+        <div class="wiki-card-title">🏭 Dodavatelé</div>
+        <div class="wiki-card-text">Dodavatel 1 vyhrál 3× z 3, cena 2,0–2,2 mil. Kč. <a href="#" onclick="return false" style="color:#6366f1">Detail dodavatele →</a></div>
+      </div>
+      <div class="wiki-card">
+        <div class="wiki-card-title">💡 Lessons learned</div>
+        <div class="wiki-card-text">Revizní protokol vyžádat 2 týdny předem. Zábradlí objednávat samostatně, dlouhá dodací lhůta. Specifikovat výšku zdvihu a nosnost explicitně od začátku.</div>
+      </div>
+      <div class="wiki-card warn">
+        <div class="wiki-card-title" style="color:#c0392b">⚠ Otevřený rozpor</div>
+        <div class="wiki-card-text" style="color:#993c1d">Zápis z 27. 5. 2026 uvádí jinou nosnost než tendr z 10. 6. 2026 — nutno ověřit.</div>
+      </div>
+    </div>
+
+    <div style="border-top:0.5px solid #e9e9e7;padding-top:12px">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#9b9a97;margin-bottom:8px">Zdroje</div>
+      <div class="wiki-source-row"><span>📄 Tendr Plošina CZLC5.xlsx</span><span style="color:#9b9a97">10. 6. 2026</span></div>
+      <div class="wiki-source-row"><span>📄 Zápis z jednání 27. 5. 2026</span><span style="color:#9b9a97">27. 5. 2026</span></div>
+      <div class="wiki-source-row"><span>📄 Lessons CZLC4 Plošina.docx</span><span style="color:#9b9a97">2. 11. 2025</span></div>
+    </div>
+
+  </div><!-- /view-wiki -->
 
   </div><!-- /content-area -->
 </div><!-- /main -->
@@ -1921,8 +2042,26 @@
   function showView(name) {
     document.getElementById('view-tendr').style.display  = name === 'tendr'   ? 'contents' : 'none';
     document.getElementById('view-charter').style.display = name === 'charter' ? 'flex'     : 'none';
+    document.getElementById('view-wiki').style.display = 'none';
     document.getElementById('sn-tendr').classList.toggle('active',  name === 'tendr');
     document.getElementById('sn-charter').classList.toggle('active', name === 'charter');
+  }
+
+  /* ── PAGE MODE: Projekt vs. Poznatky ─── */
+  function setPageMode(mode) {
+    document.getElementById('pv-projekt').classList.toggle('active', mode === 'projekt');
+    document.getElementById('pv-poznatky').classList.toggle('active', mode === 'poznatky');
+    document.getElementById('sn-sections-projekt').style.display = mode === 'projekt' ? 'block' : 'none';
+    document.getElementById('sn-sections-poznatky').style.display = mode === 'poznatky' ? 'block' : 'none';
+
+    if (mode === 'poznatky') {
+      document.getElementById('view-tendr').style.display = 'none';
+      document.getElementById('view-charter').style.display = 'none';
+      document.getElementById('view-wiki').style.display = 'flex';
+    } else {
+      document.getElementById('view-wiki').style.display = 'none';
+      showView('tendr');
+    }
   }
 
   /* ── PROJECT CHARTER — generuj ─── */
