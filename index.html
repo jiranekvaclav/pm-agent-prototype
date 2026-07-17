@@ -8,6 +8,16 @@
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #6366f1;
+      --accent-dark: #4f46e5;
+      --ink: #37352f;
+      --ink-soft: #5f5e5a;
+      --muted: #9b9a97;
+      --line: #e9e9e7;
+      --tile: #f7f6f3;
+      --ref-w: 400px;
+    }
     body {
       font-family: "Inter", sans-serif;
       font-size: 14px;
@@ -16,18 +26,23 @@
       height: 100vh;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 1fr var(--ref-w);
     }
     button { font-family: inherit; cursor: pointer; }
 
-    /* ── MAIN ─── */
+    /* ── MAIN = REFERENČNÍ PANEL (vedlejší prostor, sekce projektu) ─── */
     .main {
+      order: 2;
       display: flex;
+      flex-direction: column;
       height: 100vh;
       overflow: hidden;
+      border-left: 0.5px solid var(--line);
+      background: #fdfdfc;
+      min-width: 0;
     }
 
-    /* ── COLLAPSE TOGGLES ─── */
+    /* ── COLLAPSE TOGGLE (referenční panel) ─── */
     .toggle-btn {
       position: fixed;
       top: 50%;
@@ -36,7 +51,7 @@
       height: 44px;
       background: #f7f6f3;
       border: 0.5px solid #e9e9e7;
-      border-radius: 0 6px 6px 0;
+      border-radius: 6px 0 0 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -44,77 +59,74 @@
       font-size: 10px;
       color: #9b9a97;
       z-index: 10;
-      transition: background .15s;
+      transition: background .15s, right .2s ease;
     }
     .toggle-btn:hover { background: #ededeb; color: #37352f; }
-    #toggle-left { left: 0; border-radius: 0 6px 6px 0; }
-    #toggle-right { right: 0; border-radius: 6px 0 0 6px; }
-    .subnav.collapsed { width: 0 !important; overflow: hidden; border: none; }
-    .chat-panel.collapsed { width: 0 !important; overflow: hidden; border: none; }
-    #toggle-left.open { left: 172px; border-radius: 0 6px 6px 0; }
-    #toggle-right.open { right: 320px; border-radius: 6px 0 0 6px; }
+    #toggle-right { right: var(--ref-w); }
+    .main.collapsed { width: 0 !important; min-width: 0; overflow: hidden; border: none; }
 
-    /* ── SUBNAV ─── */
+    /* ── REFERENČNÍ NAVIGACE (kompaktní horní lišta panelu) ─── */
     .subnav {
-      width: 172px;
       flex-shrink: 0;
-      background: #f7f6f3;
-      border-right: 0.5px solid #e9e9e7;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow-y: auto;
-      transition: width .2s ease;
+      background: #fdfdfc;
+      border-bottom: 0.5px solid var(--line);
+      padding: 16px 18px 14px;
     }
-    .sn-block {
-      padding: 14px 12px 12px;
-      border-bottom: 0.5px solid #e9e9e7;
+    .sn-top-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
     }
     .sn-label {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: .07em;
       color: #9b9a97;
-      margin-bottom: 6px;
+      margin-left: auto;
     }
     .sn-pill-dark {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       background: #37352f;
       color: #fff;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
       border-radius: 20px;
-      padding: 3px 12px;
+      padding: 3px 11px;
     }
     .sn-pill-outline {
-      display: inline-block;
-      border: 1.5px solid #37352f;
-      color: #37352f;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #d8d7d2;
+      color: #5f5e5a;
       background: #fff;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
       border-radius: 20px;
-      padding: 3px 12px;
+      padding: 3px 11px;
     }
     .sn-sections {
-      flex: 1;
-      padding: 8px 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
     .pv-toggle {
       display: flex;
       border: 0.5px solid #e9e9e7;
       border-radius: 7px;
       overflow: hidden;
-      margin-top: 2px;
+      margin-bottom: 10px;
     }
     .pv-toggle-btn {
       flex: 1;
       border: none;
       background: #fff;
       color: #9b9a97;
-      font-size: 11px;
+      font-size: 11.5px;
       font-family: inherit;
-      padding: 6px 4px;
+      padding: 7px 4px;
       cursor: pointer;
     }
     .pv-toggle-btn.active {
@@ -357,17 +369,21 @@
       margin-top: 18px;
     }
     .sn-item {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 7px 8px;
-      border-radius: 6px;
-      margin-bottom: 2px;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 0.5px solid #e9e9e7;
+      background: #fff;
       cursor: pointer;
       user-select: none;
+      white-space: nowrap;
     }
+    .sn-item:hover:not(.active):not(.soon) { border-color: #c2c0ba; }
     .sn-item.active {
       background: #37352f;
+      border-color: #37352f;
     }
     .sn-item.active .sn-inner {
       color: #fff;
@@ -375,6 +391,7 @@
     }
     .sn-item.soon {
       cursor: default;
+      opacity: .55;
     }
     .sn-item.soon .sn-inner {
       color: #9b9a97;
@@ -382,12 +399,12 @@
     .sn-inner {
       display: flex;
       align-items: center;
-      gap: 7px;
-      font-size: 13px;
+      gap: 6px;
+      font-size: 12px;
       color: #37352f;
     }
     .sn-badge {
-      font-size: 10px;
+      font-size: 9.5px;
       color: #9b9a97;
       background: #ededeb;
       border-radius: 4px;
@@ -406,12 +423,13 @@
     .subtabs-bar {
       display: flex;
       border-bottom: 0.5px solid #e9e9e7;
-      padding: 0 24px;
+      padding: 0 18px;
       flex-shrink: 0;
+      overflow-x: auto;
     }
     .stab {
-      font-size: 13px;
-      padding: 11px 16px;
+      font-size: 12.5px;
+      padding: 10px 12px;
       color: #9b9a97;
       cursor: pointer;
       border-bottom: 2px solid transparent;
@@ -432,7 +450,7 @@
       display: none;
       flex: 1;
       overflow-y: auto;
-      padding: 28px 28px 40px;
+      padding: 20px 18px 32px;
     }
     .tab-content.active { display: block; }
 
@@ -493,7 +511,7 @@
     /* Field cards grid */
     .fields-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
     .field-card {
@@ -610,7 +628,7 @@
     /* Nabídky dlaždice */
     .nb-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 10px;
     }
     .nb-card {
@@ -1083,36 +1101,41 @@
       background: white;
     }
 
-    /* ── CHAT PANEL ─── */
+    /* ── CHAT PANEL (hlavní plocha) ─── */
     .chat-panel {
-      border-left: 0.5px solid #e9e9e7;
+      order: 1;
       display: flex;
       flex-direction: column;
       height: 100vh;
       background: #fff;
-      width: 320px;
-      flex-shrink: 0;
-      transition: width .2s ease;
       overflow: hidden;
+      min-width: 0;
+    }
+    .chat-topbar {
+      display: flex;
+      justify-content: center;
+      border-bottom: 0.5px solid #e9e9e7;
+      flex-shrink: 0;
     }
     .chat-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 14px 11px;
-      border-bottom: 0.5px solid #e9e9e7;
-      flex-shrink: 0;
+      gap: 14px;
+      max-width: 800px;
+      width: 100%;
+      padding: 18px 40px;
+      box-sizing: border-box;
     }
     .alzak-avatar {
-      width: 32px;
-      height: 32px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
     }
     .chat-header-info { flex: 1; min-width: 0; }
     .chat-header-name {
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 600;
       color: #37352f;
       white-space: nowrap;
@@ -1120,54 +1143,83 @@
       text-overflow: ellipsis;
     }
     .chat-header-sub {
-      font-size: 10px;
+      font-size: 11px;
       color: #9b9a97;
       text-transform: uppercase;
       letter-spacing: .06em;
+      margin-top: 1px;
+    }
+    .chat-header-context {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .chat-context-chip {
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #f7f6f3;
+      color: #5f5e5a;
+      white-space: nowrap;
+    }
+    .chat-context-hint {
+      font-size: 11px;
+      color: #9b9a97;
+      white-space: nowrap;
     }
     .chat-messages {
       flex: 1;
       overflow-y: auto;
-      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      align-items: center;
+    }
+    .chat-messages-inner {
+      max-width: 800px;
+      width: 100%;
+      padding: 28px 40px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-sizing: border-box;
     }
     .msg {
-      max-width: 88%;
-      font-size: 12px;
-      border-radius: 10px;
-      padding: 8px 11px;
-      line-height: 1.5;
+      max-width: 78%;
+      font-size: 14px;
+      border-radius: 16px;
+      padding: 11px 16px;
+      line-height: 1.6;
     }
     .msg-ai {
       background: #f7f6f3;
       border: 0.5px solid #e9e9e7;
       color: #37352f;
       align-self: flex-start;
-      border-bottom-left-radius: 3px;
+      border-bottom-left-radius: 4px;
     }
     .msg-user {
       background: #37352f;
       color: #fff;
       align-self: flex-end;
-      border-bottom-right-radius: 3px;
+      border-bottom-right-radius: 4px;
     }
     .msg-rich {
-      max-width: 96%;
+      max-width: 90%;
       align-self: flex-start;
       background: #f7f6f3;
       border: 0.5px solid #e9e9e7;
-      border-radius: 10px;
-      border-bottom-left-radius: 3px;
-      padding: 10px 12px;
-      font-size: 12px;
+      border-radius: 16px;
+      border-bottom-left-radius: 4px;
+      padding: 16px 18px;
+      font-size: 13.5px;
       color: #37352f;
     }
-    .msg-rich-lead { margin-bottom: 8px; line-height: 1.5; }
+    .msg-rich-lead { margin-bottom: 10px; line-height: 1.55; }
     .msg-rich-table {
       border: 0.5px solid #e9e9e7;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       background: #fff;
     }
@@ -1175,8 +1227,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 7px 10px;
-      font-size: 11.5px;
+      padding: 9px 13px;
+      font-size: 12.5px;
       border-top: 0.5px solid #e9e9e7;
     }
     .msg-rich-row:first-child { border-top: none; }
@@ -1187,91 +1239,112 @@
     .msg-rich-tiles {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
     .msg-rich-tile {
       background: #fff;
-      border-radius: 8px;
-      padding: 8px 10px;
+      border: 0.5px solid #e9e9e7;
+      border-radius: 10px;
+      padding: 10px 13px;
     }
     .msg-rich-warn {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       background: #faeee7;
       color: #993c1d;
-      border-radius: 7px;
-      padding: 6px 9px;
-      font-size: 11px;
-      margin-top: 8px;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      margin-top: 10px;
     }
     .msg-rich-actions {
       display: flex;
-      gap: 6px;
-      margin-top: 9px;
+      gap: 7px;
+      margin-top: 11px;
       flex-wrap: wrap;
     }
     .msg-rich-btn {
-      font-size: 11px;
-      padding: 5px 10px;
-      border-radius: 6px;
+      font-size: 12px;
+      padding: 6px 13px;
+      border-radius: 8px;
       border: 0.5px solid #e9e9e7;
       background: #fff;
       color: #37352f;
       cursor: pointer;
+      transition: background .12s;
     }
-    .msg-rich-btn:hover { background: #f7f6f3; }
+    .msg-rich-btn:hover { background: #ededeb; }
     .msg-rich-src {
-      font-size: 10px;
+      font-size: 11px;
       color: #9b9a97;
-      margin-top: 7px;
+      margin-top: 9px;
+    }
+    .chat-composer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top: 0.5px solid #e9e9e7;
+      flex-shrink: 0;
+      background: #fdfdfc;
     }
     .chat-input-area {
-      border-top: 0.5px solid #e9e9e7;
-      padding: 11px 12px;
-      flex-shrink: 0;
-      display: flex;
-      gap: 7px;
-      align-items: flex-end;
+      max-width: 800px;
+      width: 100%;
+      padding: 14px 40px 22px;
+      box-sizing: border-box;
     }
+    .chat-input-shell {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      border: 1px solid #e9e9e7;
+      border-radius: 18px;
+      padding: 6px 6px 6px 16px;
+      background: #fff;
+      transition: border-color .15s;
+    }
+    .chat-input-shell:focus-within { border-color: #6366f1; }
     .chat-input-area textarea {
       flex: 1;
-      border-radius: 7px;
-      font-size: 12px;
-      background: #f7f6f3;
-      padding: 7px 10px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      padding: 9px 0;
+      resize: none;
     }
+    .chat-input-area textarea:focus { outline: none; }
     .send-btn {
-      background: #6366f1;
+      background: #37352f;
       color: #fff;
       border: none;
-      border-radius: 8px;
-      width: 34px;
-      height: 34px;
-      font-size: 16px;
+      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      font-size: 15px;
       line-height: 1;
       flex-shrink: 0;
-      align-self: flex-end;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background .15s, transform .1s;
     }
-    .send-btn:hover { background: #4f46e5; }
+    .send-btn:hover { background: #6366f1; }
     .send-btn:active { transform: scale(.93); }
 
     /* Chat suggestion chips */
     .chat-suggestions {
-      padding: 8px 12px 4px;
+      max-width: 800px;
+      width: 100%;
+      padding: 16px 40px 0;
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
-      flex-shrink: 0;
-      border-top: 0.5px solid #e9e9e7;
+      gap: 6px;
+      box-sizing: border-box;
     }
     .chat-chip {
-      font-size: 11px;
-      padding: 4px 10px;
+      font-size: 12.5px;
+      padding: 6px 13px;
       border-radius: 20px;
       border: 0.5px solid #c4b5fd;
       background: #f5f3ff;
@@ -1307,7 +1380,7 @@
   @media print {
     @page { size: A4 portrait; margin: 18mm 20mm 18mm 20mm; }
     body { display: block !important; overflow: visible !important; background: #fff; }
-    .main, .chat-panel, .toggle-btn, #toggle-left, #toggle-right { display: none !important; }
+    .main, .chat-panel, .toggle-btn, #toggle-right { display: none !important; }
     #print-area { display: block !important; }
   }
   #print-area {
@@ -1376,19 +1449,14 @@
 
   <!-- SUBNAV -->
   <div class="subnav">
-    <div class="sn-block">
-      <div class="sn-label">Projekt</div>
+    <div class="sn-top-row">
       <span class="sn-pill-dark">CZLC5</span>
-    </div>
-    <div class="sn-block">
-      <div class="sn-label">Funkční celek</div>
       <span class="sn-pill-outline">Plošina</span>
+      <span class="sn-label">Referenční panel</span>
     </div>
-    <div class="sn-block">
-      <div class="pv-toggle">
-        <button class="pv-toggle-btn active" id="pv-projekt" onclick="setPageMode('projekt')">📁 Projekt</button>
-        <button class="pv-toggle-btn" id="pv-poznatky" onclick="setPageMode('poznatky')">📚 Poznatky</button>
-      </div>
+    <div class="pv-toggle">
+      <button class="pv-toggle-btn active" id="pv-projekt" onclick="setPageMode('projekt')">📁 Projekt</button>
+      <button class="pv-toggle-btn" id="pv-poznatky" onclick="setPageMode('poznatky')">📚 Poznatky</button>
     </div>
     <div class="sn-sections" id="sn-sections-projekt">
       <div class="sn-item" id="sn-charter" onclick="showView('charter')">
@@ -1691,7 +1759,7 @@
       <!-- VÝBĚR VÍTĚZE -->
       <div class="kr-block">
         <div class="kr-label">Výběr vítěze</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+        <div style="display:grid;grid-template-columns:1fr;gap:8px">
           <div class="rozh-btn rozh-win" id="rozh-d1" onclick="selectWinner(1)">
             <div class="rozh-name">Dodavatel 1</div>
             <div class="rozh-price">2 100 000 Kč</div>
@@ -1779,7 +1847,7 @@
   </div><!-- /view-tendr -->
 
   <!-- ── VIEW: PROJECT CHARTER ─── -->
-  <div id="view-charter" style="display:none;flex:1;overflow-y:auto;padding:28px 28px 40px;flex-direction:column">
+  <div id="view-charter" style="display:none;flex:1;overflow-y:auto;padding:20px 18px 32px;flex-direction:column">
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-shrink:0">
       <div>
@@ -1849,7 +1917,7 @@
       <textarea class="ch-ta" id="ch-predpoklady" rows="3" placeholder="AI vyplní na základě popisu problému…"></textarea>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:4px">
+    <div style="display:grid;grid-template-columns:1fr;gap:12px;margin-top:4px">
       <div class="ch-section" style="margin-bottom:0">
         <div class="ch-label">ČAS — hlavní milníky</div>
         <div class="ch-hint">Jak bude realizace rozvržena? Termín dokončení? Milníky?</div>
@@ -1870,7 +1938,7 @@
   </div><!-- /view-charter -->
 
   <!-- ── VIEW: WIKI (typová stránka poznatků) ─── -->
-  <div id="view-wiki" style="display:none;flex:1;overflow-y:auto;padding:28px 28px 40px;flex-direction:column">
+  <div id="view-wiki" style="display:none;flex:1;overflow-y:auto;padding:20px 18px 32px;flex-direction:column">
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2px">
       <div style="font-size:15px;font-weight:700;color:#37352f">📚 Plošina WIKI</div>
@@ -1879,7 +1947,7 @@
     <div style="font-size:12px;color:#9b9a97;margin-bottom:18px">Syntéza napříč CZLC3, CZLC4 a CZLC5 · naposledy doplněno ze zápisu z jednání, 27. 5. 2026</div>
 
     <!-- Rychlá fakta — plošné dlaždice, jedna accent barva -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px">
       <div style="background:#f7f6f3;border-radius:8px;padding:12px 14px">
         <div style="font-size:12px;color:#9b9a97">Realizováno</div>
         <div style="font-size:20px;font-weight:600;color:#37352f;margin-top:2px">3×</div>
@@ -1908,7 +1976,7 @@
     <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px;margin-bottom:14px">
       <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Standardní specifikace a proč</div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="display:grid;grid-template-columns:1fr;gap:10px">
         <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-dtd">DTD desky</span><div class="wiki-spec-tile-label">Materiál podlahy</div><div class="wiki-spec-tile-val">DTD třída P6 (ne P5 — nevyhověla revizi v CZLC4)</div></div>
         <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-konstr">konstrukce</span><div class="wiki-spec-tile-label">Nosnost</div><div class="wiki-spec-tile-val">min. 500 kg/m²</div></div>
         <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div class="wiki-spec-tile-label">Certifikace</div><div class="wiki-spec-tile-val">ČSN EN 1495</div></div>
@@ -1928,7 +1996,7 @@
           <div style="font-size:14px;font-weight:600;color:#37352f">Standardní specifikace — Plošina</div>
           <button onclick="closeSpecModal()" style="background:none;border:none;font-size:18px;color:#9b9a97;cursor:pointer;line-height:1;padding:2px 4px">×</button>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="display:grid;grid-template-columns:1fr;gap:10px">
           <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-dtd">DTD desky</span><div class="wiki-spec-tile-label">Materiál podlahy</div><div class="wiki-spec-tile-val">DTD třída P6 (ne P5 — nevyhověla revizi v CZLC4)</div></div>
           <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-konstr">konstrukce</span><div class="wiki-spec-tile-label">Nosnost</div><div class="wiki-spec-tile-val">min. 500 kg/m²</div></div>
           <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-tech">technologie</span><div class="wiki-spec-tile-label">Pohon</div><div class="wiki-spec-tile-val">elektrický, pevná instalace</div></div>
@@ -1951,7 +2019,7 @@
     <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px;margin-bottom:14px">
       <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:10px">Lessons learned</div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="display:grid;grid-template-columns:1fr;gap:10px">
         <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-kolize">kolize profesí</span><div>Sprinklery, elektro, LAN a EPS mohou kolidovat v mnoha bodech.</div></div>
         <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-dtd">DTD desky</span><div>Zatékání do haly může desky poškodit vlhkem — řešit hydroizolaci předem.</div></div>
         <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-bezp">bezpečnost</span><div>Zábradlí počítat i s otvory pro budoucí dopravníky nebo výtahy.</div></div>
@@ -1972,7 +2040,7 @@
           <div style="font-size:14px;font-weight:600;color:#37352f">Lessons learned — Plošina</div>
           <button onclick="closeLessonsModal()" style="background:none;border:none;font-size:18px;color:#9b9a97;cursor:pointer;line-height:1;padding:2px 4px">×</button>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="display:grid;grid-template-columns:1fr;gap:10px">
           <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-kolize">kolize profesí</span><div>Sprinklery, elektro, LAN a EPS mohou kolidovat v mnoha bodech.</div></div>
           <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-kolize">kolize profesí</span><div>Pozor na kolizi el. rozvaděčů haly a potrubí se sloupy a vazníky plošiny.</div></div>
           <div class="wiki-lesson-tile"><span class="wiki-badge wiki-badge-kolize">kolize profesí</span><div>Při realizaci otvoru zkontrolovat kolizi inž. vybavení (sprinklery, EPS, HSP).</div></div>
@@ -1989,7 +2057,7 @@
     </div>
 
     <!-- Dodavatel + Zdroje vedle sebe -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div style="display:grid;grid-template-columns:1fr;gap:14px">
       <div style="background:#fff;border:0.5px solid #e9e9e7;border-radius:12px;padding:16px 18px">
         <div style="font-size:13px;font-weight:600;color:#37352f;margin-bottom:8px">Dodavatel 1</div>
         <div style="font-size:12.5px;color:#5f5e5a;margin-bottom:8px">Vítěz 3 ze 3 tendrů, spolehlivý v termínech. Dodává i na <a href="#" onclick="return false" style="color:#6366f1">Dopravníky</a> a <a href="#" onclick="return false" style="color:#6366f1">Regálové systémy</a>.</div>
@@ -2019,40 +2087,51 @@
   </div><!-- /content-area -->
 </div><!-- /main -->
 
-<!-- ═══ CHAT PANEL ════════════════════════════════════════════ -->
+<!-- ═══ CHAT PANEL (hlavní plocha) ════════════════════════════ -->
 <div class="chat-panel" id="chat-panel">
-  <div class="chat-header">
-    <img src="alzak.jpg" class="alzak-avatar" alt="Alzák">
-    <div class="chat-header-info">
-      <div class="chat-header-name">Projekťák Alzáček</div>
-      <div class="chat-header-sub">AI Asistent</div>
+  <div class="chat-topbar">
+    <div class="chat-header">
+      <img src="alzak.jpg" class="alzak-avatar" alt="Alzák">
+      <div class="chat-header-info">
+        <div class="chat-header-name">Projekťák Alzáček</div>
+        <div class="chat-header-sub">AI Asistent</div>
+      </div>
+      <div class="chat-header-context">
+        <span class="chat-context-chip">CZLC5 · Plošina</span>
+        <span class="chat-context-hint">zná historii napříč 3 projekty</span>
+      </div>
     </div>
   </div>
   <div class="chat-messages" id="chat-msgs">
-    <div class="msg msg-ai">Ahoj! Jsem Projekťák Alzáček. Mám data k FC Plošina — tendr, nabídky, rozhodnutí. Na co se chceš zeptat?</div>
+    <div class="chat-messages-inner" id="chat-msgs-inner">
+      <div class="msg msg-ai">Ahoj! Jsem Projekťák Alzáček. Mám data k FC Plošina — tendr, nabídky, rozhodnutí. Na co se chceš zeptat?</div>
+    </div>
   </div>
-  <div class="chat-suggestions" id="chat-suggestions">
-    <button class="chat-chip" onclick="askChip('Kdo je vítěz tendru a proč?')">Kdo je vítěz?</button>
-    <button class="chat-chip" onclick="askChip('Co chybí k rozhodnutí?')">Co chybí?</button>
-    <button class="chat-chip" onclick="askChip('Připrav shrnutí pro ředitele logistiky.')">Shrnutí pro ředitele</button>
-    <button class="chat-chip" onclick="askChip('Jaká jsou rizika tohoto tendru?')">Rizika</button>
-    <button class="chat-chip" onclick="askChip('Navrhni 10 kritérií pro tendr na plošinu.')">Navrhni kritéria</button>
-    <button class="chat-chip" onclick="askChip('Připrav mi návrh harmonogramu montáže.')">Harmonogram</button>
-    <button class="chat-chip" onclick="askChip('Porovnej nabídky dodavatelů.')">Porovnej nabídky</button>
-  </div>
-  <div class="chat-input-area">
-    <textarea id="chat-in" rows="2" placeholder="Napiš otázku… (Enter = odeslat)"
-      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
-    <button class="send-btn" onclick="sendMsg()" aria-label="Odeslat">&#9654;</button>
+  <div class="chat-composer">
+    <div class="chat-suggestions" id="chat-suggestions">
+      <button class="chat-chip" onclick="askChip('Kdo je vítěz tendru a proč?')">Kdo je vítěz?</button>
+      <button class="chat-chip" onclick="askChip('Co chybí k rozhodnutí?')">Co chybí?</button>
+      <button class="chat-chip" onclick="askChip('Připrav shrnutí pro ředitele logistiky.')">Shrnutí pro ředitele</button>
+      <button class="chat-chip" onclick="askChip('Jaká jsou rizika tohoto tendru?')">Rizika</button>
+      <button class="chat-chip" onclick="askChip('Navrhni 10 kritérií pro tendr na plošinu.')">Navrhni kritéria</button>
+      <button class="chat-chip" onclick="askChip('Připrav mi návrh harmonogramu montáže.')">Harmonogram</button>
+      <button class="chat-chip" onclick="askChip('Porovnej nabídky dodavatelů.')">Porovnej nabídky</button>
+    </div>
+    <div class="chat-input-area">
+      <div class="chat-input-shell">
+        <textarea id="chat-in" rows="1" placeholder="Napiš otázku… (Enter = odeslat)"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
+        <button class="send-btn" onclick="sendMsg()" aria-label="Odeslat">&#9654;</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- Print area (hidden, shown only on print) -->
 <div id="print-area"></div>
 
-<!-- Toggle tlačítka -->
-<button class="toggle-btn open" id="toggle-left" onclick="toggleLeft()" title="Schovat navigaci">‹</button>
-<button class="toggle-btn open" id="toggle-right" onclick="toggleRight()" title="Schovat chat">›</button>
+<!-- Toggle tlačítko (referenční panel) -->
+<button class="toggle-btn open" id="toggle-right" onclick="toggleRight()" title="Schovat referenční panel">›</button>
 
 <script>
   /* ── KRITÉRIA — Excel import ─── */
@@ -2437,8 +2516,8 @@
   function setPageMode(mode) {
     document.getElementById('pv-projekt').classList.toggle('active', mode === 'projekt');
     document.getElementById('pv-poznatky').classList.toggle('active', mode === 'poznatky');
-    document.getElementById('sn-sections-projekt').style.display = mode === 'projekt' ? 'block' : 'none';
-    document.getElementById('sn-sections-poznatky').style.display = mode === 'poznatky' ? 'block' : 'none';
+    document.getElementById('sn-sections-projekt').style.display = mode === 'projekt' ? 'flex' : 'none';
+    document.getElementById('sn-sections-poznatky').style.display = mode === 'poznatky' ? 'flex' : 'none';
 
     if (mode === 'poznatky') {
       document.getElementById('view-tendr').style.display = 'none';
@@ -2580,24 +2659,16 @@
     XLSX.writeFile(wb, `Zadani_pro_projekt_${nazev.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30)}.xlsx`);
   }
 
-  /* ── PANEL TOGGLES ─── */
-  function toggleLeft() {
-    const sn = document.querySelector('.subnav');
-    const btn = document.getElementById('toggle-left');
-    const open = !sn.classList.contains('collapsed');
-    sn.classList.toggle('collapsed', open);
-    btn.textContent = open ? '›' : '‹';
-    btn.style.left = open ? '0' : '172px';
-  }
-
+  /* ── PANEL TOGGLE (referenční panel) ─── */
   function toggleRight() {
-    const cp = document.getElementById('chat-panel');
+    const ref = document.querySelector('.main');
     const btn = document.getElementById('toggle-right');
-    const open = !cp.classList.contains('collapsed');
-    cp.classList.toggle('collapsed', open);
+    const open = !ref.classList.contains('collapsed');
+    ref.classList.toggle('collapsed', open);
     btn.textContent = open ? '‹' : '›';
-    btn.style.right = open ? '0' : '320px';
-    document.body.style.gridTemplateColumns = open ? '1fr 0' : '1fr 320px';
+    btn.title = open ? 'Zobrazit referenční panel' : 'Schovat referenční panel';
+    btn.style.right = open ? '0' : '400px';
+    document.body.style.gridTemplateColumns = open ? '1fr 0' : '1fr 400px';
   }
 
   /* ── TAB SWITCHING ─── */
@@ -2788,10 +2859,11 @@
 
   function sendRichReply(html) {
     const msgs = document.getElementById('chat-msgs');
+    const inner = document.getElementById('chat-msgs-inner');
     const dots = document.createElement('div');
     dots.className = 'msg msg-ai';
     dots.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-    msgs.appendChild(dots);
+    inner.appendChild(dots);
     msgs.scrollTop = msgs.scrollHeight;
     setTimeout(() => {
       dots.className = 'msg-rich';
@@ -2810,10 +2882,11 @@
 
   function appendMsg(text, role) {
     const msgs = document.getElementById('chat-msgs');
+    const inner = document.getElementById('chat-msgs-inner');
     const div = document.createElement('div');
     div.className = 'msg msg-' + role;
     div.textContent = text;
-    msgs.appendChild(div);
+    inner.appendChild(div);
     msgs.scrollTop = msgs.scrollHeight;
     return div;
   }
@@ -2834,11 +2907,12 @@
 
   function sendAiReply(replyText) {
     const msgs = document.getElementById('chat-msgs');
+    const inner = document.getElementById('chat-msgs-inner');
     // show typing dots
     const dots = document.createElement('div');
     dots.className = 'msg msg-ai';
     dots.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-    msgs.appendChild(dots);
+    inner.appendChild(dots);
     msgs.scrollTop = msgs.scrollHeight;
     // after delay replace dots with typed-out text
     const delay = 600 + Math.min(replyText.length * 2, 800);
